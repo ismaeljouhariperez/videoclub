@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'users/show'
+  get 'chatrooms/index'
+  get 'chatrooms/show'
+  get 'movies/index'
+  get 'movies/show'
+  get 'recommendations/index'
+  get 'lists/show'
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -1,0 +1,2 @@
+class ListMoviesController < ApplicationController
+end
