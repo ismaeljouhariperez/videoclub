@@ -1,9 +1,10 @@
 .movie-card{
   img{
-    width:200px;
-    height:280px;
+    // width:200px;
+    height:250px;
     object-fit: cover;
     border-radius: 7px;
+    margin-right:5px;
   }
   small{
     color: var(--color-light);

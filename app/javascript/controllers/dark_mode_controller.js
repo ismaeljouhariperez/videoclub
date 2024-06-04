@@ -1,7 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="dark-mode"
 export default class extends Controller {
+
+  static targets = [ "sidebar" ]
+
   connect() {
     console.log("Dark mode controller connected");
     if (localStorage.getItem("darkMode") === "true") {
@@ -12,6 +14,7 @@ export default class extends Controller {
   toggle() {
     const darkMode = !document.body.classList.contains("dark-mode");
     document.body.classList.toggle("dark-mode", darkMode);
+    this.sidebarTarget.classList.toggle("dark-mode", darkMode);
     localStorage.setItem("darkMode", darkMode);
   }
 }
