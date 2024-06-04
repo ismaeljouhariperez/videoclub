@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <main data-controller="dark-mode" data-dark-mode-target="main">
-      <%= render "shared/sidebar" %>
+        <main data-controller="dark-mode" data-dark-mode-target="main">
+
+      <%= render "shared/sidebar" , lists: @lists %>
       <%= render "shared/flashes" %>
       <div class="content" data-dark-mode-target="container">
         <%= yield %>
