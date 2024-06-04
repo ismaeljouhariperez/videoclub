@@ -1,0 +1,24 @@
+<h1 class="text-center my-3">Your profile</h1>
+
+<h2 class="text-center">Your lists</h2>
+<div class="row w-75 mx-auto" data-controller="insert-in-the-list">
+  <div data-controller="display-form">
+    <button class="btn btn-primary" data-action="click->display-form#toggle">Create a new list</button>
+    <div>
+      <%= simple_form_for(@list, html: { data: { 
+            insert_in_the_list_target: 'form',
+            action: "submit->insert-in-the-list#send"
+          } } ) do |f| %>
+        <div data-display-form-target="form" class="d-none">
+          <%= f.input :name, label: "List name" %>
+          <%= f.button :submit, class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row" data-insert-in-the-list-target="items">
+    <% @lists.each do |list| %>
+      <%= render "lists/list", list: list %>
+    <% end %>
+  </div>
+</div>

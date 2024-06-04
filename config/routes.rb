@@ -10,9 +10,14 @@ Rails.application.routes.draw do
   root "pages#home"
   resources :users, only: :show
   resources :recommendations, only: :index
-  resources :lists, only: :show
+  resources :lists, only: %i[show create]
   resources :movies, only: %i[index show] do
     resources :list_movies, only: %i[create]
   end
   resources :chatrooms
+  get "settings/lists" => "lists#index", as: :settings_lists
+  get "settings/lists/:id/edit" => "lists#edit", as: :settings_list_edit
+  patch "lists/:id" => "lists#update", as: :settings_list_update
+  delete "settings/lists/:id" => "lists#destroy", as: :settings_list_destroy
+
 end
