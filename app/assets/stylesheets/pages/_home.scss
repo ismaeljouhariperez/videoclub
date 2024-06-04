@@ -1,1 +1,6 @@
-// Specific CSS for your home-page
+main{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  padding: 40px;
+}
