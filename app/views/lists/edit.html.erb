@@ -1,0 +1,11 @@
+<h1 class="text-center my-3">Your profile</h1>
+
+<div class="row w-75 mx-auto">
+  <h2 class="text-center">Edit the <%= @list.name %></h2>
+  <div class="col-8 mx-auto mt-3">
+    <%= simple_form_for(@list) do |f| %>
+      <%= f.input :name, label: "List name" %>
+      <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,7 @@
-<div class="sidebar">
-<h1>MovieClub</h1>
-<div class="d-grid gap-2">
+
+<div class="sidebar p-3" data-dark-mode-target="sidebar">
+  <%= render "shared/logo" %>
+<div class="d-grid gap-2 mt-4">
 <% if !lists.blank? then lists.each do |list|  %>
   <%= link_to list.name, class: 'btn btn-dark text-start rounded p-3 m-2' do %>
   <i class="ms-2 <%= list.icon.blank? ? "fas fa-list" : list.icon %>"></i> <%= list.name %>
