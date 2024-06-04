@@ -3,14 +3,13 @@ require 'net/http'
 require 'json'
 
 User.destroy_all if Rails.env.development?
-# Watched.destroy_all if Rails.env.development?
 List.destroy_all if Rails.env.development?
 ListMovie.destroy_all if Rails.env.development?
 Movie.destroy_all if Rails.env.development?
 
-User.create(email: 'ismael@test.com', password: 'azerty')
-User.create(email: 'killian@test.com', password: 'azerty')
-User.create(email: 'benoit@test.com', password: 'azerty')
+User.create(email: 'ismael@test.com', password: 'azerty', username: "Arrancini")
+User.create(email: 'killian@test.com', password: 'azerty', username: "The Goat")
+User.create(email: 'benoit@test.com', password: 'azerty', username: "Korben")
 
 url = URI.parse('https://tmdb.lewagon.com/movie/top_rated')
 response = Net::HTTP.get_response(url)
@@ -27,9 +26,12 @@ data['results'].each do |movie|
   )
 end
 
-list = ["Favorites", "Watched", "Watch Later", "My list"]
-4.times.each.with_index do |_, index|
-  List.create(name: list[index] ,user_id: User.find_by(email: "benoit@test.com").id)
-  List.create(name: list[index] ,user_id: User.find_by(email: "killian@test.com").id)
-  List.create(name: list[index] ,user_id: User.find_by(email: "ismael@test.com").id)
+list_title = ["Favorites", "Watched", "Watch Later", "My list"]
+list_icon = ["fa-solid fa-heart", "fa-solid fa-check", "fa-regular fa-clock"]
+users = User.all
+
+list_title.each.with_index do |list_name, i|
+  users.each do |user|
+    List.create(name: list_name, user_id: user.id, icon: list_icon[i])
+  end
 end
