@@ -15,4 +15,6 @@ Rails.application.routes.draw do
     resources :list_movies, only: %i[create]
   end
   resources :chatrooms
+  get "settings/lists" => "lists#index", as: :settings_lists
+  delete "settings/lists/:id" => "lists#destroy", as: :settings_list_destroy
 end
