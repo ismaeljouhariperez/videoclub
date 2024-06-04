@@ -24,6 +24,10 @@ body {
   overflow-x: hidden;
 }
 
+body{
+  transition: all 0.3s;
+}
+
 main {
   background-color: $light-white;
   color: $light-dark;
