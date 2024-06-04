@@ -20,6 +20,7 @@ html, body {
   width: 100vw;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 body{
@@ -40,6 +41,10 @@ body{
 body.dark-mode {
   background-color: $dark-dark;
   color: $dark-white;
+
+  .sidebar{
+    background-color: black;
+  }
 
   .btn-primary {
     background-color: $dark-primary;
