@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root "pages#home"
   resources :users, only: :show
   resources :recommendations, only: :index
-  resources :lists, only: %i[show new create]
+  resources :lists, only: %i[show create]
   resources :movies, only: %i[index show] do
     resources :list_movies, only: %i[create]
   end
