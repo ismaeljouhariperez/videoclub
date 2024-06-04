@@ -1,21 +1,24 @@
 <h1 class="text-center my-3">Your profile</h1>
 
-<div class="row w-75 mx-auto">
-  <h2 class="text-center">Your lists</h2>
-  <div class="col-8 mx-auto mt-3">
-    <% @lists.each do |list| %>
-      <div class="d-flex align-items-center justify-content-between bg-secondary p-3 rounded">
-      <%= link_to list.name, list, class: "nav-link text-white" %>
-      <div class=" d-flex align-items-center gap-3">
-        <span class="badge text-bg-secondary"><%= list.movies.count %></span>
-        <%= link_to settings_list_destroy_path(list), class: "text-danger", data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure you want to delete this list?"
-        } do %>
-          <i class="fas fa-trash"></i>
-        <% end %>
-      </div>
+<h2 class="text-center">Your lists</h2>
+<div class="row w-75 mx-auto" data-controller="insert-in-the-list">
+  <div data-controller="display-form">
+    <button class="btn btn-primary" data-action="click->display-form#toggle">Create a new list</button>
+    <div>
+      <%= simple_form_for(@list, html: { data: { 
+            insert_in_the_list_target: 'form',
+            action: "submit->insert-in-the-list#send"
+          } } ) do |f| %>
+        <div data-display-form-target="form" class="d-none">
+          <%= f.input :name, label: "List name" %>
+          <%= f.button :submit, class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
+  </div>
+  <div class="row" data-insert-in-the-list-target="items">
+    <% @lists.each do |list| %>
+      <%= render "lists/list", list: list %>
     <% end %>
   </div>
 </div>
