@@ -1,10 +1,12 @@
 main{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
   height: 100%;
+  width: 100%;
   .content{
-    background: blue;
     height: 100%;
-    width: 100%;
-    grid-column: 4 / 13;
+    grid-column: 3 / 13;
     grid-row: 1 / 13;
   }
 }
