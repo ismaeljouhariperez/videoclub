@@ -2,7 +2,6 @@
 <h1>MovieClub</h1>
 <div class="d-grid gap-2">
 <i class="fa-solid fa-house"></i>
-<% raise %>
 <% if !lists.empty? then lists.each do |list|  %>
   <%= link_to list.name, root_path, class: 'btn btn-dark text-start' %>
   <% end %>
