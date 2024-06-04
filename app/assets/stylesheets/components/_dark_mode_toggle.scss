@@ -1,89 +1,3 @@
-body {
-  font-family: Arial;
-  font-size: 100%;
-  padding: 30px;
-}
-
-*,
-::before,
-::after {
-  box-sizing: border-box;
-}
-
-// CSS variables
-
-:root {
-  --color-bg: #fff;
-  --color-bg-alt: #ccc;
-  --color-txt: #222;
-  --color-primary: #e54b63;
-  --color-secondary: #f78c6b;
-  --color-focus-outline: #28223b;
-}
-
-.dark-mode {
-  --color-bg: #121212;
-  --color-bg-alt: #666;
-  --color-txt: #fafafa;
-  --color-primary: #e5e59b;
-  --color-secondary: #ffd166;
-  --color-focus-outline: #fff;
-}
-
-// Typography
-
-body {
-  background: var(--color-bg);
-  color: var(--color-txt);
-  transition: all 0.3s;
-}
-
-a {
-  color: var(--color-primary);
-}
-
-ul {
-  list-style: disc;
-  margin-left: 1em;
-
-  li {
-    margin-bottom: 0.5em;
-  }
-}
-
-p {
-  margin-bottom: 1em;
-}
-
-strong {
-  font-weight: bold;
-}
-
-.links {
-  li {
-    font-size: 0.875rem;
-  }
-}
-
-hr {
-  border: 0;
-  border-top: 1px solid var(--color-bg-alt);
-  margin: 30px auto;
-}
-
-.colors {
-  display: flex;
-  gap: 20px;
-  margin-top: 30px;
-
-  .color-swatch {
-    height: 60px;
-    width: 60px;
-  }
-}
-
-// Base
-
 .color-scheme-switcher {
   display: flex;
   align-items: center;
@@ -94,7 +8,7 @@ hr {
   }
 
   .toggle-container {
-    background: var(--color-bg-alt);
+    // background: $light-white;
     border-radius: 16px;
     display: flex;
     height: 32px;
@@ -104,7 +18,7 @@ hr {
 
     &:before {
       content: "";
-      background: var(--color-primary);
+      background: $dark-primary;
       border-radius: 50%;
       height: 32px;
       position: absolute;
