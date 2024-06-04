@@ -1,0 +1,12 @@
+.movie-card{
+  img{
+    width:200px;
+    height:280px;
+    object-fit: cover;
+    border-radius: 7px;
+  }
+  small{
+    color: var(--color-light);
+  }
+
+}
