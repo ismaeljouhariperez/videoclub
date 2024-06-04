@@ -11,7 +11,7 @@
   </head>
   <body>
     <main>
-      <%= render "shared/sidebar" %>
+      <%= render "shared/sidebar" , lists: @lists %>
       <%= render "shared/flashes" %>
       <div class="content">
         <%= yield %>

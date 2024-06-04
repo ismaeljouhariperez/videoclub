@@ -26,3 +26,10 @@ data['results'].each do |movie|
     poster_url: "https://image.tmdb.org/t/p/w1280#{movie['poster_path']}",
   )
 end
+
+list = ["Favorites", "Watched", "Watch Later", "My list"]
+4.times.each.with_index do |_, index|
+  List.create(name: list[index] ,user_id: User.find_by(email: "benoit@test.com").id)
+  List.create(name: list[index] ,user_id: User.find_by(email: "killian@test.com").id)
+  List.create(name: list[index] ,user_id: User.find_by(email: "ismael@test.com").id)
+end
