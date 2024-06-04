@@ -1,6 +1,23 @@
 .sidebar{
+  background: black;
   height: 100%;
   width: 100%;
   grid-column: 1 / 3;
   grid-row: 1 / 13;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h1{
+  color:red
+}
+
+.sidebar li{
+  list-style-type: none;
+  }
+
+.dropdown{
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
 }

@@ -1,3 +1,22 @@
 <div class="sidebar">
-Sidebar content
+<h1>MovieClub</h1>
+<div class="d-grid gap-2">
+<% if !lists.blank? then lists.each do |list|  %>
+  <%# <%= link_to list.name, root_path, class: 'btn btn-dark text-start' %>
+  <%= link_to list.name, class: 'btn btn-dark text-start' do %>
+  <i class="fas fa-list"></i> <%= list.name %>
+<% end %>
+  <% end %>
+  <% end %>
+</div>
+<li class="nav-item dropdown">
+  <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+    <%= current_user&.email %>
+  </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <%= link_to "Settings", "#", class: "dropdown-item" %>
+      <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+    </div>
+  </li>
 </div>
