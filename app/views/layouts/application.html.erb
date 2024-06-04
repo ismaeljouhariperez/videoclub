@@ -9,12 +9,12 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body data-controller="dark-mode">
+  <body>
+        <main data-controller="dark-mode" data-dark-mode-target="main">
 
-    <main>
       <%= render "shared/sidebar" , lists: @lists %>
       <%= render "shared/flashes" %>
-      <div class="content">
+      <div class="content" data-dark-mode-target="container">
         <%= yield %>
       </div>
     </main>
