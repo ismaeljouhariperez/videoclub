@@ -1,7 +1,7 @@
 
-<div class="sidebar" data-dark-mode-target="sidebar">
+<div class="sidebar p-3" data-dark-mode-target="sidebar">
   <%= render "shared/logo" %>
-<div class="d-grid gap-2">
+<div class="d-grid gap-2 mt-4">
 <% if !lists.blank? then lists.each do |list|  %>
   <%# <%= link_to list.name, root_path, class: 'btn btn-dark text-start' %>
   <%= link_to list.name, class: 'btn btn-dark text-start' do %>
