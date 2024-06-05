@@ -8,7 +8,7 @@ class RecommendationsController < ApplicationController
     if params[:query].present?
       client = OpenAI::Client.new
       chatgpt_response = client.chat(parameters: {
-        model: "gpt-4-turbo",
+        model: "gpt-3.5-turbo",
         # messages: [{ role: "user", content: "You are Movies GPT, an encyclopedia for movies. Give me 10 imdb ids. For this user request who is looking for a movie recommndations: #{params[:query]} give me ids only." }]
         messages: [{ role: "user", content: "You are MoviesGPT, a film enthusiast and recommender. Analyze this user's query: #{params[:query]}.
         1. Identify key elements: genre preferences, actors/directors mentioned, mood/themes sought, etc.
@@ -16,7 +16,7 @@ class RecommendationsController < ApplicationController
       }]})
 
       ids = chatgpt_response["choices"][0]["message"]["content"].scan(/tt\d{7}/)
-
+raise
       ids.each do |id|
         unless Movie.exists?(imdb_id: id)
           omdb_api_url = "http://www.omdbapi.com/?apikey=#{ENV['OMDB_API_KEY']}&i=#{id}"
