@@ -1,2 +1,29 @@
 <h1>Recommendations#index</h1>
-<p>Find me in app/views/recommendations/index.html.erb</p>
+
+
+<div class="container d-flex flex-column flex-wrap px-5 py-3">
+  <div class="row">
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="darkModeToggle" data-action="click->dark-mode#toggle">
+      <label class="form-check-label" for="darkModeToggle">Dark mode</label>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+  <div class="col-sm-8 my-3">
+    <%= form_with url: recommendations_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Type a keyword"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+  <div class="row">
+  <h2>Your recent Movies</h2>
+  <% @movies.each do |movie| %>
+    <%= render "movies/movie", movie:movie %>
+  <% end %>
+  </div>
+</div>
