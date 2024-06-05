@@ -1,26 +1,82 @@
+<div class="sidebar p-4 d-flex flex-column justify-content-between" data-dark-mode-target="sidebar">
+  <div class="w-100">
+    <figure class="text-center">
+      <%= render "shared/logo" %>
+    </figure>
+    <ul class="mt-5 p-0 links">
+      <li class="nav-item my-1">
+        <%= link_to root_path, class: "nav-link" do %>
+          <i class="fa-solid fa-house me-2"></i> Home
+        <% end %>
+      </li>
+      <li class="nav-item my-1">
+        <%= link_to root_path, class: "nav-link" do %>
+          <i class="fa-solid fa-heart me-2"></i> Favourites
+        <% end %>
+      </li>
+      <li class="nav-item my-1">
+        <%= link_to root_path, class: "nav-link" do %>
+          <i class="fa-solid fa-eye me-2"></i> Watched
+        <% end %>
+      </li>
+      <li class="nav-item my-1">
+        <%= link_to root_path, class: "nav-link" do %>
+          <i class="fa-regular fa-eye me-2"></i> Watch Later
+        <% end %>
+      </li>
+      <li class="nav-item my-1">
+        <%= link_to root_path, class: "nav-link" do %>
+          <i class="fa-solid fa-message me-2"></i> Messages
+        <% end %>
+      </li>
+    </ul>
+    <hr>
+    <h3 class="mt-4">My lists</h3>
 
-<div class="sidebar p-3" data-dark-mode-target="sidebar">
-  <%= render "shared/logo" %>
+    <ul class="list-unstyled mt-4 align-self-center">
+      <li class="d-flex align-items-center m-2">
+        <img class="list-thumbnail me-2" src="https://image.tmdb.org/t/p/w1280/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg" alt="">
+        <p class="m-0">Action</p>
+      </li>
+       <li class="d-flex align-items-center m-2">
+        <img class="list-thumbnail me-2" src="https://image.tmdb.org/t/p/w1280/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg" alt="">
+        <p class="m-0">Action</p>
+      </li>
+       <li class="d-flex align-items-center m-2">
+        <img class="list-thumbnail me-2" src="https://image.tmdb.org/t/p/w1280/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg" alt="">
+        <p class="m-0">Action</p>
+      </li>
+       <li class="d-flex align-items-center m-2">
+        <img class="list-thumbnail me-2" src="https://image.tmdb.org/t/p/w1280/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg" alt="">
+        <p class="m-0">Action</p>
+      </li>
+    </ul>
 
-<div class="d-grid gap-2 mt-4">
-<% if !lists.blank? then lists.each do |list|  %>
-  <%= link_to list.name, class: 'btn btn-dark text-start rounded p-3 m-2' do %>
-  <i class="ms-2 <%= list.icon.blank? ? "fas fa-list" : list.icon %>"></i> <%= list.name %>
-<% end %>
-  <% end %>
-  <% end %>
+
+
+    <button class="btn btn-primary mt-3 w-100 rounded-xl">
+      <i class="fa-solid fa-plus me-2"></i> Create list
+  </div>
+  <div class="d-flex w-100 align-items-center">
+    <ul class="navbar-nav profile-menu d-flex flex-nowrap profile">
+      <li class="nav-item dropdown">
+        <a class="nav-link me-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="#"><i class="fas fa-sliders-h fa-fw"></i> Account</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fas fa-cog fa-fw"></i> Settings</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" do %>
+              <i class="fas fa-sign-out-alt fa-fw"></i> Log out
+            <% end %></a></li>
+      </ul>
+    </li>
+  </ul>
+  <div class="d-flex flex-column">
+    <small class="ms-2">Sebastien Saunier</small>
+  </div>
+  <%= render "shared/dark_mode_toggle" %>
 </div>
-<li class="nav-item dropdown">
-  <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-    <%= current_user&.username %>
-  </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <%= link_to "Settings", "#", class: "dropdown-item" %>
-      <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-    </div>
-  </li>
-
-      <%= render "shared/dark_mode_toggle" %>
-
 </div>

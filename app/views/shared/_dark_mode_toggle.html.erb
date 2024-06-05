@@ -1,10 +1,8 @@
- <div class="color-scheme-switcher">
-  <div class="toggle-container">
-    <button id="switch-mode" class="toggle-btn" data-action="click->dark-mode#toggle" data-dark-mode-target="button">
-      <span class="icon light-mode" aria-hidden="true"></span>
-      <span class="light-text text-label">Switch to dark mode</span>
-      <span class="dark-text text-label">Switch to light mode</span>
-      <span class="icon dark-mode" aria-hidden="true"></span>
-    </button>
-  </div>
+<div data-controller="dark-mode">
+  <input type="checkbox" class="checkbox" id="checkbox" data-action="click->dark-mode#toggle">
+  <label for="checkbox" class="checkbox-label">
+    <span class="ball d-flex justify-content-center align-items-center">
+      <i class="fas fa-moon"></i>
+    </span>
+  </label>
 </div>
