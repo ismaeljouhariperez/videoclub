@@ -4,7 +4,7 @@
 
 <div class="d-grid gap-2 mt-4">
 <% if !lists.blank? then lists.each do |list|  %>
-  <%= link_to list.name, class: 'btn btn-dark text-start rounded p-3 m-2' do %>
+  <%= link_to list_path(list), class: 'btn btn-dark text-start rounded p-3 m-2' do %>
   <i class="ms-2 <%= list.icon.blank? ? "fas fa-list" : list.icon %>"></i> <%= list.name %>
 <% end %>
   <% end %>
@@ -16,7 +16,7 @@
     <%= current_user&.username %>
   </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <%= link_to "Settings", "#", class: "dropdown-item" %>
+      <%= link_to "Settings", settings_lists_path, class: "dropdown-item" %>
       <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
     </div>
   </li>

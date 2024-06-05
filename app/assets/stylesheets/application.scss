@@ -48,6 +48,11 @@ main {
     border-color: $dark-secondary;
   }
 
+  .btn-dark {
+    background-color: $dark-primary;
+    border-color: $dark-secondary;
+  }
+
   .sidebar {
     background-color: $light-gray;
     svg {
@@ -72,6 +77,11 @@ main.dark-mode {
   }
 
   .btn-secondary {
+    background-color: $dark-secondary;
+    border-color: $dark-secondary;
+  }
+
+  .btn-dark {
     background-color: $dark-secondary;
     border-color: $dark-secondary;
   }
