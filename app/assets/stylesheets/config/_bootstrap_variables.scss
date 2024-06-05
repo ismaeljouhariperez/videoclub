@@ -7,40 +7,54 @@
 // General style
 $font-family-sans-serif: $body-font;
 $headings-font-family:   $headers-font;
-$body-bg:                $light-gray;
+// $body-bg:                $light-gray;
 $font-size-base:         1rem;
 
 // Colors
-$body-color: $gray;
-$primary:    $blue;
-$success:    $green;
-$info:       $yellow;
-$danger:     $red;
-$warning:    $orange;
+// $body-color: $gray;
+// $primary:    $blue;
+// $success:    $green;
+// $info:       $yellow;
+// $danger:     $red;
+// $warning:    $orange;
 
 // Buttons & inputs' radius
 $border-radius-sm:            .0625rem;
-$border-radius:               .125rem;
+$border-radius:               .25rem;
 $border-radius-lg:            .25rem;
 $border-radius-xl:            .5rem;
 $border-radius-xxl:           1rem;
 
-// Override other variables below!
-$light-primary: #007bff;
-$light-secondary: #6c757d;
-$light-success: #28a745;
-$light-danger: #dc3545;
-$light-warning: #ffc107;
-$light-info: #17a2b8;
-$light-dark: #000;
-$light-white: #fff;
-$light-gray: #dfdfdf;
+:root {
+  --body-bg: #fff; // White background for light theme
+  --body-color: #212529; // Mostly black text for light theme
 
-$dark-primary: #1EE783;
-$dark-secondary: #0D0D0D;
-$dark-success: #4CAF50;
-$dark-danger: #F44336;
-$dark-warning: #FFC107;
-$dark-info: #03A9F4;
-$dark-dark: #000000;
-$dark-white: #F5F5F5;
+  --primary: #1EE783;
+  --primary-dark: #16b76f; // Darkened version of primary (manually calculated)
+  --secondary: #E9EBF0;
+  --success: #28a745;
+  --danger: #dc3545;
+  --warning: #ffc107;
+  --info: #17a2b8;
+  --dark: #000;
+  --white: #fff;
+  --light-gray: #E9EBF0;
+  --gray: #586174;
+}
+
+.dark-theme {
+  --body-bg: #0D0D0D; // Dark background for dark theme
+  --body-color: #f8f9fa; // Light text for dark theme
+
+  --primary: #F33F3F;
+  --primary-dark: #c63333; // Darkened version of dark theme primary
+  --secondary: #0D0D0D;
+  --success: #4CAF50;
+  --danger: #F44336;
+  --warning: #FFC107;
+  --info: #03A9F4;
+  --dark: #000000;
+  --white: #F5F5F5;
+  --light-gray: #080808;
+  --gray: #586174;
+}

@@ -1,8 +1,12 @@
 class ListsController < ApplicationController
   def show
+    @lists_sidebar = List.where(user: current_user).order(updated_at: :desc).first(5)
+    @lists = List.where(user: current_user)
+    @list = List.find(params[:id])
   end
 
   def index
+    @lists_sidebar = List.where(user: current_user).order(updated_at: :desc).first(5)
     @lists = List.where(user: current_user)
     @list = List.new
   end
@@ -24,6 +28,7 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
+    @lists_sidebar = List.where(user: current_user).order(updated_at: :desc).first(5)
   end
 
   def update

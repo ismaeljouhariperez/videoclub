@@ -1,9 +1,9 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
+  before_action :authenticate_user!
 
   def home
 
-    @lists = List.where(user: current_user)
+    @lists_sidebar = List.where(user: current_user).order(updated_at: :desc).first(5)
     @movies = Movie.all
 
   end
