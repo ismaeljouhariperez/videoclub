@@ -10,13 +10,26 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-        <main data-controller="dark-mode" data-dark-mode-target="main">
+    <% if !user_signed_in? %>
+      <div class="container mt-5">
+        <div class="row text-center mb-4">
+                      <%= render "shared/logo" %>
 
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+    <main data-controller="dark-mode" data-dark-mode-target="main">
       <%= render "shared/sidebar" , lists: @lists %>
       <%= render "shared/flashes" %>
       <div class="content" data-dark-mode-target="container">
         <%= yield %>
       </div>
     </main>
+    <% end %>
   </body>
 </html>

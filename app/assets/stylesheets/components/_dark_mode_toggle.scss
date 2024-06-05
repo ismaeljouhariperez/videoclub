@@ -1,0 +1,102 @@
+.color-scheme-switcher {
+  display: flex;
+  align-items: center;
+
+  .legend {
+    margin-right: 0.5em;
+    margin-bottom: 0;
+  }
+
+  .toggle-container {
+    // background: $light-white;
+    border-radius: 16px;
+    display: flex;
+    height: 32px;
+    line-height: 32px;
+    position: relative;
+    width: 64px;
+
+    &:before {
+      content: "";
+      background: $dark-primary;
+      border-radius: 50%;
+      height: 32px;
+      position: absolute;
+      width: 32px;
+      transition: all 0.3s ease-in-out;
+
+      .dark-mode & {
+        transform: translateX(100%);
+      }
+    }
+  }
+}
+
+.color-scheme-switcher .toggle-btn {
+  background: transparent;
+  border: 0;
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  transition: opacity 0.3s ease-in-out;
+
+  &:disabled {
+    opacity: 1 !important;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-outline);
+    outline-offset: 1px;
+    opacity: 1;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline-width: 0;
+  }
+
+  span.text-label {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  .icon:before {
+    color: inherit;
+    display: block;
+    font-family: "Font Awesome 6 Free";
+    font-size: 20px;
+    font-weight: 900;
+    height: 32px;
+    line-height: 32px;
+    opacity: 1;
+    width: 32px;
+  }
+  .icon.light-mode:before {
+    content: "\f185";
+    color: #fff;
+  }
+
+  .icon.dark-mode:before {
+    content: "\f186";
+    color: #000;
+    opacity: 0.6;
+  }
+
+  .dark-mode & {
+    .icon.light-mode:before {
+      opacity: 0.6;
+    }
+    .icon.dark-mode:before {
+      opacity: 1;
+    }
+  }
+}
