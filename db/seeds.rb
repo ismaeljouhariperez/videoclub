@@ -32,13 +32,18 @@ for i in 1..100
 
   # Create a movie for each movie in the API response
   data['results'].each do |movie|
+    one_movie = JSON.parse(Net::HTTP.get_response(URI("https://api.themoviedb.org/3/movie/#{movie['id']}?api_key=#{api_key}")).body)
+
+    omdb_api_url = "http://www.omdbapi.com/?apikey=#{ENV['OMDB_API_KEY']}&i=#{one_movie['imdb_id']}"
+    one_movie_omdb = JSON.parse(Net::HTTP.get_response(URI(omdb_api_url)).body)
     Movie.create(
       title: movie['title'],
       description: movie['overview'],
       year: movie['release_date'].split('-').first,
-      actors: Faker::Movies::HarryPotter.character,
-      director: Faker::Movies::HarryPotter.character,
+      actors: one_movie_omdb['Actors'],
+      director: one_movie_omdb['Director'],
       poster_url: "https://image.tmdb.org/t/p/w1280#{movie['poster_path']}",
+      imdb_id: one_movie['imdb_id']
     )
   end
 end
