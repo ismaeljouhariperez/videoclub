@@ -28,6 +28,7 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
+    @lists_sidebar = List.where(user: current_user).order(updated_at: :desc).first(5)
   end
 
   def update
