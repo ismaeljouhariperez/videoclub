@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
 
-    @lists = List.where(user: current_user)
+    @lists_sidebar = List.where(user: current_user).order(updated_at: :desc).first(5)
     @movies = Movie.all
 
   end
