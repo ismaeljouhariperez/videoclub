@@ -42,7 +42,7 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6, * {
   font-family: "Hanken Grotesk", sans-serif;
   font-style: normal;
 }
@@ -70,7 +70,7 @@ body {
 
 main {
   .sidebar {
-    background-color: var(--body-bg);
+    background-color: var(--light-gray);
 
     svg {
       path {
