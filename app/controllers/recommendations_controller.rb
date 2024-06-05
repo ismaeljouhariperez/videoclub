@@ -1,15 +1,41 @@
+require 'dotenv/load'
+require 'net/http'
+require 'json'
+require 'openai'
+
 class RecommendationsController < ApplicationController
   def index
-    @movies = Movie.all
     if params[:query].present?
       client = OpenAI::Client.new
-      chaptgpt_response = client.chat(parameters: {
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user",
-        content: "give me ids only, withtout title, from IMDB  for the user request: #{:query}"}]
+      chatgpt_response = client.chat(parameters: {
+        model: "gpt-4-turbo",
+        messages: [{ role: "user", content: "You are Movies GPT, an encyclopedia for movies. Give me 10 imdb ids. For this user request who is looking for a movie recommndations: #{params[:query]} give me ids only." }]
       })
-      ids = chaptgpt_response["choices"][0]["message"]["content"].scan(/tt\d{7}/)
+
+      ids = chatgpt_response["choices"][0]["message"]["content"].scan(/tt\d{7}/)
+
+      ids.each do |id|
+        unless Movie.exists?(imdb_id: id)
+          omdb_api_url = "http://www.omdbapi.com/?apikey=#{ENV['OMDB_API_KEY']}&i=#{id}"
+          response = Net::HTTP.get_response(URI(omdb_api_url))
+          if response.is_a?(Net::HTTPSuccess)
+            one_movie_omdb = JSON.parse(response.body)
+            Movie.create(
+              title: one_movie_omdb['Title'],
+              description: one_movie_omdb['Plot'],
+              year: one_movie_omdb['Year'].to_i,
+              actors: one_movie_omdb['Actors'],
+              director: one_movie_omdb['Director'],
+              poster_url: one_movie_omdb['Poster'],
+              imdb_id: id
+            )
+          end
+        end
+      end
+
       @movies = Movie.where(imdb_id: ids)
+    else
+      @movies = Movie.all
     end
   end
 end
