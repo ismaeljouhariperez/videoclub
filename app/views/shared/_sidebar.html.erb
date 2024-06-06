@@ -36,25 +36,39 @@
       </li>
     </ul>
     <hr>
-    <h3 class="mt-4">Last updated list</h3>
+    <div data-controller="insert-in-the-list-sidebar">
+      <h3 class="mt-4">Last updated list</h3>
 
-    <ul class="list-unstyled mt-4 align-self-center">
-
-      <% lists.each do |list| %>
-        <li class="d-flex align-items-center m-2">
-          <%= link_to list_path(list), class: "d-flex align-items-center justify-content-between nav-link  w-100" do %>
-            <div class="d-flex ">
-              <img class="list-thumbnail me-2" src="https://image.tmdb.org/t/p/w1280/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg" alt="">
-              <p class="m-0"><%= list.name %></p>
+      <ul class="list-unstyled mt-4 align-self-center" data-insert-in-the-list-sidebar-target="items">
+        <% lists.each do |list| %>
+          <li class="d-flex align-items-center m-2">
+            <%= link_to list_path(list), class: "d-flex align-items-center justify-content-between nav-link  w-100" do %>
+              <div class="d-flex ">
+                <img class="list-thumbnail me-2" src="https://image.tmdb.org/t/p/w1280/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg" alt="">
+                <p class="m-0"><%= list.name %></p>
+              </div>
+              <span class="badge text-bg-secondary col-2"> (<%= list.movies.count %>)</span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <div data-controller="display-form">
+        <button class="btn btn-primary mt-3 w-100 rounded-xl" data-action="click->display-form#toggle" data-display-form-target="button">
+          <i class="fa-solid fa-plus me-2"></i> Create list
+        </button>
+        <div>
+          <%= simple_form_for(list, html: { data: { 
+                insert_in_the_list_sidebar_target: 'form',
+                action: "submit->insert-in-the-list-sidebar#send"
+              } } ) do |f| %>
+            <div data-display-form-target="form" class="d-none d-flex align-items-start gap-1">
+              <%= f.input :name, placeholder: "List name", label: false, class: "col-8" %>
+              <%= f.button :submit, "Create", class: "btn btn-primary col-4" %>
             </div>
-            <span class="badge text-bg-secondary col-2"> (<%= list.movies.count %>)</span>
           <% end %>
-        </li>
-      <% end %>
-
-    </ul>
-    <button class="btn btn-primary mt-3 w-100 rounded-xl">
-      <i class="fa-solid fa-plus me-2"></i> Create list
+        </div>
+      </div>
+    </div>
   </div>
   <div class="d-flex w-100 align-items-center">
     <ul class="navbar-nav profile-menu d-flex flex-nowrap profile">

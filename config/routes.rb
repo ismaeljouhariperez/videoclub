@@ -14,12 +14,12 @@ Rails.application.routes.draw do
   resources :lists, only: %i[show create]
   resources :movies, only: %i[index show] do
     resources :list_movies, only: %i[create]
-    resources :watched_movies, only: %i[create, index]
+    # resources :watched_movies, only: %i[create, index]
     resources :favorites, only: %i[create]
   end
   resources :favorites, only: %i[index destroy]
   resources :chatrooms
-  resources :watched_movies, only: %i[index]
+  resources :watched_movies, only: %i[index, create]
   resources :watch_later, only: %i[index]
 
   get "user/lists" => "lists#index", as: :user_lists
