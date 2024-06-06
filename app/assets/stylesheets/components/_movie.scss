@@ -1,13 +1,47 @@
-.movie-card{
-  img{
-    // width:200px;
-    height:250px;
+.movie-card {
+  img {
+    height: 280px;
+    width: 100%;
     object-fit: cover;
     border-radius: 7px;
-    margin-right:5px;
   }
-  small{
+  small {
     color: var(--light);
   }
 
+  figure {
+    position: relative;
+    margin: 0;
+    i{
+      opacity: 0;
+      transition: all 0.4s ease;
+      padding: 10px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.7);
+      font-size: 1rem;
+      margin: 0 2px;
+      border: solid 2px white;
+      &:hover {
+        opacity: 1!important;
+        color: var(--primary)!important;
+        border-color: var(--primary)!important;
+        background-color: rgba(0, 0, 0, 1);
+        cursor: pointer;
+      }
+    }
+    &:hover i{
+      opacity: 0.7;
+    }
+  }
+
+  &__buttons {
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    i {
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
 }

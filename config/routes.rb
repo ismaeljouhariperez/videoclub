@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :lists, only: %i[show create]
   resources :movies, only: %i[index show] do
     resources :list_movies, only: %i[create]
+    resources :movies_watched, only: %i[create]
   end
   resources :chatrooms
   get "settings/lists" => "lists#index", as: :settings_lists

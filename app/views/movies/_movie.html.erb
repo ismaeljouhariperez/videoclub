@@ -1,5 +1,13 @@
-<div class="movie-card col-2 mb-2 text-wrap">
-  <img src="<%= movie.poster_url %>" alt="<%= movie.title %>">
+<div class="movie-card col-3 my-2 text-wrap" data-controller="movie-buttons" data-movie-buttons-value="<%= movie.id %>">
+  <figure>
+    <img src="<%= movie.poster_url %>" alt="<%= movie.title %>">
+    <div class="movie-card__buttons">
+      <i class="fa-solid fa-plus text-white" data-action="click->movie-buttons#addToList"></i>
+      <i class="fa-solid fa-heart text-white" data-action="click->movie-buttons#like"></i>
+      <i class="fa-solid fa-eye text-white" data-action="click->movie-buttons#watched"></i>
+      <i class="fa-regular fa-eye text-white" data-action="click->movie-buttons#watchLater"></i>
+    </div>
+  </figure>
   <div class="movie-card__content">
     <small class="movie-card__title"><%= movie.title %>(<%= movie.year %>)</small>
   </div>
