@@ -1,6 +1,9 @@
 .movie-card {
+  p{
+    color: var(--text-color);
+  }
   img {
-    height: 280px;
+    height: 350px;
     width: 100%;
     object-fit: cover;
     border-radius: 7px;
@@ -42,6 +45,14 @@
       &:hover {
         opacity: 1;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .movie-card {
+    img {
+      height: 280px;
     }
   }
 }

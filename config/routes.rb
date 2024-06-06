@@ -11,9 +11,8 @@ Rails.application.routes.draw do
   resources :users, only: :show
   resources :recommendations, only: :index
   resources :lists, only: %i[show create]
-  resources :movies, only: %i[index show create] do
+  resources :movies, only: %i[index create] do
     resources :list_movies, only: %i[create]
-    # resources :watched_movies, only: %i[create, index]
     resources :favorites, only: %i[create]
   end
   resources :favorites, only: %i[index destroy]
