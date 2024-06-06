@@ -22,12 +22,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_102444) do
     t.index ["user_id"], name: "index_chatrooms_on_user_id"
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_favorites_on_movie_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+
   create_table "gpt_queries", force: :cascade do |t|
     t.text "query"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_gpt_queries_on_user_id"
+
   end
 
   create_table "list_movies", force: :cascade do |t|
@@ -113,6 +122,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_102444) do
   end
 
   add_foreign_key "chatrooms", "users"
+  add_foreign_key "favorites", "movies"
+  add_foreign_key "favorites", "users"
   add_foreign_key "gpt_queries", "users"
   add_foreign_key "list_movies", "lists"
   add_foreign_key "list_movies", "movies"

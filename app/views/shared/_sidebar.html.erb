@@ -15,22 +15,22 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to root_path, class: "nav-link" do %>
+        <%= link_to favorites_path, class: "nav-link" do %>
           <i class="fa-solid fa-heart me-2"></i> Favorites
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to root_path, class: "nav-link" do %>
+        <%= link_to watched_index_path, class: "nav-link" do %>
           <i class="fa-solid fa-eye me-2"></i> Watched
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to root_path, class: "nav-link" do %>
+        <%= link_to watch_later_index_path, class: "nav-link" do %>
           <i class="fa-regular fa-eye me-2"></i> Watch Later
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to root_path, class: "nav-link" do %>
+        <%= link_to chatrooms_path, class: "nav-link" do %>
           <i class="fa-solid fa-message me-2"></i> Messages
         <% end %>
       </li>
@@ -39,7 +39,7 @@
     <h3 class="mt-4">Last updated list</h3>
 
     <ul class="list-unstyled mt-4 align-self-center">
-      
+
       <% lists.each do |list| %>
         <li class="d-flex align-items-center m-2">
           <%= link_to list_path(list), class: "d-flex align-items-center justify-content-between nav-link  w-100" do %>
@@ -50,7 +50,7 @@
             <span class="badge text-bg-secondary col-2"> (<%= list.movies.count %>)</span>
           <% end %>
         </li>
-      <% end %> 
+      <% end %>
 
     </ul>
     <button class="btn btn-primary mt-3 w-100 rounded-xl">
