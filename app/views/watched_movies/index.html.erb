@@ -5,7 +5,6 @@
     <% @watched_movies.each do |watched_movie| %>
       <li>
         <%= link_to watched_movie.movie.title, movie_path(watched_movie.movie) %>
-        <%= link_to "Remove", watched_movie_path(watched_movie), method: :delete %>
       </li>
     <% end %>
   </ul>
