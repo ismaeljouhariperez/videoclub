@@ -1,0 +1,14 @@
+<h1>Watch Later</h1>
+
+<% if @watch_laters.any? %>
+  <ul>
+    <% @watch_laters.each do |watch_later| %>
+      <li>
+        <%= link_to watch_later.movie.title, movie_path(watch_later.movie) %>
+        <%= link_to "Remove", watch_later_path(watch_later), method: :delete %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No movies to watch later yet</p>
+<% end %>

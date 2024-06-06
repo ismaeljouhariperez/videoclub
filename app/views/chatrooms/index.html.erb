@@ -1,2 +1,14 @@
-<h1>Chatrooms#index</h1>
-<p>Find me in app/views/chatrooms/index.html.erb</p>
+<h1>Chatrooms</h1>
+
+<% if @chatrooms.any? %>
+  <ul>
+    <% @chatrooms.each do |chatroom| %>
+      <li>
+        <%= link_to chatroom.name, chatroom_path(chatroom) %>
+        <%= link_to "Join", join_chatroom_path(chatroom), method: :post %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No messages yet</p>
+<% end %>

@@ -1,0 +1,13 @@
+<h1>Movies Watched</h1>
+
+<% if @watched_movies.any? %>
+  <ul>
+    <% @watched_movies.each do |watched_movie| %>
+      <li>
+        <%= link_to watched_movie.movie.title, movie_path(watched_movie.movie) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No movies watched yet</p>
+<% end %>

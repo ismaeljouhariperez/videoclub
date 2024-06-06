@@ -1,5 +1,8 @@
 class ListsController < ApplicationController
   def show
+
+    @lists = List.where(user: current_user)
+    @list = List.find(params[:id])
   end
 
   def index
@@ -24,12 +27,13 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
+    @lists_sidebar = List.where(user: current_user).order(updated_at: :desc).first(5)
   end
 
   def update
     @list = List.find(params[:id])
     if @list.update(list_params)
-      redirect_to settings_lists_path
+      redirect_to user_lists_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,7 +42,7 @@ class ListsController < ApplicationController
   def destroy
     @list = List.find(params[:id])
     @list.destroy
-    redirect_to settings_lists_path
+    redirect_to user_lists_path
   end
 
   private

@@ -1,0 +1,14 @@
+<h1>Favorites</h1>
+
+<% if @favorites.any? %>
+  <ul>
+    <% @favorites.each do |favorite| %>
+      <li>
+        <%= link_to favorite.movie.title, movie_path(favorite.movie) %>
+        <%= link_to "Remove", favorite_path(favorite), method: :delete %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No favorites yet</p>
+<% end %>
