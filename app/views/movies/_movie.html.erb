@@ -1,6 +1,8 @@
 <div class="movie-card col-2 mb-2 text-wrap">
-  <img src="<%= movie.poster_url %>" alt="<%= movie.title %>">
-  <div class="movie-card__content">
-    <small class="movie-card__title"><%= movie.title %>(<%= movie.year %>)</small>
-  </div>
+  <%= link_to movie_path(movie), class: "nav-link" do %>
+    <img src="<%= movie.poster_url %>" alt="<%= movie.title %>">
+    <div class="movie-card__content">
+      <small class="movie-card__title"><%= movie.title %> (<%= movie.year %>)</small>
+    </div>
+  <% end %>
 </div>
