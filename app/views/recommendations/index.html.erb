@@ -16,7 +16,7 @@
   <% @queries.each do |query| %>
     <h2><%= query.query %></h2>
     <% movies = current_user.gpt_queries.find(query.id).movies %>
-    <% movies.each do |movie| %>
+    <% movies.take(4).each do |movie| %>
       <%= render "movies/movie", movie:movie %>
       <% end  %>
   <% end %>

@@ -35,13 +35,13 @@ class RecommendationsController < ApplicationController
               poster_url: one_movie_omdb['Poster'],
               imdb_id: id
             )
-            QueryMovie.create(movie_id: Movie.find_by(imdb_id: id).id, gpt_query_id: gptquery.id)
-
           end
         end
+
+        QueryMovie.create(movie_id: Movie.find_by(imdb_id: id).id, gpt_query_id: gptquery.id)
       end
     else
     end
-    @queries = GptQuery.where(user: current_user)
+    @queries = GptQuery.where(user: current_user).order(created_at: :desc)
   end
 end
