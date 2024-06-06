@@ -9,7 +9,7 @@
     </div>
   </figure>
   <div class="movie-card__content">
-    <small class="movie-card__title"><%= movie.title %>(<%= movie.year %>)</small>
+    <small class="movie-card__title"><%= movie.title %> (<%= movie.year %>)</small>
   </div>
 </div>
 
@@ -23,7 +23,7 @@
       <div class="modal-body">
         <div class="row mb-3">
           <div class="col-8">
-            <iframe class="mb-3 w-100" height="400" src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
+            <iframe class="mb-3 w-100" height="400" src="https://www.youtube.com/embed/<%= movie.trailer_key %>?mute=1">
             </iframe>
             <p><strong>Description:</strong> <%= movie.description %></p>
           </div>

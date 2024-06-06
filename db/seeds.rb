@@ -33,6 +33,8 @@ for i in 1..100
   # Create a movie for each movie in the API response
   data['results'].each do |movie|
     one_movie = JSON.parse(Net::HTTP.get_response(URI("https://api.themoviedb.org/3/movie/#{movie['id']}?api_key=#{api_key}")).body)
+    find_trailer = JSON.parse(Net::HTTP.get_response(URI("http://api.themoviedb.org/3/movie/#{movie['id']}/videos?api_key=#{api_key}")).body)
+    trailer = find_trailer['results'].find { |video| video['type'] == 'Trailer' && video['site'] == 'YouTube' && video['official'] == true }
 
     omdb_api_url = "http://www.omdbapi.com/?apikey=#{ENV['OMDB_API_KEY']}&i=#{one_movie['imdb_id']}"
     one_movie_omdb = JSON.parse(Net::HTTP.get_response(URI(omdb_api_url)).body)
@@ -43,7 +45,8 @@ for i in 1..100
       actors: one_movie_omdb['Actors'],
       director: one_movie_omdb['Director'],
       poster_url: "https://image.tmdb.org/t/p/w1280#{movie['poster_path']}",
-      imdb_id: one_movie['imdb_id']
+      imdb_id: one_movie['imdb_id'],
+      trailer_key: trailer ? trailer['key'] : nil
     )
   end
 end
