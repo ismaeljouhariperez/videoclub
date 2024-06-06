@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_06_102444) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_06_131409) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,11 +91,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_102444) do
   end
 
   create_table "query_movies", force: :cascade do |t|
-    t.bigint "gpt_querie_id", null: false
     t.bigint "movie_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["gpt_querie_id"], name: "index_query_movies_on_gpt_querie_id"
+    t.bigint "gpt_query_id", null: false
+    t.index ["gpt_query_id"], name: "index_query_movies_on_gpt_query_id"
     t.index ["movie_id"], name: "index_query_movies_on_movie_id"
   end
 
@@ -130,7 +131,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_102444) do
   add_foreign_key "lists", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "query_movies", "gpt_queries", column: "gpt_querie_id"
+  add_foreign_key "query_movies", "gpt_queries"
   add_foreign_key "query_movies", "movies"
   add_foreign_key "watched_movies", "movies"
   add_foreign_key "watched_movies", "users"
