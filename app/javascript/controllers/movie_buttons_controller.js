@@ -11,7 +11,7 @@ export default class extends Controller {
     console.log("Watched!")
     console.log(this.movieIdValue)
     const movieId = this.movieIdValue;
-    fetch(`/movies/${movieId}/movies_watched`, {
+    fetch(`/movies/${movieId}/watched_movies`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

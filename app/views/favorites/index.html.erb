@@ -1,2 +1,14 @@
-<h1>Favorites#index</h1>
-<p>Find me in app/views/favorites/index.html.erb</p>
+<h1>Favorites</h1>
+
+<% if @favorites.any? %>
+  <ul>
+    <% @favorites.each do |favorite| %>
+      <li>
+        <%= link_to favorite.movie.title, movie_path(favorite.movie) %>
+        <%= link_to "Remove", favorite_path(favorite), method: :delete %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No favorites yet</p>
+<% end %>
