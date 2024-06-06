@@ -14,8 +14,8 @@
         <h2>No movies found</h2>
       </div>
     <% else %>
-      <% @movies.each do |movie| %>
-        <%= render 'movie', movie: movie %>
+      <% @movies.each_with_index do |movie, index| %>
+        <%= render 'movie', movie: movie, index: index %>
       <% end %>
     <% end %>
     <div class="d-flex justify-content-center">
