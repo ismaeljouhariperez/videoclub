@@ -1,0 +1,9 @@
+<li class="d-flex align-items-center m-2">
+  <%= link_to list_path(list), class: "d-flex align-items-center justify-content-between nav-link  w-100" do %>
+    <div class="d-flex ">
+      <img class="list-thumbnail me-2" src="https://image.tmdb.org/t/p/w1280/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg" alt="">
+      <p class="m-0"><%= list.name %></p>
+    </div>
+    <span class="badge text-bg-secondary col-2"> (<%= list.movies.count %>)</span>
+  <% end %>
+</li>

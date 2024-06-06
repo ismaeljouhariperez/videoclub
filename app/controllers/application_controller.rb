@@ -5,5 +5,6 @@ class ApplicationController < ActionController::Base
 
   def set_list_sidebar
     @lists_sidebar = List.where(user: current_user).order(updated_at: :desc).first(5)
+    @list = List.new
   end
 end
