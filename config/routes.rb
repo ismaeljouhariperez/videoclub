@@ -16,9 +16,9 @@ Rails.application.routes.draw do
     resources :movies_watched, only: %i[create]
   end
   resources :chatrooms
-  get "settings/lists" => "lists#index", as: :settings_lists
-  get "settings/lists/:id/edit" => "lists#edit", as: :settings_list_edit
+  get "user/lists" => "lists#index", as: :user_lists
+  get "user/lists/:id/edit" => "lists#edit", as: :user_list_edit
   patch "lists/:id" => "lists#update", as: :settings_list_update
-  delete "settings/lists/:id" => "lists#destroy", as: :settings_list_destroy
+  delete "user/lists/:id" => "lists#destroy", as: :user_list_destroy
 
 end
