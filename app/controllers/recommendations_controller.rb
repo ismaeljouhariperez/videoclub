@@ -5,6 +5,7 @@ require 'openai'
 
 class RecommendationsController < ApplicationController
   def index
+    @lists_sidebar = List.where(user: current_user).order(updated_at: :desc).first(5)
     if params[:query].present?
       client = OpenAI::Client.new
       chatgpt_response = client.chat(parameters: {
@@ -16,7 +17,6 @@ class RecommendationsController < ApplicationController
       }]})
 
       ids = chatgpt_response["choices"][0]["message"]["content"].scan(/tt\d{7}/)
-raise
       ids.each do |id|
         unless Movie.exists?(imdb_id: id)
           omdb_api_url = "http://www.omdbapi.com/?apikey=#{ENV['OMDB_API_KEY']}&i=#{id}"
