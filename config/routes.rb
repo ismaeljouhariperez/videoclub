@@ -14,8 +14,13 @@ Rails.application.routes.draw do
   resources :movies, only: %i[index show] do
     resources :list_movies, only: %i[create]
     resources :movies_watched, only: %i[create]
+    resources :favorites, only: %i[create]
   end
+  resources :favorites, only: %i[index destroy]
   resources :chatrooms
+  resources :watched, only: %i[index]
+  resources :watch_later, only: %i[index]
+
   get "user/lists" => "lists#index", as: :user_lists
   get "user/lists/:id/edit" => "lists#edit", as: :user_list_edit
   patch "lists/:id" => "lists#update", as: :settings_list_update
