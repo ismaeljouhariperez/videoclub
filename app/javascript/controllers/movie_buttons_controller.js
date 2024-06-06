@@ -3,32 +3,35 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="movie-buttons"
 export default class extends Controller {
   static values = { movieId: Number }
+  static targets = ['card']
 
   connect() {
   }
 
   watched() {
-    console.log("Watched!")
-    console.log(this.movieIdValue)
+    console.log("Watched movie with ID:", this.movieIdValue);
     const movieId = this.movieIdValue;
-    fetch(`/movies/${movieId}/watched_movies`, {
+    const url = `/watched_movies`;
+    const token = document.querySelector('[name="csrf-token"]').content;
+
+    fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
-      }
+        "Accept": "application/json",
+        "Content-Type": "application/json", // Make sure to set Content-Type as application/json
+        "X-CSRF-Token": token
+      },
+      body: JSON.stringify({ movie_id: movieId })
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-        // if (data.status === 'success') {
-        //   this.buttonTarget.textContent = 'Watched';
-        //   // Update UI or notify user as necessary
-        // } else {
-        //   console.error('Error marking movie as watched:', data.message);
-        // }
-      })
-      .catch(error => console.error('Error:', error));
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP status ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log('Success:', data);
+      // Optionally update your UI based on the response
+    })
+    .catch(error => console.error('Error:', error));
   }
 
 

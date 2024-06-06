@@ -1,4 +1,6 @@
-<div class="movie-card col-3 my-2 text-wrap text-center" data-controller="movie-buttons" data-movie-buttons-value="<%= movie.id %>">
+<%# <%= raise %>
+
+<div class="movie-card col-3 my-2 text-wrap text-center" data-controller="movie-buttons" data-movie-buttons-movie-id-value="<%= movie.id %>" data-movie-button-target="card">
   <figure>
     <img src="<%= movie.poster_url %>" alt="<%= movie.title %>"  data-bs-toggle="modal" data-bs-target="#movieModal<%= movie.id %>">
     <div class="movie-card__buttons">
