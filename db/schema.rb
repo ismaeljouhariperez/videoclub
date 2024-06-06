@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_05_121119) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_06_104232) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_121119) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_chatrooms_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_favorites_on_movie_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "list_movies", force: :cascade do |t|
@@ -86,6 +95,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_121119) do
   end
 
   add_foreign_key "chatrooms", "users"
+  add_foreign_key "favorites", "movies"
+  add_foreign_key "favorites", "users"
   add_foreign_key "list_movies", "lists"
   add_foreign_key "list_movies", "movies"
   add_foreign_key "lists", "users"
