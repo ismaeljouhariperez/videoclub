@@ -18,17 +18,17 @@ export default class extends Controller {
         'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
       }
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      // if (data.status === 'success') {
-      //   this.buttonTarget.textContent = 'Watched';
-      //   // Update UI or notify user as necessary
-      // } else {
-      //   console.error('Error marking movie as watched:', data.message);
-      // }
-    })
-    .catch(error => console.error('Error:', error));
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        // if (data.status === 'success') {
+        //   this.buttonTarget.textContent = 'Watched';
+        //   // Update UI or notify user as necessary
+        // } else {
+        //   console.error('Error marking movie as watched:', data.message);
+        // }
+      })
+      .catch(error => console.error('Error:', error));
   }
 
 
