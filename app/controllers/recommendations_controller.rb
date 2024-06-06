@@ -15,9 +15,12 @@ class RecommendationsController < ApplicationController
         2. Based on those elements, suggest 5 IMDb IDs of movies that best match their interests."
       }]})
 
+      GptQuery.create(query: params[:query], user_id: :current_user)
+
       ids = chatgpt_response["choices"][0]["message"]["content"].scan(/tt\d{7}/)
 
       ids.each do |id|
+        
         unless Movie.exists?(imdb_id: id)
           omdb_api_url = "http://www.omdbapi.com/?apikey=#{ENV['OMDB_API_KEY']}&i=#{id}"
           response = Net::HTTP.get_response(URI(omdb_api_url))
@@ -32,10 +35,10 @@ class RecommendationsController < ApplicationController
               poster_url: one_movie_omdb['Poster'],
               imdb_id: id
             )
+
           end
         end
       end
-
       @movies = Movie.where(imdb_id: ids)
     else
       @movies = Movie.all
