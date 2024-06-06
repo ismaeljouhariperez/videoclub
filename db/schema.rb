@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_06_102444) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_06_104232) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_102444) do
     t.datetime "updated_at", null: false
     t.index ["movie_id"], name: "index_favorites_on_movie_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "gpt_queries", force: :cascade do |t|
     t.text "query"
@@ -36,7 +37,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_102444) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_gpt_queries_on_user_id"
-
   end
 
   create_table "list_movies", force: :cascade do |t|
@@ -78,15 +78,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_102444) do
     t.string "poster_url"
     t.string "imdb_id"
     t.string "trailer_key"
-  end
-
-  create_table "query_movies", force: :cascade do |t|
-    t.bigint "gpt_querie_id", null: false
-    t.bigint "movie_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["gpt_querie_id"], name: "index_query_movies_on_gpt_querie_id"
-    t.index ["movie_id"], name: "index_query_movies_on_movie_id"
   end
 
   create_table "query_movies", force: :cascade do |t|
