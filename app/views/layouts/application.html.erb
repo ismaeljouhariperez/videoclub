@@ -23,7 +23,7 @@
       </div>
     <% else %>
       <main>
-        <%= render "shared/sidebar" , lists: @lists %>
+        <%= render "shared/sidebar" , lists: @lists_sidebar %>
         <%= render "shared/flashes" %>
         <div class="content" data-dark-mode-target="container">
           <%= yield %>

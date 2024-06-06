@@ -1,6 +1,38 @@
-<div class="movie-card col-2 mb-2 text-wrap">
-  <img src="<%= movie.poster_url %>" alt="<%= movie.title %>">
+<div class="movie-card col-3 my-2 text-wrap text-center" data-controller="movie-buttons" data-movie-buttons-value="<%= movie.id %>">
+  <figure>
+    <img src="<%= movie.poster_url %>" alt="<%= movie.title %>"  data-bs-toggle="modal" data-bs-target="#movieModal<%= movie.id %>">
+    <div class="movie-card__buttons">
+      <i class="fa-solid fa-plus text-white" data-action="click->movie-buttons#addToList"></i>
+      <i class="fa-solid fa-heart text-white" data-action="click->movie-buttons#like"></i>
+      <i class="fa-solid fa-eye text-white" data-action="click->movie-buttons#watched"></i>
+      <i class="fa-regular fa-eye text-white" data-action="click->movie-buttons#watchLater"></i>
+    </div>
+  </figure>
   <div class="movie-card__content">
     <small class="movie-card__title"><%= movie.title %>(<%= movie.year %>)</small>
+  </div>
+</div>
+
+<div class="modal fade" id="movieModal<%= movie.id %>" tabindex="-1" aria-labelledby="movieModalLabel<%= movie.id %>" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="movieModalLabel<%= movie.id %>"><%= movie.title %> (<%= movie.year %>)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div class="col-8">
+            <iframe class="mb-3 w-100" height="400" src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
+            </iframe>
+            <p><strong>Description:</strong> <%= movie.description %></p>
+          </div>
+          <img src="<%= movie.poster_url %>" alt="<%= movie.title %>" class="img-fluid col-4">
+        </div>
+        <p><strong>Director:</strong> <%= movie.director %></p>
+        <p><strong>Main actors:</strong> <%= movie.actors %></p>
+        <p><strong>Year:</strong> <%= movie.year %></p>
+      </div>
+    </div>
   </div>
 </div>
