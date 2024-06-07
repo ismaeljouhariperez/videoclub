@@ -49,7 +49,7 @@ for i in 1..100
       actors: one_movie_omdb['Actors'],
       director: one_movie_omdb['Director'],
       poster_url: one_movie_omdb["Poster"],
-      imdb_id: one_movie_omdb['imdb_id'],
+      imdb_id: one_movie_omdb['imdbID'],
       trailer_key: trailer ? trailer['key'] : nil
     )
   end
