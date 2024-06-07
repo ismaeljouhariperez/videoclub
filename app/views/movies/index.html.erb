@@ -1,11 +1,14 @@
 <div class="container d-flex flex-column flex-wrap px-5 py-3">
-  <div class="row my-4">
-    <h1 class="my-3 text-center">All the movies you can find on the website</h1>
-    <%= form_tag movies_path, method: :get do %>
-        <div class="d-flex w-50 mx-auto gap-3">
-          <%= text_field_tag :search, params[:search], placeholder: "Search by title", class: "form-control" %>
-          <%= submit_tag "Search", class: "btn btn-primary" %>
-        </div>
+  <h1 class="my-3 text-center">All the movies you can find on the website</h1>
+  <div class="row my-4 d-flex justify-content-center" data-controller="search-bar-movie">
+    <%= form_tag movies_path, method: :get, class: "input-box pe-0", data: {
+      search_bar_movie_target: "inputBox",
+    } do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search a movie by his title" %>
+          <span class="search" data-action="click->search-bar-movie#openSearch">
+            <i class="fas fa-search search-icon"></i>
+          </span>
+          <i class="fas fa-times close-icon" data-action="click->search-bar-movie#closeSearch"></i>
     <% end %>
   </div>
   <div class="row">
