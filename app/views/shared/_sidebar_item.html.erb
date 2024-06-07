@@ -2,7 +2,7 @@
   <%= link_to list_path(list), class: "d-flex align-items-center justify-content-between nav-link  w-100" do %>
     <div class="d-flex ">
       <% if list.movies.sample.nil? %>
-        <img class="list-thumbnail me-2 img-list" src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG1vdmllJTIwcG9zdGVyfGVufDB8fDB8fHww" alt="">
+        <img class="list-thumbnail me-2 img-list" src="https://image.tmdb.org/t/p/w1280/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg" alt="">
       <% else %>
         <img class="list-thumbnail me-2" src="<%= list.movies.sample.poster_url %>" alt="">
       <% end %>
