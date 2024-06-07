@@ -1,6 +1,7 @@
 class Movie < ApplicationRecord
   has_many :list_movies
-
+  has_many :watched_movies
+  has_many :favorites
 
   def self.custom_find_or_create_by_imndb_id(id)
     movie = Movie.find_by(imdb_id: id)
@@ -22,5 +23,4 @@ class Movie < ApplicationRecord
     end
     movie
   end
-
 end

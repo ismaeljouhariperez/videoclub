@@ -15,6 +15,13 @@
   figure {
     position: relative;
     margin: 0;
+
+    .watched, .watch_later, .favorite {
+      opacity:1;
+      color: var(--primary)!important;
+      border-color: var(--primary)!important;
+    }
+
     i{
       opacity: 0;
       transition: all 0.4s ease;
@@ -24,6 +31,7 @@
       font-size: 1rem;
       margin: 0 2px;
       border: solid 2px white;
+
       &:hover {
         opacity: 1!important;
         color: var(--primary)!important;
@@ -41,11 +49,6 @@
     position: absolute;
     bottom: 15px;
     left: 10px;
-    i {
-      &:hover {
-        opacity: 1;
-      }
-    }
   }
 }
 
