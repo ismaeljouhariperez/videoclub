@@ -6,7 +6,7 @@ export default class extends Controller {
 
   connect() {
     this.updatePrompt()
-    this.interval = setInterval(() => this.updatePrompt(), 3000)
+    this.interval = setInterval(() => this.updatePrompt(), 2000)
   }
 
   disconnect() {
