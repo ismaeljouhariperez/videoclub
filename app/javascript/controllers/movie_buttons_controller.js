@@ -27,8 +27,8 @@ export default class extends Controller {
     })
     .then(data => {
       console.log('Success:', data);
-      this.updateCard(data, action);
-      el.classList.add(action);
+      this.updateCard(data, action, section);
+      el.classList.toggle(action);
     })
     .catch(error => console.error('Error:', error));
   }
@@ -36,33 +36,57 @@ export default class extends Controller {
   addToWatched(e) {
     const el = e.currentTarget
     const url = `/watched_movies`;
-    this.fetchMovie('true', 'watched', url, el);
+    this.fetchMovie(true, 'watched', url, el);
   }
 
   addToWatchLater(e) {
     const el = e.currentTarget
     const url = `/watched_movies`;
-    this.fetchMovie('false', 'watch_later', url, el);
+    this.fetchMovie(false, 'watch_later', url, el);
   }
 
   addToFavorites(e) {
     const el = e.currentTarget
-    console.log(this.buttonsTarget)
+    // console.log(this.buttonsTarget)
     const favoriteButton = this.buttonsTarget.querySelector('i.favorite');
     const url = `/favorites`;
     this.fetchMovie('', 'favorite', url, el);
   }
 
   addToList() {
-    console.log("Added to List!")
+    // console.log("Added to List!")
   }
 
-  updateCard(data, action) {
-    // console.log(data.section, action);
+  // updateCard(data, action) {
+  //   // console.log(data.section, action);
+  //   const cardElement = this.element;
+  //   if ((data.section === 'watched' || data.section === 'watch_later') && data.section !== action) {
+  //     cardElement.remove();
+  //   }
+  // }
+
+  updateCard(data, action, section) {
+    console.log("data: ", data);
+    console.log("action: ", action);
+    console.log("section: ", section);
     const cardElement = this.element;
-    if ((data.section === 'watched' || data.section === 'watch_later') && data.section !== action) {
-      cardElement.remove();
+
+    if (section !== "" || section !== undefined || section !== null) {
+      if ( (data.message === 'Movie watch status removed' || data.message === 'Movie changed as watched' || data.message === 'Movie changed as watch later') && (section === 'watched' || section === 'watch_later')){
+        cardElement.remove();
+      }
+    }
+    else {
+      const watchIcon = cardElement.querySelector('.fa-eye');
+      const watchLaterIcon = cardElement.querySelector('.fa-clock');
+      if (action === 'watched') {
+        watchIcon.classList.add('watched');
+        watchLaterIcon.classList.remove('watch_later');
+        }
+      else {
+        watchIcon.classList.remove('watched');
+        watchLaterIcon.classList.add('watch_later');
+      }
     }
   }
-
 }
