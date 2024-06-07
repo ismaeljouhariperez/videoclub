@@ -13,12 +13,16 @@
   </div>
    <div class="row">
 
-  <% @queries.each do |query| %>
-    <h2><%= query.query %></h2>
-    <% movies = current_user.gpt_queries.find(query.id).movies %>
-    <% movies.take(4).each do |movie| %>
-      <%= render "movies/movie", movie:movie %>
-      <% end  %>
-  <% end %>
+<% @queries.each do |query| %>
+  <div class="card shadow p-2 mb-3">
+    <div class="card-body">
+      <h2><%= query.query %></h2>
+      <% movies = current_user.gpt_queries.find(query.id).movies %>
+      <div class="row">
+        <% movies.take(4).each do |movie| %>
+          <%= render "movies/movie", movie:movie %>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
+<% end %>
