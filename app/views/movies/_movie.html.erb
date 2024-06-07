@@ -1,17 +1,15 @@
-<%# <%= raise %>
-
-<div class="movie-card col-3 my-2 text-wrap text-center" data-controller="movie-buttons" data-movie-buttons-movie-id-value="<%= movie.id %>" data-movie-button-target="card">
+<div class="movie-card col-sm-6 col-md-6 col-lg-3 my-2 text-wrap text-center" data-controller="movie-buttons" data-movie-buttons-movie-id-value="<%= movie.id %>" data-movie-button-target="card" data-movie-buttons-movie-section-value="<%= defined?(section) ? section : '' %>" >
   <figure>
     <img src="<%= movie.poster_url %>" alt="<%= movie.title %>"  data-bs-toggle="modal" data-bs-target="#movieModal<%= movie.id %>">
     <div class="movie-card__buttons">
       <i class="fa-solid fa-plus text-white" data-action="click->movie-buttons#addToList"></i>
       <i class="fa-solid fa-heart text-white" data-action="click->movie-buttons#like"></i>
       <i class="fa-solid fa-eye text-white" data-action="click->movie-buttons#watched"></i>
-      <i class="fa-regular fa-eye text-white" data-action="click->movie-buttons#watchLater"></i>
+      <i class="fa-regular fa-clock text-white" data-action="click->movie-buttons#watchLater"></i>
     </div>
   </figure>
   <div class="movie-card__content">
-    <small class="movie-card__title"><%= movie.title %> (<%= movie.year %>)</small>
+    <p class="movie-card__title mt-2"><%= movie.title %> (<%= movie.year %>)</p>
   </div>
 </div>
 

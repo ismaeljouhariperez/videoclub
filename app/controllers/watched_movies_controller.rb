@@ -4,17 +4,21 @@ class WatchedMoviesController < ApplicationController
   end
 
   def create
-    @watched_movie = current_user.watched_movies.find_or_create_by(movie_id: params[:movie_id])
-    @watched_movie.is_watched = true
+    @movie = Movie.find(params[:movie_id])
+    @watched_movie = WatchedMovie.find_or_initialize_by(movie: @movie, user: current_user)
+
+    @watched_movie.is_watched = params[:is_watched] == 'true'
 
     if @watched_movie.save
-      respond_to do |format|
-        format.json { render json: { status: 'success', message: 'Movie marked as watched' }, status: :ok }
-      end
+      message = @watched_movie.is_watched ? 'Movie marked as watched' : 'Movie marked as watch later'
+      render json: {
+        status: 'success',
+        message: message,
+        is_watched: @watched_movie.is_watched,
+        section: params[:section]
+      }, status: :ok
     else
-      respond_to do |format|
-        format.json { render json: { status: 'error', message: 'Failed to mark as watched' }, status: :unprocessable_entity }
-      end
+      render json: { status: 'error', message: @watched_movie.errors.full_messages.join(", ") }, status: :unprocessable_entity
     end
   end
 end
