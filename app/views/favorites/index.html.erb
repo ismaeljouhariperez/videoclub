@@ -1,14 +1,12 @@
-<h1>Favorites</h1>
-
-<% if @favorites.any? %>
-  <ul>
-    <% @favorites.each do |favorite| %>
-      <li>
-        <%= link_to favorite.movie.title, movie_path(favorite.movie) %>
-        <%= link_to "Remove", favorite_path(favorite), method: :delete %>
-      </li>
-    <% end %>
-  </ul>
+<div class="container d-flex flex-column flex-wrap px-5 py-3">
+  <div class="row">
+  <h2>Favorites</h2>
+  <% if !@favorites.empty? %>
+  <% @favorites.each do |favorite| %>
+    <%= render "movies/movie", movie: favorite.movie %>
+  <% end %>
 <% else %>
   <p>No favorites yet</p>
 <% end %>
+  </div>
+</div>

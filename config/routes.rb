@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :list_movies, only: %i[create]
     resources :favorites, only: %i[create]
   end
-  resources :favorites, only: %i[index destroy]
+  resources :favorites, only: %i[index create destroy]
   resources :chatrooms
   resources :watched_movies, only: %i[index create]
   resources :watch_later, only: %i[index]
