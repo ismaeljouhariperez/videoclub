@@ -28,7 +28,14 @@
       padding: 10px;
       border-radius: 50%;
       background: rgba(0, 0, 0, 0.7);
-      font-size: 1rem;
+      // font-size: 1rem;
+      border-radius: 50%;
+      padding: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin: 0 2px;
       border: solid 2px white;
 
@@ -46,6 +53,7 @@
   }
 
   &__buttons {
+    display: flex;
     position: absolute;
     bottom: 15px;
     left: 10px;
