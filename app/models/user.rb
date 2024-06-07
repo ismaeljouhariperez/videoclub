@@ -6,5 +6,6 @@ class User < ApplicationRecord
   has_many :lists, dependent: :destroy
   has_many :watched_movies, dependent: :destroy
   has_many :movies, through: :watched_movies
-  has_many :queries, dependent: :destroy
+  has_many :gpt_queries, dependent: :destroy
+
 end
