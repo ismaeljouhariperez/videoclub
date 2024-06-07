@@ -5,20 +5,29 @@ class WatchedMoviesController < ApplicationController
 
   def create
     @movie = Movie.find(params[:movie_id])
-    @watched_movie = WatchedMovie.find_or_initialize_by(movie: @movie, user: current_user)
+    @watched_movie = WatchedMovie.find_by(movie: @movie, user: current_user)
 
-    @watched_movie.is_watched = params[:is_watched] == 'true'
-
-    if @watched_movie.save
-      message = @watched_movie.is_watched ? 'Movie marked as watched' : 'Movie marked as watch later'
+    if @watched_movie
+      if @watched_movie.is_watched == params[:is_watched]
+        @watched_movie.destroy
+        render json: { status: 'success', message: 'Movie watch status removed', is_watched: nil, params: params[:is_watched] }, status: :ok
+      else
+        @watched_movie.update(is_watched: params[:is_watched])
+        message = params[:is_watched] ? 'Movie changed as watched' : 'Movie changed as watch later'
+        render json: {
+          status: 'success',
+          message: message,
+          is_watched: @watched_movie.is_watched
+        }, status: :ok
+      end
+    else
+      @watched_movie = WatchedMovie.create(movie: @movie, user: current_user, is_watched: params[:is_watched])
+      message = params[:is_watched] ? 'Movie marked as watched' : 'Movie marked as watch later'
       render json: {
         status: 'success',
         message: message,
-        is_watched: @watched_movie.is_watched,
-        section: params[:section]
+        is_watched: @watched_movie.is_watched
       }, status: :ok
-    else
-      render json: { status: 'error', message: @watched_movie.errors.full_messages.join(", ") }, status: :unprocessable_entity
     end
   end
 end
