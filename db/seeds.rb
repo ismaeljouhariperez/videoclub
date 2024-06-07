@@ -57,7 +57,7 @@ end
 puts "Movies created!"
 
 
-list_title = ["Favorites", "Watched", "Watch Later", "My list"]
+list_title = ["Top 10", "Horror", "Comedy"]
 list_icon = ["fa-solid fa-heart", "fa-solid fa-check", "fa-regular fa-clock"]
 users = User.all
 
