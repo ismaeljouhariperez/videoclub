@@ -1,18 +1,19 @@
 .movie-count {
-  $size:30px;
-  border-radius: 50%;
+  $size:25px;
+  border-radius: 4px;
   margin: 0;
   background: var(--gray);
   color: var(--body-bg);
-  padding: $size / 2;
   font-size: .8rem;
   height: $size;
   width: $size;
   display: flex;
   justify-content: center;
   align-items: center;
+  position:relative;
 
   p {
+    position: absolute;
     margin: 0;
   }
 }
