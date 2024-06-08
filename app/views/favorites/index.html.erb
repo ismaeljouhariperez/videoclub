@@ -3,7 +3,7 @@
   <h2>Favorites</h2>
   <% if !@favorites.empty? %>
   <% @favorites.each do |favorite| %>
-    <%= render "movies/movie", movie: favorite.movie %>
+    <%= render "movies/movie", movie: favorite.movie, section: "favorites", lists: @lists_sidebar %>
   <% end %>
 <% else %>
   <p>No favorites yet</p>

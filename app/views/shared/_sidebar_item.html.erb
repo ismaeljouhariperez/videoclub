@@ -1,6 +1,6 @@
 <li class="d-flex align-items-center m-2 padding">
   <%= link_to list_path(list), class: "d-flex align-items-center justify-content-between nav-link  w-100" do %>
-    <div class="d-flex ">
+    <div class="d-flex align-items-center">
       <% if list.movies.sample.nil? %>
         <img class="list-thumbnail me-2 img-list" src="https://image.tmdb.org/t/p/w1280/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg" alt="">
       <% else %>
@@ -8,8 +8,10 @@
       <% end %>
       <p class="m-0"><%= list.name %></p>
     </div>
-    <div class="movie-count">
-      <p ><%= list.movies.count %></p>
-    </div>
+    <% if list.movies.count > 0 %>
+      <div class="movie-count">
+        <p><%= list.movies.count %></p>
+      </div>
+      <% end %>
   <% end %>
 </li>

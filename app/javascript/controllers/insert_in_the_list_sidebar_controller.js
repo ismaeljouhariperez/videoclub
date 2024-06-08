@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["items", "form"]
 
   connect() {
-    console.log("Connected");
+    // console.log("Connected");
   }
 
   send(event) {

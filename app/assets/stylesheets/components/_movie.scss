@@ -1,4 +1,10 @@
+.card-animation{
+  transition: all .6s ease-in-out;
+}
+
 .movie-card {
+  transition: all .6s ease-in-out;
+
   p{
     color: var(--text-color);
   }
@@ -15,6 +21,7 @@
   figure {
     position: relative;
     margin: 0;
+    overflow: hidden;
 
     .watched, .watch_later, .favorite {
       opacity:1;
@@ -24,19 +31,14 @@
 
     i{
       opacity: 0;
-      transition: all 0.4s ease;
+      transition: opacity 0.5s ease-in-out;
       padding: 10px;
       border-radius: 50%;
       background: rgba(0, 0, 0, 0.7);
-      // font-size: 1rem;
-      border-radius: 50%;
-      padding: 0;
-      width: 2.5rem;
-      height: 2.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 2px;
+      margin: 0 5px;
       border: solid 2px white;
 
       &:hover {
@@ -57,13 +59,48 @@
     position: absolute;
     bottom: 15px;
     left: 10px;
+
+    // position: absolute;
+    // bottom: 15px;
+    // left: 0;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-evenly;
+    // width: 100%;
+    // padding:0 20px;
+  }
+
+  button.show i{
+    opacity: 1!important;
+    color: var(--primary)!important;
+    border-color: var(--primary)!important;
+    background-color: rgba(0, 0, 0, 1);
+    cursor: pointer;
   }
 }
 
-@media screen and (max-width: 1280px) {
+@media all and (max-width: 1280px) {
   .movie-card {
     img {
       height: 280px;
+    }
+
+    figure{
+      i{
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+}
+
+@media all and (min-width: 1281px) and (max-width: 1440px) {
+  .movie-card {
+    figure{
+      i{
+        width: 2.5rem;
+        height: 2.5rem;
+      }
     }
   }
 }
