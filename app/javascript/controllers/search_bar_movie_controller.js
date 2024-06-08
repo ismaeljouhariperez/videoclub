@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["inputBox"]
 
   connect() {
-    console.log('Hello, Stimulus!', this.inputBoxTarget);
+    // console.log('Hello, Stimulus!', this.inputBoxTarget);
   }
 
   openSearch() {
