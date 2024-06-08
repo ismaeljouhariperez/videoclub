@@ -25,4 +25,7 @@ Rails.application.routes.draw do
   patch "lists/:id" => "lists#update", as: :settings_list_update
   delete "user/lists/:id" => "lists#destroy", as: :user_list_destroy
 
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 end

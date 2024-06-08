@@ -5,7 +5,6 @@
     <% @chatrooms.each do |chatroom| %>
       <li>
         <%= link_to chatroom.name, chatroom_path(chatroom) %>
-        <%= link_to "Join", join_chatroom_path(chatroom), method: :post %>
       </li>
     <% end %>
   </ul>
