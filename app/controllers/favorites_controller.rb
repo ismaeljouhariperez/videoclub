@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
 
   def create
     @movie = Movie.find(params[:movie_id])
-    @favorite = Favorite.find_or_initialize_by(movie: @movie, user: current_user)
+    # @favorite = Favorite.find_or_initialize_by(movie: @movie, user: current_user)
 
     @favorite = Favorite.find_by(movie: @movie, user: current_user)
 

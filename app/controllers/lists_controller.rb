@@ -1,6 +1,5 @@
 class ListsController < ApplicationController
   def show
-
     @lists = List.where(user: current_user)
     @list = List.find(params[:id])
   end

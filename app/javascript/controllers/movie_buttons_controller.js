@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static values = { movieId: Number, movieSection: String }
+  static values = { movieId: Number, movieSection: String, listId: Number }
 
   static targets = ["AddToWatched", "AddToWatchLater", "AddToFavorites"]
 
@@ -52,9 +52,33 @@ export default class extends Controller {
     this.fetchMovie('', 'favorite', url, el);
   }
 
-  addToList() {
-    // console.log("Added to List!")
+  addToList(event) {
+    event.preventDefault();
+    const listId = event.currentTarget.dataset.movieButtonsListIdValue;
+    const movieId = this.movieIdValue;
+    console.log(`List ID: ${listId}, Movie ID: ${movieId}`);
+
+    fetch(`/movies/${movieId}/list_movies`, {
+        method: 'POST',
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content
+        },
+        body: JSON.stringify({ list_id: listId, movie_id: movieId })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`HTTP status ${response.status}`);
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
   }
+
 
   updateCard(data, action, section, el) {
     console.log("data:", data);
