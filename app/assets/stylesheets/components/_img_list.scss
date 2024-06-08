@@ -1,12 +1,13 @@
 .movie-count {
+  $size:30px;
   border-radius: 50%;
   margin: 0;
-  background: var(--body-bg);
-  color: var(--body-color);
-  padding: 5px 10px;
+  background: var(--gray);
+  color: var(--body-bg);
+  padding: $size / 2;
   font-size: .8rem;
-  height: 30px;
-  width: 30px;
+  height: $size;
+  width: $size;
   display: flex;
   justify-content: center;
   align-items: center;
