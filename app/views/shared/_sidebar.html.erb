@@ -6,12 +6,7 @@
     <ul class="mt-3 p-0 links">
       <li class="nav-item">
         <%= link_to root_path, class: "nav-link" do %>
-          <i class="fa-solid fa-house me-2"></i> Home
-        <% end %>
-      </li>
-       <li class="nav-item">
-        <%= link_to movies_path, class: "nav-link" do %>
-          <i class="fa-solid fa-ticket me-2"></i> Movies
+          <i class="fa-solid fa-ticket me-2"></i> Home
         <% end %>
       </li>
       <li class="nav-item">
@@ -38,7 +33,6 @@
     <hr>
     <div data-controller="insert-in-the-list-sidebar">
       <h3 class="mt-4">Recent lists</h3>
-
       <ul class="list-unstyled mt-4 align-self-center" data-insert-in-the-list-sidebar-target="items">
         <% lists.each do |list| %>
           <%= render "shared/sidebar_item", list: list %>
