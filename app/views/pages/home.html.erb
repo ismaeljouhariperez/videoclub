@@ -2,7 +2,7 @@
   <div class="row">
   <h2>Your recent Movies</h2>
   <% @movies.each do |movie| %>
-    <%= render "movies/movie", movie:movie %>
+    <%= render "movies/movie", movie:movie, lists: @lists %>
   <% end %>
   </div>
 </div>
