@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     resources :favorites, only: %i[create]
   end
   resources :favorites, only: %i[index create destroy]
-  resources :chatrooms
   resources :watched_movies, only: %i[index create]
   resources :watch_later, only: %i[index]
 
@@ -25,7 +24,7 @@ Rails.application.routes.draw do
   patch "lists/:id" => "lists#update", as: :settings_list_update
   delete "user/lists/:id" => "lists#destroy", as: :user_list_destroy
 
-  resources :chatrooms, only: :show do
+  resources :chatrooms do
     resources :messages, only: :create
   end
 end
