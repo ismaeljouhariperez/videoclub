@@ -1,13 +1,46 @@
-<h1>Chatrooms</h1>
+<div class="container">
+  <h1>Chatrooms</h1>
 
-<% if @chatrooms.any? %>
-  <ul>
-    <% @chatrooms.each do |chatroom| %>
-      <li>
-        <%= link_to chatroom.name, chatroom_path(chatroom) %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No messages yet</p>
-<% end %>
+  <%= simple_form_for(@chatroom) do |f| %>
+    <%= f.input :name %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+    
+
+  <% if @chatrooms.any? %>
+    <table class="table text-center w-75 mx-auto">
+      <thead>
+        <tr>
+          <th scope="col">Channel name</th>
+          <th scope="col">Number of messages</th>
+          <th scope="col">Created by</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @chatrooms.each do |chatroom| %>
+          <tr>
+            <td><%= chatroom.name %></td>
+            <td><%= chatroom.messages.count %></td>
+            <td><%= chatroom.user.username %></td>
+            <td><%= link_to 'Join the channel', chatroom %></td>
+            <td>
+            <% if chatroom.user == current_user %>
+              <%= link_to chatroom_path(chatroom), class: "text-danger",
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure you want to delete #{chatroom.name}?"
+                } do %>
+                  <i class="fas fa-trash"></i>
+                <% end %>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No messages yet</p>
+  <% end %>
+</div>

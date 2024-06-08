@@ -1,6 +1,14 @@
 <div class="container chatroom w-50 mx-auto" data-controller="chatroom-subscription"
 data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
-  <h1>#<%= @chatroom.name %></h1>
+
+  <div class="d-flex align-items-center row-reverse chatroom-header gap-2">
+    <%= link_to chatrooms_path, class: "nav-link" do %>
+      <i class="fas fa-arrow-left"></i>
+    <% end %>
+    
+    <h1>#<%= @chatroom.name %></h1>
+  </div>
+
 
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
