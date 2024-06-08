@@ -3,10 +3,42 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static values = { movieId: Number, movieSection: String, listId: Number }
 
-  static targets = ["AddToWatched", "AddToWatchLater", "AddToFavorites"]
-
+  static targets = ["AddToWatched", "AddToWatchLater", "AddToFavorites", "AddToList"]
 
   connect() {
+    this.updateVisibility();
+
+    this.element.addEventListener('mouseleave', () => {
+      this.hideUnselectedButtons();
+    });
+
+    this.element.addEventListener('mouseenter', () => {
+      this.showAllButtons();
+    });
+  }
+
+  updateVisibility() {
+    this.hideButton(this.AddToListTarget);
+    this.hideButton(this.AddToFavoritesTarget, 'favorite');
+    this.hideButton(this.AddToWatchedTarget, 'watched');
+  }
+
+  hideUnselectedButtons() {
+    this.hideButton(this.AddToListTarget);
+    this.hideButton(this.AddToFavoritesTarget, 'favorite');
+    this.hideButton(this.AddToWatchedTarget, 'watched');
+  }
+
+  showAllButtons() {
+    this.AddToListTarget.classList.remove('d-none');
+    this.AddToFavoritesTarget.classList.remove('d-none');
+    this.AddToWatchedTarget.classList.remove('d-none');
+  }
+
+  hideButton(element, className) {
+    if (!className || !element.classList.contains(className)) {
+      element.classList.add('d-none');
+    }
   }
 
   fetchMovie(is_watched, action, url, el) {
