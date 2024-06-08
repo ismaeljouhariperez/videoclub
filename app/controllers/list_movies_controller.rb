@@ -6,6 +6,7 @@ class ListMoviesController < ApplicationController
     @list_movie = ListMovie.new(list: @list, movie: @movie)
 
     if @list_movie.save
+      @list.update(updated_at: Time.now)
       render json: { status: 'success', message: 'Movie successfully added to the list.' }, status: :ok
     else
       render json: { status: 'error', message: @list_movie.errors.full_messages.to_sentence }, status: :unprocessable_entity

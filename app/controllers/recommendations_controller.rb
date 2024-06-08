@@ -11,6 +11,7 @@ class RecommendationsController < ApplicationController
       @movies = Movie.where("title ILIKE ?", "%#{params[:search]}%").page(params[:page]).per(20)
     else
       @movies = Movie.page(params[:page]).per(20)
+      @lists = List.where(user: current_user).order(updated_at: :asc)
     end
   end
 end

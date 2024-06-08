@@ -1,12 +1,12 @@
 <div class="movie-card col-sm-6 col-md-6 col-lg-3 my-2 text-wrap text-center" data-controller="movie-buttons" data-movie-buttons-movie-id-value="<%= movie.id %>" data-movie-buttons-movie-section-value="<%= defined?(section) ? section : '' %>" >
   <figure>
     <img src="<%= movie.poster_url %>" alt="<%= movie.title %>"  data-bs-toggle="modal" data-bs-target="#movieModal<%= movie.id %>">
-    <div class="movie-card__buttons">
+    <div class="movie-card__buttons dropup">
       <button id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
       <i class="fa-solid fa-plus text-white" data-movie-buttons-target="AddToList"></i></button>
       <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
         <h5 class="dropdown-header">Add to my list</h5>
-        <% lists.each do |list| %>
+        <% @lists.each do |list| %>
           <li><a class="dropdown-item" href="#" data-action="click->movie-buttons#addToList" data-movie-buttons-target="addToList" data-movie-buttons-list-id-value="<%= list.id %>"><%= list.name %></a></li>
         <% end %>
       </ul>
