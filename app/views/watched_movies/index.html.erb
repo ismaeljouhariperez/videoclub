@@ -3,7 +3,7 @@
   <h2>Watched Movies</h2>
   <% if !@watched_movies.empty? %>
   <% @watched_movies.each do |watched_movie| %>
-    <%= render "movies/movie", movie: watched_movie.movie, section: "watched", lists: current_user.lists %>
+    <%= render "movies/movie", movie: watched_movie.movie, section: "watched", lists: @lists_sidebar %>
   <% end %>
 <% else %>
   <p>No movies watched yet</p>
