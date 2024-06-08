@@ -46,7 +46,7 @@
       </div>
     <% else %>
       <% @movies.each_with_index do |movie, index| %>
-        <%= render "movies/movie", movie: movie, index: index, lists: current_user.lists %>
+        <%= render "movies/movie", movie: movie, index: index, lists: @lists_sidebar %>
       <% end %>
     <% end %>
     <div class="d-flex justify-content-center">
