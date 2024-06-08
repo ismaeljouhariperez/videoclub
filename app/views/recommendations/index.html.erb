@@ -1,55 +1,31 @@
-<div class="container d-flex flex-column flex-wrap px-5 py-3">
-  <div class="row justify-content-center search-container">
-    <div class="col-sm-8 m-3">
-      <%= form_with url: recommendations_path, method: :get, class: "d-flex search-form", data: { controller: "prompt" } do %>
+<div class="container-grid">
+  <div class="container-grid__header" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url('https://exitmag.fr/wp-content/uploads/sites/21/2024/04/The-Fall-Guy-1-Ryan-Gosling.webp');">
+    <div class="search-box d-flex flex-column">
+      <h2>The best movie search engine<h2>
+      <h3>Tired of searching 3 hours for a movie idea?</h3>
+      <%= form_with url: recommendations_path, method: :get, class: "d-flex search-form my-4", data: { controller: "prompt" } do %>
         <%= text_field_tag :query,
-      params[:query],
-      class: "form-control search-input",
-      data: { prompt_target: "input" }
-  %>
-        <%= submit_tag "Search", name: "", class: "btn btn-primary search-button" %>
-      <% end %>
-    </div>
-  </div>
-   <div class="row">
-
-<% @queries.each do |query| %>
-  <div class="card shadow p-2 mb-3">
-    <div class="card-body">
-      <h2><%= query.query %></h2>
-      <% movies = current_user.gpt_queries.find(query.id).movies %>
-      <div class="row">
-        <% movies.take(4).each do |movie| %>
-          <%= render "movies/movie", movie:movie %>
+          params[:query],
+          class: "search-input",
+          data: { prompt_target: "input" }
+        %>
+        <%= button_tag(type: 'submit', name: '', class: ' search-button') do %>
+          <div class="d-flex align-items-center"><%= render 'icon' %><span class="ms-2">Search</span></div>
         <% end %>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-  <h1 class="my-3 text-center">All the movies you can find on the website</h1>
-  <div class="row my-4 d-flex justify-content-center" data-controller="search-bar-movie">
-    <%= form_tag movies_path, method: :get, class: "input-box pe-0", data: {
-      search_bar_movie_target: "inputBox",
-    } do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search a movie by his title" %>
-          <span class="search" data-action="click->search-bar-movie#openSearch">
-            <i class="fas fa-search search-icon"></i>
-          </span>
-          <i class="fas fa-times close-icon" data-action="click->search-bar-movie#closeSearch"></i>
-    <% end %>
-  </div>
-  <div class="row">
-    <% if @movies.empty? %>
-      <div class="col-12 text-center">
-        <h2>No movies found</h2>
-      </div>
-    <% else %>
-      <% @movies.each_with_index do |movie, index| %>
-        <%= render "movies/movie", movie: movie, index: index, lists: @lists_sidebar %>
       <% end %>
-    <% end %>
-    <div class="d-flex justify-content-center">
-      <%= paginate @movies %>
+      <h4 class="mt-4">Last searches</h4>
+      <div class="buttons d-flex">
+        <button class="d-flex justify-content-between align-items-center">
+          <small class="me-2">Movies with keanu reeves</small><span class="d-flex justify-content-center align-items-center"><i class="fas fa-times"></i></span>
+        </button>
+        <button class="d-flex justify-content-between align-items-center">
+          <small class="me-2">Action movies 2h max</small><span class="d-flex justify-content-center align-items-center"><i class="fas fa-times"></i></span>
+        </button>
+        <button class="d-flex justify-content-between align-items-center">
+          <small class="me-2">French 60’s movies</small><span class="d-flex justify-content-center align-items-center"><i class="fas fa-times"></i></span>
+        </button>
+      </div>
     </div>
-</div>
+  </div>
+  <div class="container-grid__content">
+  </div>

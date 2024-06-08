@@ -58,11 +58,10 @@ puts "Movies created!"
 
 
 list_title = ["Top 10", "Horror", "Comedy"]
-list_icon = ["fa-solid fa-heart", "fa-solid fa-check", "fa-regular fa-clock"]
 users = User.all
 
 list_title.each.with_index do |list_name, i|
   users.each do |user|
-    List.create(name: list_name, user_id: user.id, icon: list_icon[i])
+    List.create(name: list_name, user_id: user.id)
   end
 end
