@@ -3,7 +3,7 @@
   <h2>Watch Later</h2>
   <% if !@watch_laters.empty? %>
   <% @watch_laters.each do |watch_later| %>
-    <%= render "movies/movie", movie: watch_later.movie, section: "watch_later" %>
+    <%= render "movies/movie", movie: watch_later.movie, section: "watch_later", lists: current_user.lists %>
   <% end %>
 <% else %>
   <p>No movies watched yet</p>
