@@ -14,7 +14,7 @@ export default class extends Controller {
   }
 
   updatePrompt() {
-    const prompts = ["A funny movie with Brad Pitt", "Horror movie with clowns", "best movies of Charlie Chaplin", "Sci-fi movies longer than 2 hours", "Spongebob adventures"]
+    const prompts = ["Describe your movie genre for tonight", "A funny movie with Brad Pitt", "Horror movie with clowns", "Best movies of Charlie Chaplin", "Sci-fi movies longer than 2 hours", "Spongebob adventures"]
     const prompt = prompts[Math.floor(Math.random() * prompts.length)]
     this.inputTarget.placeholder = prompt
   }
