@@ -21,43 +21,65 @@ export default class extends Controller {
     this.letterCount = 0;
     this.phraseIndex = 0;
     this.typingSpeed = 100;
-    this.cursorSpeed = 500;
-    this.cursorVisible = true;
+    this.cursorSpeed = 800;
+    this.running = true; // Flag to control the running of animations
     this.updatePrompt();
     this.toggleCursorVisibility(true);
+    this.inputTarget.addEventListener('focus', () => this.onFocus());
+    this.inputTarget.addEventListener('blur', () => this.onBlur());
   }
 
   disconnect() {
     clearTimeout(this.timeout);
     clearTimeout(this.cursorTimeout);
+    this.inputTarget.removeEventListener('focus', () => this.onFocus());
+    this.inputTarget.removeEventListener('blur', () => this.onBlur());
   }
 
   updatePrompt() {
-    const currentLength = this.currentPhrase.length;
+    if (!this.running) return; // Stop updating if not running
 
+    const currentLength = this.currentPhrase.length;
     if (this.isDeleting) {
-      this.letterCount--;
+        this.letterCount--;
     } else {
-      this.letterCount++;
+        this.letterCount++;
     }
 
     this.inputTarget.placeholder = this.currentPhrase.substring(0, this.letterCount) + (this.cursorVisible ? '|' : '');
 
     if (!this.isDeleting && this.letterCount === currentLength) {
-      setTimeout(() => { this.isDeleting = true; }, 1000);
+        setTimeout(() => { this.isDeleting = true; }, 1000);
     } else if (this.isDeleting && this.letterCount === 0) {
-      this.isDeleting = false;
-      this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
-      this.currentPhrase = this.phrases[this.phraseIndex];
+        this.isDeleting = false;
+        this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
+        this.currentPhrase = this.phrases[this.phraseIndex];
     }
 
     this.timeout = setTimeout(() => this.updatePrompt(), this.typingSpeed);
   }
 
   toggleCursorVisibility(initial = false) {
+    if (!this.running && !initial) return; // Stop blinking if not running
+
     if (!initial) {
-      this.cursorVisible = !this.cursorVisible;
+        this.cursorVisible = !this.cursorVisible;
     }
     this.cursorTimeout = setTimeout(() => this.toggleCursorVisibility(), this.cursorSpeed);
+  }
+
+  onFocus() {
+    this.running = false; // Stop animations on focus
+    clearTimeout(this.timeout);
+    clearTimeout(this.cursorTimeout);
+    this.inputTarget.placeholder = ''; // Clear the placeholder when focused
+  }
+
+  onBlur() {
+    if (this.inputTarget.value.trim() === '') {
+        this.running = true; // Resume animations only if the input is empty
+        this.updatePrompt();
+        this.toggleCursorVisibility(true);
+    }
   }
 }
