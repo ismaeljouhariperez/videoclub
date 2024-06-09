@@ -1,12 +1,13 @@
+<%=  render "layouts/page", title: "Favorites" %>
+
 <div class="container d-flex flex-column flex-wrap px-5 py-3">
   <div class="row">
-  <h2>Favorites</h2>
-  <% if !@favorites.empty? %>
-  <% @favorites.each do |favorite| %>
-    <%= render "movies/movie", movie: favorite.movie, section: "favorites", lists: @lists_sidebar %>
-  <% end %>
-<% else %>
-  <p>No favorites yet</p>
-<% end %>
+    <% if !@favorites.empty? %>
+      <% @favorites.each do |favorite| %>
+        <%= render "movies/movie", movie: favorite.movie, section: "favorites", lists: @lists_sidebar %>
+      <% end %>
+    <% else %>
+      <p>No favorites yet</p>
+    <% end %>
   </div>
 </div>
