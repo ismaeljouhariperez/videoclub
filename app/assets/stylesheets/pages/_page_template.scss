@@ -94,7 +94,10 @@
         display: flex;
         align-items: center;
         grid-column: 2 / span 4;
-        justify-content: space-between;
+
+        button{
+          margin-right:15px;
+        }
 
         button:not(:first-child){
           width:40px;

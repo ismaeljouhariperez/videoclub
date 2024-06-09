@@ -21,7 +21,7 @@ export default class extends Controller {
     this.letterCount = 0;
     this.phraseIndex = 0;
     this.typingSpeed = 100;
-    this.cursorSpeed = 800;
+    this.cursorSpeed = 500;
     this.running = true; // Flag to control the running of animations
     this.updatePrompt();
     this.toggleCursorVisibility(true);
