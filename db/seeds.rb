@@ -58,7 +58,7 @@ end
 puts "Movies created!"
 
 
-list_title = ["Top 10", "Horror", "Comedy"]
+list_title = ["Classic"]
 users = User.all
 
 list_title.each.with_index do |list_name, i|

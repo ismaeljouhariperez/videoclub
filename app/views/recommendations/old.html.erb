@@ -34,7 +34,6 @@
     } do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search a movie by his title" %>
           <span class="search" data-action="click->search-bar-movie#openSearch">
-            <i class="fas fa-search search-icon"></i>
           </span>
           <i class="fas fa-times close-icon" data-action="click->search-bar-movie#closeSearch"></i>
     <% end %>
