@@ -1,9 +1,10 @@
 <div class="page_container">
   <div class="page_container__search">
-    <div class="search-container">
-      <i class="fa fa-search search-icon"></i>
-      <input type="text" class="search-input" placeholder="Describe your movie genre for tonight">
-    </div>
+
+    <%= form_tag search_on, class: "search-container", method: :get do %>
+      <%= render "layouts/icon" %>
+      <%= text_field_tag :search, params[:search], class: "search-input", placeholder: "Search a movie by his title" %>
+    <% end %>
   </div>
  <div class="page_container__header" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_url %>'); background-position: <%= defined?(position) ? position : "initial" %>;">
   <div class="page_container__header__content">
