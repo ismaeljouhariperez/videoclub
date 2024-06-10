@@ -53,7 +53,7 @@ for i in 1..100
       imdb_id: one_movie_omdb['imdbID'],
       trailer_key: trailer ? trailer['key'] : nil,
       rating: one_movie_omdb['imdbRating'],
-      duration: one_movie_omdb['Runtime'],
+      runtime: one_movie_omdb['Runtime'],
       genre: one_movie_omdb['Genre']
     )
   end
