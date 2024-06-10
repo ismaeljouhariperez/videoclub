@@ -3,7 +3,7 @@
     <img src="<%= movie.poster_url %>" alt="<%= movie.title %>"  data-bs-toggle="modal" data-bs-target="#movieModal<%= movie.id %>">
     <div class="movie-card__buttons dropup">
       <button id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
-      <i class="fa-solid fa-plus text-white" data-movie-buttons-target="AddToList"></i></button>
+        <i class="fa-solid fa-plus text-white" data-movie-buttons-target="AddToList"></i></button>
       <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
         <h5 class="dropdown-header">Add to my list</h5>
         <% @lists.each do |list| %>
@@ -25,28 +25,85 @@
     <p class="movie-card__title mt-2"><%= movie.title %> (<%= movie.year %>)</p>
   </div>
 </div>
-
 <% unless defined?(carousel) %>
   <div class="modal fade" id="movieModal<%= movie.id %>" tabindex="-1" aria-labelledby="movieModalLabel<%= movie.id %>" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="movieModalLabel<%= movie.id %>"><%= movie.title %> (<%= movie.year %>)</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+        <div class="modal_header">
+          <h5 class="modal-title" id="movieModalLabel<%= movie.id %>"></h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <%= render 'movies/close' %>
+          </button>        </div>
         <div class="modal-body">
-          <div class="row mb-3">
-            <img src="<%= movie.poster_url %>" alt="<%= movie.title %>" class="col-4 img-fluid" >
-            <div class="col-8">
-              <!--<iframe class="mb-3 w-100" height="400" src="https://www.youtube.com/embed/<%#= movie.trailer_key %>?mute=1"></iframe>-->
-              <p><strong>Description:</strong> <%= movie.description %></p>
-              <p><strong>Director:</strong> <%= movie.director %></p>
-              <p><strong>Main actors:</strong> <%= movie.actors %></p>
-              <p><strong>Year:</strong> <%= movie.year %></p>
+          <div class="row m-3">
+            <div class="col-4">
+              <img src="<%= movie.poster_url %>" alt="<%= movie.title %>" class="img-fluid" >
             </div>
+            <div class="col-7">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5><%= movie.title %></h5>
+                <div class="rating"><span><%= movie.rating %></span>/10</div>
+              </div>
+              <div class="row align-items-center mb-3">
+                <div class="col-3 d-flex justify-content-between">
+                  <div><%= movie.year %></div><div><%= movie.formatted_runtime %></div>
+                </div>
+                <div class="col d-flex justify-content-end genre">
+                  <% movie.genre.split(", ").each do |genre| %>
+                    <span class="mx-2"><%= genre %></span>
+                  <% end %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <p><%= movie.description %></p>
+                </div>
+              </div>
+              <div class="row movie-info">
+                <div class="col-3">
+                  <p><strong>Director</strong>
+                </div>
+                <div class="col-9">
+                  <p><%= movie.director %></p>
+                </div>
+                <div class="col-3">
+                  <p><strong>Writer(s)</strong>
+                </div>
+                <div class="col-9">
+                  <p><%= movie.writer.split(", ").join(" ∙ ") %></p>
+                </div>
+                <div class="col-3">
+                  <p><strong>Main actors</strong>
+                </div>
+                <div class="col-9">
+                  <p><%= movie.actors.split(", ").join(" ∙ ") %></p>
+                </div>
+              </div>
+          <div class="row mt-1">
+            <div class="col-6">
+              <iframe class="rounded-iframe w-100 h-100"frameborder="0" src="https://www.youtube.com/embed/<%= movie.trailer_key %>?mute=1"></iframe>
+            </div>
+            <div class="col-6 mt-3">
+              <h6>Available on streaming or vod</h6>
+              <div class="d-flex streaming-services">
+ <img src="https://images.justwatch.com/icon/152862153/s100/appletvplus.%7Bformat%7D/icon.webp" alt="appletvplus" class="streaming-icon">
+              <img src="https://images.justwatch.com/icon/207360008/s100/netflix.%7Bformat%7D/icon.webp" alt="netflix" class="streaming-icon">
+              <img src="https://images.justwatch.com/icon/52449861/s100/amazonprimevideo.%7Bformat%7D/icon.webp" alt="amazonprimevideo" class="streaming-icon">
+
+              </div>
+
+
+            </div>
+          </div>
+
+
+
+
+
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 <% end %>

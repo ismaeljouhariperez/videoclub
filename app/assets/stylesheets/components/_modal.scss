@@ -1,0 +1,98 @@
+.modal{
+
+  .modal-content{
+    border-radius:30px;
+    background-color: #F6F7F8;
+    padding:20px;
+    border: none;
+  }
+
+  .modal_header{
+    button{
+      z-index: 1000;
+      position: absolute;
+      top:30px;
+      right:30px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      background: #D9D9D9;
+      border-radius: 50%;
+      &:hover{
+        opacity: 0.8;
+      }
+      svg{
+        color:black;
+      }
+    }
+  }
+
+  .modal-body{
+    img{
+      border-radius: 30px;
+    }
+    h5, .rating, p{
+      color: #1F1F1F;
+    }
+    h5{
+      font-size:42px;
+    }
+    .rating{
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 300px;
+
+      span{
+        display: flex;
+        color: var(--primary);
+        font-size: 32px;
+        font-weight: 600;
+      }
+    }
+    .genre{
+      display: flex;
+      justify-content: center;
+      span{
+        background: #D9D9D9;
+        padding: 5px 10px;
+        border-radius: 20px;
+        margin: 0 5px;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+    p{
+      font-weight: 300;
+    }
+    .movie-info{
+      p{
+        font-size: 16px;
+        line-height: 0.5;
+
+      }
+    }
+    .rounded-iframe {
+      border-radius: 15px;  /* Adjust the radius as needed */
+      overflow: hidden;     /* Ensures no inner content spills over the rounded corners */
+    }
+    h6{
+      text-transform: uppercase;
+    }
+    .streaming-services{
+      img{
+        width: 50px;
+        height: 50px;
+        margin: 0 10px;
+      }
+    }
+
+  }
+
+
+
+}

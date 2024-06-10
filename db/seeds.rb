@@ -48,10 +48,13 @@ for i in 1..100
       year: movie['release_date'].split('-').first,
       actors: one_movie_omdb['Actors'],
       director: one_movie_omdb['Director'],
+      writer: one_movie_omdb['Writer'],
       poster_url: one_movie_omdb["Poster"],
       imdb_id: one_movie_omdb['imdbID'],
       trailer_key: trailer ? trailer['key'] : nil,
-      rating: one_movie_omdb['imdbRating']
+      rating: one_movie_omdb['imdbRating'],
+      runtime: one_movie_omdb['Runtime'],
+      genre: one_movie_omdb['Genre']
     )
   end
 end
