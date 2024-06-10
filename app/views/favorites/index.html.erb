@@ -1,12 +1,13 @@
+<%=  render "layouts/page", title: "Favorites", image_url: "https://m.media-amazon.com/images/S/pv-target-images/85f996deb6e03425868a24a26eacccc0aa96e9c6dfe835a2e54d35776e046949.jpg", movie_title: "The Wolf of Wall Street" %>
+
 <div class="container d-flex flex-column flex-wrap px-5 py-3">
   <div class="row">
-  <h2>Favorites</h2>
-  <% if !@favorites.empty? %>
-  <% @favorites.each do |favorite| %>
-    <%= render "movies/movie", movie: favorite.movie, section: "favorites", lists: @lists_sidebar %>
-  <% end %>
-<% else %>
-  <p>No favorites yet</p>
-<% end %>
+    <% if !@favorites.empty? %>
+      <% @favorites.each do |favorite| %>
+        <%= render "movies/movie", movie: favorite.movie, section: "favorites", lists: @lists_sidebar %>
+      <% end %>
+    <% else %>
+      <p>No favorites yet</p>
+    <% end %>
   </div>
 </div>

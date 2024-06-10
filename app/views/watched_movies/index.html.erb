@@ -1,6 +1,7 @@
+<%=  render "layouts/page", title: "Watched", image_url: "https://images.squarespace-cdn.com/content/v1/59d7e2c7e45a7c0ce235bb55/1627253759342-7W6HY65CNF48OM6MN9KA/Film-Review-A24-The-Green-Knight.jpg", movie_title: "The Green Knight", position: "center"%>
+
 <div class="container d-flex flex-column flex-wrap px-5 py-3">
   <div class="row">
-  <h2>Watched Movies</h2>
   <% if !@watched_movies.empty? %>
   <% @watched_movies.each do |watched_movie| %>
     <%= render "movies/movie", movie: watched_movie.movie, section: "watched", lists: @lists_sidebar %>
