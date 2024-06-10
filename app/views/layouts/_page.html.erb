@@ -1,7 +1,6 @@
 <div class="page_container">
   <div class="page_container__search">
-
-    <%= form_tag search_on, class: "search-container", method: :get do %>
+<%= form_tag search_on, class: "search-container", method: :get do %>
       <%= render "layouts/icon" %>
       <%= text_field_tag :search, params[:search], class: "search-input", placeholder: "Search a movie by his title" %>
     <% end %>

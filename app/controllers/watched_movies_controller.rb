@@ -1,6 +1,10 @@
 class WatchedMoviesController < ApplicationController
   def index
-    @watched_movies = current_user.watched_movies.where(is_watched: true)
+    if params[:search]
+      @watched_movies = current_user.watched_movies.where(is_watched: true).joins(:movie).where('title ILIKE ?', "%#{params[:search]}%")
+    else
+      @watched_movies = current_user.watched_movies.where(is_watched: true)
+    end
   end
 
   def create
