@@ -5,8 +5,10 @@ class MessagesController < ApplicationController
     @message.chatroom = @chatroom
     @message.user = current_user
     if @message.save
-      ActionCable.server.broadcast("chatroom_#{params[:chatroom_id]}",
-        render_to_string(partial: "chatrooms/message", locals: { message: @message })
+      @chatroom.touch
+      ChatroomChannel.broadcast_to(@chatroom,
+        message: render_to_string(partial: "chatrooms/message", locals: { message: @message }),
+        sender_id: @message.user.id
       )
       head :ok
     else
