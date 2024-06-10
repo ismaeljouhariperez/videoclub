@@ -1,19 +1,30 @@
 <div class="movie-card col-sm-6 col-md-6 col-lg-3 my-2 text-wrap text-center" data-controller="movie-buttons" data-movie-buttons-movie-id-value="<%= movie.id %>" data-movie-buttons-movie-section-value="<%= defined?(section) ? section : '' %>" >
   <figure>
     <img src="<%= movie.poster_url %>" alt="<%= movie.title %>"  data-bs-toggle="modal" data-bs-target="#movieModal<%= movie.id %>">
-    <div class="movie-card__buttons" data-movie-buttons-target="buttons">
-      <i class="fa-solid fa-plus text-white" data-action="click->movie-buttons#addToWatched"></i>
-      <i class="fa-solid fa-heart text-white <%= movie.favorites.exists?(user_id: current_user.id) ? "favorite" : ""
- %>" data-action="click->movie-buttons#addToFavorites"></i>
-      <i class="fa-solid fa-eye text-white <%= movie.watched_movies.any?(&:is_watched) ? "watched" : "" %> " data-action="click->movie-buttons#addToWatched"></i>
-<i class="fa-regular fa-clock text-white <%= movie.watched_movies.any? { |movie| movie.is_watched == false } ? "watch_later" : "" %>" data-action="click->movie-buttons#addToWatchLater"></i>
-        </div>
+    <div class="movie-card__buttons dropup">
+      <button id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+      <i class="fa-solid fa-plus text-white" data-movie-buttons-target="AddToList"></i></button>
+      <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+        <h5 class="dropdown-header">Add to my list</h5>
+        <% @lists.each do |list| %>
+          <li><a class="dropdown-item" href="#" data-action="click->movie-buttons#addToList" data-movie-buttons-target="addToList" data-movie-buttons-list-id-value="<%= list.id %>"><%= list.name %></a></li>
+        <% end %>
+      </ul>
+      <button><i class="fa-solid fa-heart text-white <%= movie.favorites.exists?(user_id: current_user.id) ? "favorite" : ""
+ %>" data-action="click->movie-buttons#addToFavorites" data-movie-buttons-target="AddToFavorites"></i>
+      </button>
+      <button>
+        <i class="fa-solid fa-eye text-white <%= movie.watched_movies.any?(&:is_watched) ? "watched" : "" %> " data-action="click->movie-buttons#addToWatched" data-movie-buttons-target="AddToWatched"></i>
+      </button>
+      <button>
+        <i class="fa-regular fa-clock text-white <%= movie.watched_movies.any? { |movie| movie.is_watched == false } ? "watch_later" : "" %>" data-action="click->movie-buttons#addToWatchLater" data-movie-buttons-target="AddToWatchLater"></i>
+      </button>
+    </div>
   </figure>
   <div class="movie-card__content">
     <p class="movie-card__title mt-2"><%= movie.title %> (<%= movie.year %>)</p>
   </div>
 </div>
-
 <div class="modal fade" id="movieModal<%= movie.id %>" tabindex="-1" aria-labelledby="movieModalLabel<%= movie.id %>" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
     <div class="modal-content">
