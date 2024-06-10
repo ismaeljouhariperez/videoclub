@@ -1,9 +1,4 @@
-<<<<<<< Updated upstream
-<%=  render "layouts/page", search_on: watch_movies_path, title: "Watched", image_url: "https://images.squarespace-cdn.com/content/v1/59d7e2c7e45a7c0ce235bb55/1627253759342-7W6HY65CNF48OM6MN9KA/Film-Review-A24-The-Green-Knight.jpg", movie_title: "The Green Knight", position: "center"%>
-
-=======
-<%=  render "layouts/page", search_on: watched_movies_path, title: "Watched", image_url: "https://images.squarespace-cdn.com/content/v1/59d7e2c7e45a7c0ce235bb55/1627253759342-7W6HY65CNF48OM6MN9KA/Film-Review-A24-The-Green-Knight.jpg", movie_title: "The Green Knight", position: "center"%>
->>>>>>> Stashed changes
+<%= render "layouts/page", search_on: watched_movies_path, title: "Watched", image_url: "https://images.squarespace-cdn.com/content/v1/59d7e2c7e45a7c0ce235bb55/1627253759342-7W6HY65CNF48OM6MN9KA/Film-Review-A24-The-Green-Knight.jpg", movie_title: "The Green Knight", position: "center"%>
 <div class="container d-flex flex-column flex-wrap px-5 py-3">
   <div class="row">
   <% if !@watched_movies.empty? %>
