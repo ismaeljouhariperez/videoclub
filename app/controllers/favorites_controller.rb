@@ -1,6 +1,10 @@
 class FavoritesController < ApplicationController
   def index
-    @favorites = Favorite.all
+    if params[:search]
+      @favorites = Favorite.where(user: current_user).joins(:movie).where('title ILIKE ?', "%#{params[:search]}%")
+    else
+      @favorites = Favorite.all
+    end
   end
 
   def create
