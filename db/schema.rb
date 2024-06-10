@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_06_131409) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_10_124144) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,6 +85,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_131409) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "gpt_query_id", null: false
+    t.string "reco_title"
+    t.text "reco_description"
     t.index ["gpt_query_id"], name: "index_query_movies_on_gpt_query_id"
     t.index ["movie_id"], name: "index_query_movies_on_movie_id"
   end
