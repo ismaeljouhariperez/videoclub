@@ -17,10 +17,12 @@
   <div class="card shadow p-2 mb-3">
     <div class="card-body">
       <h2><%= query.query %></h2>
-      <% movies = current_user.gpt_queries.find(query.id).movies %>
+      <% query_movies = current_user.gpt_queries.find(query.id).query_movies %>
       <div class="row">
-        <% movies.take(4).each do |movie| %>
-          <%= render "movies/movie", movie:movie %>
+        <% query_movies.take(4).each do |query_movie| %>
+        <h6><%= query_movie.reco_title %></h6>
+        <h6><%= query_movie.reco_description %></h6>
+          <%= render "movies/movie", movie:query_movie.movie %>
         <% end %>
       </div>
     </div>
