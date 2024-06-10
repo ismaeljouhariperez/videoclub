@@ -1,0 +1,7 @@
+
+  <div class="d-flex flex-column chatrooms">
+    <% @chatrooms.each do |chatroom| %>
+      <%= render "chatrooms/chatroom", chatroom: chatroom %>
+    <% end %>
+  </div>
+</div>

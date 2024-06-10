@@ -1,11 +1,12 @@
 class ChatroomsController < ApplicationController
   def index
-    @chatrooms = Chatroom.all
+    @chatrooms = Chatroom.all.order(updated_at: :desc)
     @chatroom = Chatroom.new
   end
 
   def show
     @chatroom = Chatroom.find(params[:id])
+    @chatrooms = Chatroom.all.order(updated_at: :desc)
     @message = Message.new
   end
 
@@ -17,6 +18,17 @@ class ChatroomsController < ApplicationController
     else
       @chatrooms = Chatroom.all
       render :index, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @chatrooms = Chatroom.all
+    @chatroom = Chatroom.find(params[:id])
+    if @chatroom.update(chatroom_params)
+      redirect_to chatroom_path(@chatroom)
+    else
+      @message = Message.new
+      render :show, status: :unprocessable_entity
     end
   end
 
