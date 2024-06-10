@@ -1,21 +1,85 @@
 import { Controller } from "@hotwired/stimulus"
 
-
 export default class extends Controller {
   static targets = ["input"]
 
   connect() {
-    this.updatePrompt()
-    this.interval = setInterval(() => this.updatePrompt(), 2000)
+    this.phrases = [
+        "Movies with Keanu Reeves",
+        "Action movies 2h max",
+        "French 60’s movies",
+        "Movies with a twist ending",
+        "I want to watch a movie with my mom",
+        "I'm looking for a movie to watch with my kids",
+        "A sad movie that will make me cry",
+        "What was the movie with the talking dog",
+        "Latest movies with Leonardo DiCaprio",
+        "A movie directed by Quentin Tarantino"
+    ];
+    this.currentPhrase = this.phrases[0];
+    this.isDeleting = false;
+    this.letterCount = 0;
+    this.phraseIndex = 0;
+    this.typingSpeed = 100;
+    this.cursorSpeed = 500;
+    this.running = true; // Flag to control the running of animations
+    this.updatePrompt();
+    this.toggleCursorVisibility(true);
+    this.inputTarget.addEventListener('focus', () => this.onFocus());
+    this.inputTarget.addEventListener('blur', () => this.onBlur());
   }
 
   disconnect() {
-    clearInterval(this.interval)
+    clearTimeout(this.timeout);
+    clearTimeout(this.cursorTimeout);
+    this.inputTarget.removeEventListener('focus', () => this.onFocus());
+    this.inputTarget.removeEventListener('blur', () => this.onBlur());
   }
 
   updatePrompt() {
-    const prompts = ["A funny movie with Brad Pitt", "Horror movie with clowns", "best movies of Charlie Chaplin", "Sci-fi movies longer than 2 hours", "Spongebob adventures"]
-    const prompt = prompts[Math.floor(Math.random() * prompts.length)]
-    this.inputTarget.placeholder = prompt
+    if (!this.running) return; // Stop updating if not running
+
+    const currentLength = this.currentPhrase.length;
+    if (this.isDeleting) {
+        this.letterCount--;
+    } else {
+        this.letterCount++;
+    }
+
+    this.inputTarget.placeholder = this.currentPhrase.substring(0, this.letterCount) + (this.cursorVisible ? '|' : '');
+
+    if (!this.isDeleting && this.letterCount === currentLength) {
+        setTimeout(() => { this.isDeleting = true; }, 1000);
+    } else if (this.isDeleting && this.letterCount === 0) {
+        this.isDeleting = false;
+        this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
+        this.currentPhrase = this.phrases[this.phraseIndex];
+    }
+
+    this.timeout = setTimeout(() => this.updatePrompt(), this.typingSpeed);
+  }
+
+  toggleCursorVisibility(initial = false) {
+    if (!this.running && !initial) return; // Stop blinking if not running
+
+    if (!initial) {
+        this.cursorVisible = !this.cursorVisible;
+    }
+    this.cursorTimeout = setTimeout(() => this.toggleCursorVisibility(), this.cursorSpeed);
+  }
+
+  onFocus() {
+    this.running = false; // Stop animations on focus
+    clearTimeout(this.timeout);
+    clearTimeout(this.cursorTimeout);
+    this.inputTarget.placeholder = ''; // Clear the placeholder when focused
+  }
+
+  onBlur() {
+    if (this.inputTarget.value.trim() === '') {
+        this.running = true; // Resume animations only if the input is empty
+        this.updatePrompt();
+        this.toggleCursorVisibility(true);
+    }
   }
 }

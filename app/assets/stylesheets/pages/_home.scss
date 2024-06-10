@@ -1,0 +1,205 @@
+$card-img-height: 250px;
+.container-grid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Darkening */
+  backdrop-filter: blur(10px); /* Blurring */
+  z-index: -1;
+}
+
+.container-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  height: 100vh;
+
+  &__header {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    grid-column: 1 / span 12;
+    grid-row: 1 / span 12;
+    background-size: cover;
+
+    .search-box {
+      grid-column: 3 / 10;
+      grid-row: 2 / 11;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h2 {
+        color: var(--primary);
+        font-size: 20px;
+        font-weight: 400;
+      }
+
+      h3 {
+        color: white;
+        font-size: 50px;
+        font-weight: 700;
+        text-transform: initial;
+        text-align: center;
+      }
+
+      h4 {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .buttons {
+        button {
+          background-color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 35px;
+          margin-right: 10px;
+          cursor: pointer;
+          transition: all 0.3s;
+          &:hover {
+            background-color: var(--primary-dark);
+          }
+
+          span {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            border-radius: 50%;
+            background-color: #d9d9d9;
+          }
+          i {
+            position: absolute;
+            font-size: 0.7rem;
+          }
+        }
+      }
+
+      form {
+        width: 100%;
+        height: 50px;
+        overflow: hidden;
+
+        input,
+        button {
+          padding: 0 30px;
+        }
+
+        input {
+          width: 100%;
+          border-radius: 0;
+          border: none;
+          outline: none;
+          border-radius: 35px 0px 0px 35px;
+          &::placeholder {
+            opacity: 0.7;
+          }
+        }
+
+        button {
+          background-color: var(--primary);
+          span {
+            font-weight: 300;
+          }
+          border-radius: 0px 35px 35px 0px;
+        }
+      }
+    }
+  }
+}
+
+input.search-input::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+}
+
+.carousel {
+  position: relative;
+
+  .siema {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .siema-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+
+    .movie-card {
+      width: 100%;
+      img {
+        height: $card-img-height;
+        width: 95%;
+        transition: width 0.3s ease-in-out;
+        &:hover {
+          width: 100%;
+        }
+      }
+      &__buttons {
+        left: 5px;
+        i {
+          padding: 13px;
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+  }
+
+  button {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    margin-right: 0;
+    cursor: pointer;
+    transition: none;
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .prev {
+    left: 10px;
+    svg:first-child {
+      transform: rotate(180deg);
+    }
+  }
+
+  .next {
+    right: 10px;
+  }
+
+  .prev,
+  .next {
+    position: absolute;
+    top: $card-img-height / 2;
+    cursor: pointer;
+    color: white;
+    border: none;
+    padding: 10px;
+  }
+}
+
+section {
+  h2 {
+    color: var(--body-color); //#333;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+}
+
+section.special {
+  margin-top: -10%;
+  h2 {
+    color: white;
+  }
+}

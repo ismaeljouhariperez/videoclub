@@ -1,0 +1,9 @@
+<div id="message-<%= message.id %>" class="w-100 d-flex flex-column <%= message.user == current_user ? "align-items-end" : "" %> ">
+  <div class="message p-2 my-2 w-50">
+    <small>
+      <strong><%= message.user.username %></strong>
+      <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+    </small>
+    <p class="m-0"><%= message.content %></p>
+  </div>
+</div>

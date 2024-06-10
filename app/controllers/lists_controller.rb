@@ -1,13 +1,12 @@
 class ListsController < ApplicationController
-  def show
-
-    @lists = List.where(user: current_user)
-    @list = List.find(params[:id])
+  def index
+    @lists = List.where(user: current_user).order(updated_at: :desc)
+    @list = List.new
   end
 
-  def index
+  def show
     @lists = List.where(user: current_user)
-    @list = List.new
+    @list = List.find(params[:id])
   end
 
   def create

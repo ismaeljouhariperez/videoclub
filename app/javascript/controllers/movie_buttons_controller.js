@@ -1,10 +1,44 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "buttons" ]
-  static values = { movieId: Number, movieSection: String }
+  static values = { movieId: Number, movieSection: String, listId: Number }
+
+  static targets = ["AddToWatched", "AddToWatchLater", "AddToFavorites", "AddToList"]
 
   connect() {
+    this.updateVisibility();
+
+    this.element.addEventListener('mouseleave', () => {
+      this.hideUnselectedButtons();
+    });
+
+    this.element.addEventListener('mouseenter', () => {
+      this.showAllButtons();
+    });
+  }
+
+  updateVisibility() {
+    this.hideButton(this.AddToListTarget);
+    this.hideButton(this.AddToFavoritesTarget, 'favorite');
+    this.hideButton(this.AddToWatchedTarget, 'watched');
+  }
+
+  hideUnselectedButtons() {
+    this.hideButton(this.AddToListTarget);
+    this.hideButton(this.AddToFavoritesTarget, 'favorite');
+    this.hideButton(this.AddToWatchedTarget, 'watched');
+  }
+
+  showAllButtons() {
+    this.AddToListTarget.classList.remove('d-none');
+    this.AddToFavoritesTarget.classList.remove('d-none');
+    this.AddToWatchedTarget.classList.remove('d-none');
+  }
+
+  hideButton(element, className) {
+    if (!className || !element.classList.contains(className)) {
+      element.classList.add('d-none');
+    }
   }
 
   fetchMovie(is_watched, action, url, el) {
@@ -27,8 +61,7 @@ export default class extends Controller {
     })
     .then(data => {
       console.log('Success:', data);
-      this.updateCard(data, action, section);
-      el.classList.toggle(action);
+      this.updateCard(data, action, section, el);
     })
     .catch(error => console.error('Error:', error));
   }
@@ -47,45 +80,58 @@ export default class extends Controller {
 
   addToFavorites(e) {
     const el = e.currentTarget
-    // console.log(this.buttonsTarget)
-    const favoriteButton = this.buttonsTarget.querySelector('i.favorite');
     const url = `/favorites`;
     this.fetchMovie('', 'favorite', url, el);
   }
 
-  addToList() {
-    // console.log("Added to List!")
+  addToList(event) {
+    event.preventDefault();
+    const listId = event.currentTarget.dataset.movieButtonsListIdValue;
+    const movieId = this.movieIdValue;
+    console.log(`List ID: ${listId}, Movie ID: ${movieId}`);
+
+    fetch(`/movies/${movieId}/list_movies`, {
+        method: 'POST',
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content
+        },
+        body: JSON.stringify({ list_id: listId, movie_id: movieId })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`HTTP status ${response.status}`);
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
   }
 
-  // updateCard(data, action) {
-  //   // console.log(data.section, action);
-  //   const cardElement = this.element;
-  //   if ((data.section === 'watched' || data.section === 'watch_later') && data.section !== action) {
-  //     cardElement.remove();
-  //   }
-  // }
 
-  updateCard(data, action, section) {
-    console.log("data: ", data);
-    console.log("action: ", action);
-    console.log("section: ", section);
+  updateCard(data, action, section, el) {
+    console.log("data:", data);
+    console.log(action);
+
     const cardElement = this.element;
-
-    if (section !== "" || section !== undefined || section !== null) {
-      if ( (data.message === 'Movie watch status removed' || data.message === 'Movie changed as watched' || data.message === 'Movie changed as watch later') && (section === 'watched' || section === 'watch_later')){
-        cardElement.remove();
-      }
+    el.classList.toggle(action);
+    if (data.is_watched === true) {
+      this.AddToWatchLaterTarget.classList.remove('watch_later');
+    } else {
+      this.AddToWatchedTarget.classList.remove('watched');
     }
-    else {
-      const watchIcon = cardElement.querySelector('.fa-eye');
-      const watchLaterIcon = cardElement.querySelector('.fa-clock');
-      if (action === 'watched') {
-        watchIcon.classList.add('watched');
-        watchLaterIcon.classList.remove('watch_later');
-        }
-      else {
-        watchIcon.classList.remove('watched');
-        watchLaterIcon.classList.add('watch_later');
+
+    if (section !== "" && section !== undefined && section !== null) {
+      console.log('Section found');
+
+      if ( (data.message === 'Movie watch status removed' || data.message === 'Movie changed as watched' || data.message === 'Movie changed as watch later' || data.message === 'Movie removed from favorites')) {
+        cardElement.classList.add('fade');
+        setTimeout(() => {
+          cardElement.remove();
+        }, 700);
       }
     }
   }

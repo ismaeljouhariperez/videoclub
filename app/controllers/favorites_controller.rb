@@ -5,16 +5,16 @@ class FavoritesController < ApplicationController
 
   def create
     @movie = Movie.find(params[:movie_id])
-    @favorite = Favorite.find_or_initialize_by(movie: @movie, user: current_user)
+    # @favorite = Favorite.find_or_initialize_by(movie: @movie, user: current_user)
 
-    if @favorite.save
-      message = 'Movie marked as favorite'
-      render json: {
-        status: 'success',
-        message: message,
-      }, status: :ok
+    @favorite = Favorite.find_by(movie: @movie, user: current_user)
+
+    if @favorite
+      @favorite.destroy
+      render json: { status: 'success', message: 'Movie removed from favorites' }, status: :ok
     else
-      render json: { status: 'error', message: @favorite.errors.full_messages.join(", ") }, status: :unprocessable_entity
+      @favorite = Favorite.create(movie: @movie, user: current_user)
+      render json: { status: 'success', message: 'Movie added to favorites' }, status: :ok
     end
   end
 end

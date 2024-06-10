@@ -1,10 +1,12 @@
-<h1><%= @list.name %></h1>
-<% if @list.movies.empty? %>
-  <p>This list is empty.</p>
+<div class="container d-flex flex-column flex-wrap px-5 py-3">
+  <div class="row">
+  <h2><%= @list.name %> list</h2>
+  <% if !@list.movies.empty? %>
+  <% @list.movies.each do |movie| %>
+    <%= render "movies/movie", movie: movie %>
+  <% end %>
 <% else %>
-  <ul>
-    <% @list.items.each do |item| %>
-      <li><%= item.name %></li>
-    <% end %>
-  </ul>
+  <p>No movie in this list yet</p>
 <% end %>
+  </div>
+</div>

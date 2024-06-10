@@ -1,0 +1,28 @@
+.message {
+  border: 2px solid var(--body-bg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background: var(--body-bg);
+  color: var(--body-color);
+  border-radius: 20px;
+}
+
+.messages {
+  overflow-x: auto;
+  /* Permet le défilement horizontal */
+
+  /* Pour Firefox */
+  scrollbar-width: thin;
+  /* Réduit la taille de la barre de défilement horizontale */
+  scrollbar-color: transparent transparent;
+  /* Masque la barre de défilement horizontale */
+
+  /* Pour WebKit (Chrome, Safari, Opera) */
+  &::-webkit-scrollbar {
+    height: 0;
+    /* Masque la barre de défilement horizontale */
+  }
+}
+
+.fa-arrow-left {
+  font-size: 1.5em;
+}
