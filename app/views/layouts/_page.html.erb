@@ -1,8 +1,11 @@
 <div class="page_container">
-  <%= form_tag search_on, method: :get do %>
-    <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search a movie by his title" %>
-  <% end %>
-  <div class="page_container__header" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_url %>'); background-position: <%= defined?(position) ? position : "initial" %>;">
+  <div class="page_container__search">
+    <%= form_tag search_on, class: "search-container", method: :get do %>
+      <i class="fas fa-search"></i>   
+      <%= text_field_tag :search, params[:search], class: "search-input", placeholder: "Search a movie by his title" %>
+    <% end %>
+  </div>
+ <div class="page_container__header" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_url %>'); background-position: <%= defined?(position) ? position : "initial" %>;">
   <div class="page_container__header__content">
       <h2><%= title %></h2>
       <h3><%= movie_title %></h3>
