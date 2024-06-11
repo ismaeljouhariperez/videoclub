@@ -5,6 +5,7 @@
         <h5 class="my-3">Chatrooms</h5>
         <%= simple_form_for(@chatroom) do |f| %>
             <%= f.input :name, label: false, placeholder: "Create a new chatroom", class: "form-control" %>
+            <%= f.association :movie, collection: Movie.joins(:favorites).where(favorites: { user: current_user }), prompt: "A movie in your favorites", label: false, class: "form-control" %>
             <%= f.submit  class: "btn btn-primary" %>
         <% end %>
       </div>

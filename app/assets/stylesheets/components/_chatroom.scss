@@ -35,4 +35,12 @@
 
 .chatrooms {
   overflow-y: scroll;
+
+  .active {
+    background: $gray-100;
+  }
+}
+
+.users-list {
+  overflow-y: scroll;
 }

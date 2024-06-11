@@ -14,8 +14,13 @@
       </div>
       <%= render "chatrooms/chatrooms", chatrooms: @chatrooms %> 
     </div>
-    <div class="col-9">
-      <%= render "chatrooms/messages" %>
+  </div>
+  <div class="col-6">
+    <%= render "chatrooms/messages" %>
+  </div>
+  <div class="col-3">
+    <div class="card vh-100">
+      <%= render "chatrooms/chatroom_right", chatroom: @chatroom %>
     </div>
   </div>
 </div>
