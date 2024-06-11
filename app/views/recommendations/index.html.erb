@@ -1,72 +1,42 @@
 
-<div class="container-grid">
+<div class="container-grid" data-controller="prompt">
   <div class="container-grid__header" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 70%, rgba(255, 255, 255, 1) 100%), url('https://exitmag.fr/wp-content/uploads/sites/21/2024/04/The-Fall-Guy-1-Ryan-Gosling.webp');">
     <div class="search-box d-flex flex-column">
       <h2>The best movie search engine
         <h2>
           <h3>Tired of searching 3 hours for a movie idea?</h3>
-          <%= form_with url: recommendations_path, method: :get, class: "d-flex search-form my-4", data: { controller: "prompt" } do %>
+          <%= form_with url: recommendations_path, method: :get, data: { prompt_target: "input", action: 'submit->prompt#reco' }, class: "d-flex search-form my-4" do %>
             <%= text_field_tag :query,
           params[:query],
           class: "search-input",
-          data: { prompt_target: "input" },
           placeholder: ""
         %>
-            <%= button_tag(type: 'submit', name: '', class: ' search-button') do %>
+            <%= button_tag(type: 'submit', name: '', class: 'search-button') do %>
               <div class="d-flex align-items-center"><%= render 'layouts/icon' %><span class="ms-2">Search</span></div>
             <% end %>
           <% end %>
           <h4 class="mt-4">Last searches</h4>
           <div class="buttons d-flex">
+            <% @queries.last(3).each do |query| %>
             <button class="d-flex justify-content-between align-items-center">
-              <small class="me-2">Movies with keanu reeves</small><span class="d-flex justify-content-center align-items-center"><i class="fas fa-times"></i></span>
+              <small class="me-2"><%= query.query %></small><span class="d-flex justify-content-center align-items-center"><i class="fas fa-times"></i></span>
             </button>
-            <button class="d-flex justify-content-between align-items-center">
-              <small class="me-2">Action movies 2h max</small><span class="d-flex justify-content-center align-items-center"><i class="fas fa-times"></i></span>
-            </button>
-            <button class="d-flex justify-content-between align-items-center">
-              <small class="me-2">French 60’s movies</small><span class="d-flex justify-content-center align-items-center"><i class="fas fa-times"></i></span>
-            </button>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
 
-    <section class="container px-4 special">
-      <h2>Special for you</h2>
-      <div data-controller="carousel" class="carousel">
-        <div class="siema">
-          <% @movies.each do |movie| %>
-            <div class="siema-slide">
-              <%= render "movies/movie", movie: movie, section: "recommendations", lists: @lists_sidebar, carousel: true %>
-            </div>
+<% @queries.take(2).each do |query| %>
+<% movies = current_user.gpt_queries.find(query.id).movies %>
+  <section class="container px-1 m-3" data-prompt-controller-target="sections">
+      <h2><%= query.query %></h2>
+        <div class="row">
+          <% movies.first(3).each do |movie| %>
+          <% reco_title = query.query_movies.find_by(movie_id: movie.id).reco_title %>
+            <%= render "movies/movie", movie: movie%>
+            <%= render "movies/quote_card", reco_title: reco_title %>
           <% end %>
         </div>
-        <button class="prev" data-action="click->carousel#prev">
-          <%= render 'arrow' %>
-        </button>
-        <button class="next" data-action="click->carousel#next">
-          <%= render 'arrow' %>
-        </button>
-      </div>
 </section>
-
-<section class="container px-4">
-      <h2>animation movie like miyazaki</h2>
-      <div data-controller="carousel" class="carousel">
-        <div class="siema">
-          <% @movies.each do |movie| %>
-            <div class="siema-slide">
-              <%= render "movies/movie", movie: movie, section: "recommendations", lists: @lists_sidebar, carousel: true %>
-            </div>
-          <% end %>
-        </div>
-        <button class="prev" data-action="click->carousel#prev">
-          <%= render 'arrow' %>
-        </button>
-        <button class="next" data-action="click->carousel#next">
-          <%= render 'arrow' %>
-        </button>
-      </div>
-
-</section>
+<% end %>

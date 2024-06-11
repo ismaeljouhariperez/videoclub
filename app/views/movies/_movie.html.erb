@@ -1,4 +1,4 @@
-<div class="movie-card <%= 'col-sm-6 col-md-6 col-lg-3' if !defined?(carousel) %> my-2 text-wrap text-center" data-controller="movie-buttons" data-movie-buttons-movie-id-value="<%= movie.id %>" data-movie-buttons-movie-section-value="<%= defined?(section) ? section : '' %>" >
+<div class="movie-card <%= 'col-sm-6 col-md-6 col-lg-2' if !defined?(carousel) %> my-2 text-wrap text-center" data-controller="movie-buttons" data-movie-buttons-movie-id-value="<%= movie.id %>" data-movie-buttons-movie-section-value="<%= defined?(section) ? section : '' %>" >
   <figure>
     <img src="<%= movie.poster_url %>" alt="<%= movie.title %>"  data-bs-toggle="modal" data-bs-target="#movieModal<%= movie.id %>">
     <div class="movie-card__buttons dropup">
@@ -26,84 +26,5 @@
   </div>
 </div>
 <% unless defined?(carousel) %>
-  <div class="modal fade" id="movieModal<%= movie.id %>" tabindex="-1" aria-labelledby="movieModalLabel<%= movie.id %>" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-      <div class="modal-content">
-        <div class="modal_header">
-          <h5 class="modal-title" id="movieModalLabel<%= movie.id %>"></h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <%= render 'movies/close' %>
-          </button>        </div>
-        <div class="modal-body">
-          <div class="row m-3">
-            <div class="col-4">
-              <img src="<%= movie.poster_url %>" alt="<%= movie.title %>" class="img-fluid" >
-            </div>
-            <div class="col-7">
-              <div class="d-flex justify-content-between align-items-center">
-                <h5><%= movie.title %></h5>
-                <div class="rating"><span><%= movie.rating %></span>/10</div>
-              </div>
-              <div class="row align-items-center mb-3">
-                <div class="col-3 d-flex justify-content-between">
-                  <div><%= movie.year %></div><div><%= movie.formatted_runtime %></div>
-                </div>
-                <div class="col d-flex justify-content-end genre">
-                  <% movie.genre.split(", ").each do |genre| %>
-                    <span class="mx-2"><%= genre %></span>
-                  <% end %>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <p><%= movie.description %></p>
-                </div>
-              </div>
-              <div class="row movie-info">
-                <div class="col-3">
-                  <p><strong>Director</strong>
-                </div>
-                <div class="col-9">
-                  <p><%= movie.director %></p>
-                </div>
-                <div class="col-3">
-                  <p><strong>Writer(s)</strong>
-                </div>
-                <div class="col-9">
-                  <p><%= movie.writer.split(", ").join(" ∙ ") %></p>
-                </div>
-                <div class="col-3">
-                  <p><strong>Main actors</strong>
-                </div>
-                <div class="col-9">
-                  <p><%= movie.actors.split(", ").join(" ∙ ") %></p>
-                </div>
-              </div>
-          <div class="row mt-1">
-            <div class="col-6">
-              <iframe class="rounded-iframe w-100 h-100"frameborder="0" src="https://www.youtube.com/embed/<%= movie.trailer_key %>?mute=1"></iframe>
-            </div>
-            <div class="col-6 mt-3">
-              <h6>Available on streaming or vod</h6>
-              <div class="d-flex streaming-services">
- <img src="https://images.justwatch.com/icon/152862153/s100/appletvplus.%7Bformat%7D/icon.webp" alt="appletvplus" class="streaming-icon">
-              <img src="https://images.justwatch.com/icon/207360008/s100/netflix.%7Bformat%7D/icon.webp" alt="netflix" class="streaming-icon">
-              <img src="https://images.justwatch.com/icon/52449861/s100/amazonprimevideo.%7Bformat%7D/icon.webp" alt="amazonprimevideo" class="streaming-icon">
 
-              </div>
-
-
-            </div>
-          </div>
-
-
-
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <% end %>

@@ -4,8 +4,7 @@ import Siema from "siema";
 export default class extends Controller {
   connect() {
     // Initialize Siema for the specific carousel element within this controller's element
-    this.siema = new Siema({
-      selector: this.element.querySelector('.siema'), // Specify the selector scoped to the controller element
+    this.siema = new Siema(this.element.querySelector('.siema'), {
       duration: 200,
       easing: 'ease-out',
       perPage: {

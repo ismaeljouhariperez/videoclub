@@ -1,20 +1,21 @@
+// app/javascript/controllers/replace_section_controller.js
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["input"]
+  static targets = ["input", "sections"]
 
   connect() {
     this.phrases = [
-        "Movies with Keanu Reeves",
-        "Action movies 2h max",
-        "French 60’s movies",
-        "Movies with a twist ending",
-        "I want to watch a movie with my mom",
-        "I'm looking for a movie to watch with my kids",
-        "A sad movie that will make me cry",
-        "What was the movie with the talking dog",
-        "Latest movies with Leonardo DiCaprio",
-        "A movie directed by Quentin Tarantino"
+      "Movies with Keanu Reeves",
+      "Action movies 2h max",
+      "French 60’s movies",
+      "Movies with a twist ending",
+      "I want to watch a movie with my mom",
+      "I'm looking for a movie to watch with my kids",
+      "A sad movie that will make me cry",
+      "What was the movie with the talking dog",
+      "Latest movies with Leonardo DiCaprio",
+      "A movie directed by Quentin Tarantino"
     ];
     this.currentPhrase = this.phrases[0];
     this.isDeleting = false;
@@ -41,19 +42,19 @@ export default class extends Controller {
 
     const currentLength = this.currentPhrase.length;
     if (this.isDeleting) {
-        this.letterCount--;
+      this.letterCount--;
     } else {
-        this.letterCount++;
+      this.letterCount++;
     }
 
     this.inputTarget.placeholder = this.currentPhrase.substring(0, this.letterCount) + (this.cursorVisible ? '|' : '');
 
     if (!this.isDeleting && this.letterCount === currentLength) {
-        setTimeout(() => { this.isDeleting = true; }, 1000);
+      setTimeout(() => { this.isDeleting = true; }, 1000);
     } else if (this.isDeleting && this.letterCount === 0) {
-        this.isDeleting = false;
-        this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
-        this.currentPhrase = this.phrases[this.phraseIndex];
+      this.isDeleting = false;
+      this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
+      this.currentPhrase = this.phrases[this.phraseIndex];
     }
 
     this.timeout = setTimeout(() => this.updatePrompt(), this.typingSpeed);
@@ -63,7 +64,7 @@ export default class extends Controller {
     if (!this.running && !initial) return; // Stop blinking if not running
 
     if (!initial) {
-        this.cursorVisible = !this.cursorVisible;
+      this.cursorVisible = !this.cursorVisible;
     }
     this.cursorTimeout = setTimeout(() => this.toggleCursorVisibility(), this.cursorSpeed);
   }
@@ -77,9 +78,24 @@ export default class extends Controller {
 
   onBlur() {
     if (this.inputTarget.value.trim() === '') {
-        this.running = true; // Resume animations only if the input is empty
-        this.updatePrompt();
-        this.toggleCursorVisibility(true);
+      this.running = true; // Resume animations only if the input is empty
+      this.updatePrompt();
+      this.toggleCursorVisibility(true);
     }
+  }
+
+  reco(event) {
+    event.preventDefault();
+    console.log("hello");
+    fetch('/api/v1/sections/reco', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+      },
+      body: JSON.stringify({
+        query: this.inputTarget.value
+      })
+    })
   }
 }
