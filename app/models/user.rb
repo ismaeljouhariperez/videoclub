@@ -8,5 +8,6 @@ class User < ApplicationRecord
   has_many :movies, through: :watched_movies
   has_many :gpt_queries, dependent: :destroy
   has_many :query_movies, through: :gpt_queries
+  has_many :favorites, dependent: :destroy
 
 end
