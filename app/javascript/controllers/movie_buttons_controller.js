@@ -2,7 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static values = { movieId: Number, movieSection: String, listId: Number }
-
   static targets = ["AddToWatched", "AddToWatchLater", "AddToFavorites", "AddToList"]
 
   connect() {
@@ -41,31 +40,6 @@ export default class extends Controller {
     }
   }
 
-  fetchMovie(is_watched, action, url, el) {
-    const movieId = this.movieIdValue;
-    const section = this.movieSectionValue;
-    console.log(`Movie ID: ${movieId}, Section: ${section}, Watched: ${is_watched}`);
-    const token = document.querySelector('[name="csrf-token"]').content;
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "X-CSRF-Token": token
-      },
-      body: JSON.stringify({ movie_id: movieId, is_watched: is_watched, section: section })
-    })
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP status ${response.status}`);
-      return response.json();
-    })
-    .then(data => {
-      console.log('Success:', data);
-      this.updateCard(data, action, section, el);
-    })
-    .catch(error => console.error('Error:', error));
-  }
-
   addToWatched(e) {
     const el = e.currentTarget
     const url = `/watched_movies`;
@@ -84,55 +58,122 @@ export default class extends Controller {
     this.fetchMovie('', 'favorite', url, el);
   }
 
-  addToList(event) {
-    event.preventDefault();
-    const listId = event.currentTarget.dataset.movieButtonsListIdValue;
-    const movieId = this.movieIdValue;
-    console.log(`List ID: ${listId}, Movie ID: ${movieId}`);
-
-    fetch(`/movies/${movieId}/list_movies`, {
-        method: 'POST',
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-            "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content
-        },
-        body: JSON.stringify({ list_id: listId, movie_id: movieId })
-    })
-    .then(response => {
-        if (!response.ok) throw new Error(`HTTP status ${response.status}`);
-        return response.json();
-    })
-    .then(data => {
+  fetchMovie(is_watched, action, url, el) {
+    const requestBody = this.createRequestBody(is_watched);
+    this.performFetch(url, requestBody)
+      .then(data => {
         console.log('Success:', data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
+        this.updateCard(data, action, this.movieSectionValue, el);
+      })
+      .catch(error => console.error('Error:', error));
+  }
+
+  createRequestBody(is_watched) {
+    return JSON.stringify({
+      movie_id: this.movieIdValue,
+      is_watched: is_watched,
+      section: this.movieSectionValue
     });
   }
 
+  performFetch(url, body) {
+    const headers = this.createHeaders();
+    return fetch(url, { method: 'POST', headers, body })
+      .then(response => this.handleResponse(response))
+      .then(response => response.json());
+  }
+
+  createHeaders() {
+    const token = document.querySelector('[name="csrf-token"]').content;
+    return {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "X-CSRF-Token": token
+    };
+  }
+
+  handleResponse(response) {
+    if (!response.ok) throw new Error(`HTTP status ${response.status}`);
+    return response;
+  }
+
+  addToList(event) {
+    event.preventDefault();
+    const listId = event.currentTarget.dataset.movieButtonsListIdValue;
+    const requestBody = this.createListRequestBody(listId);
+    const url = `/movies/${this.movieIdValue}/list_movies`;
+
+    this.performFetch(url, requestBody)
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+
+  createListRequestBody(listId) {
+    return JSON.stringify({
+      list_id: listId,
+      movie_id: this.movieIdValue
+    });
+  }
 
   updateCard(data, action, section, el) {
+    this.logData(data, action);
+    this.toggleClassOnElement(el, action);
+    this.updateWatchStatus(data);
+
+    if (this.isValidSection(section)) {
+      this.handleSectionBasedActions(data, section);
+    }
+  }
+
+  logData(data, action) {
     console.log("data:", data);
     console.log(action);
+  }
 
-    const cardElement = this.element;
-    el.classList.toggle(action);
-    if (data.is_watched === true) {
+  toggleClassOnElement(element, className) {
+    element.classList.toggle(className);
+  }
+
+  updateWatchStatus(data) {
+    if (data.is_watched) {
       this.AddToWatchLaterTarget.classList.remove('watch_later');
     } else {
       this.AddToWatchedTarget.classList.remove('watched');
     }
+  }
 
-    if (section !== "" && section !== undefined && section !== null) {
-      console.log('Section found');
+  isValidSection(section) {
+    return section !== "" && section !== undefined && section !== null;
+  }
 
-      if ( (data.message === 'Movie watch status removed' || data.message === 'Movie changed as watched' || data.message === 'Movie changed as watch later' || data.message === 'Movie removed from favorites')) {
-        cardElement.classList.add('fade');
-        setTimeout(() => {
-          cardElement.remove();
-        }, 700);
-      }
+  handleSectionBasedActions(data, section) {
+    if (this.shouldRemoveWatchStatus(data, section)) {
+      this.fadeAndRemoveElement(this.element);
+    } else if (this.shouldRemoveFromFavorites(data, section)) {
+      this.fadeAndRemoveElement(this.element);
     }
   }
+
+  shouldRemoveWatchStatus(data, section) {
+    return (data.message === 'Movie watch status removed' ||
+            data.message === 'Movie changed as watched' ||
+            data.message === 'Movie changed as watch later') &&
+           (section === 'watched' || section === 'watch_later');
+  }
+
+  shouldRemoveFromFavorites(data, section) {
+    return data.message === 'Movie removed from favorites' && section === 'favorites';
+  }
+
+  fadeAndRemoveElement(element) {
+    element.classList.add('fade');
+    setTimeout(() => {
+      element.remove();
+    }, 700);
+  }
+
 }
