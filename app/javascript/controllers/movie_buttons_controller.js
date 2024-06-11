@@ -62,11 +62,18 @@ export default class extends Controller {
     const requestBody = this.createRequestBody(is_watched);
     this.performFetch(url, requestBody)
       .then(data => {
-        console.log('Success:', data);
+        // console.log('Success:', data);
         this.updateCard(data, action, this.movieSectionValue, el);
+        // Show toast message here
+        this.show_toast("Update Successful", data.message, 5000);  // Adjust message and delay as needed
       })
-      .catch(error => console.error('Error:', error));
+      .catch(error => {
+        console.error('Error:', error);
+        // Optionally, show an error toast
+        this.show_toast("Error", "Failed to update movie information.", 5000);
+      });
   }
+
 
   createRequestBody(is_watched) {
     return JSON.stringify({
@@ -105,10 +112,10 @@ export default class extends Controller {
 
     this.performFetch(url, requestBody)
       .then(data => {
-        console.log('Success:', data);
+        // console.log('Success:', data);
       })
       .catch(error => {
-        console.error('Error:', error);
+        // console.error('Error:', error);
       });
   }
 
@@ -130,8 +137,8 @@ export default class extends Controller {
   }
 
   logData(data, action) {
-    console.log("data:", data);
-    console.log(action);
+    // console.log("data:", data);
+    // console.log(action);
   }
 
   toggleClassOnElement(element, className) {
@@ -175,5 +182,41 @@ export default class extends Controller {
       element.remove();
     }, 700);
   }
+
+  show_toast(toast_header, toast_message, delay) {
+    console.log("Showing toast message")
+    const check_time = (i) => i < 10 ? "0" + i : i;
+    let today = new Date();
+    let h = check_time(today.getHours());
+    let m = check_time(today.getMinutes());
+    let s = check_time(today.getSeconds());
+    let toast_time = `${h}:${m}:${s}`;
+
+    let toast_template_html = `
+      <div aria-atomic="true" aria-live="assertive"
+        class="toast position-fixed bottom-0 end-0 m-3"
+        role="alert" id="toast_message-${today}"
+      >
+        <div class="toast-header">
+          <strong class="me-auto">${toast_header}</strong>
+          <small>${toast_time}</small>
+          <button aria-label="Close" class="btn-close"
+            data-bs-dismiss="toast" type="button"></button>
+        </div>
+        <div class="toast-body">${toast_message}</div>
+      </div>
+    `;
+
+    const toast_wrapper = document.createElement("template");
+    toast_wrapper.innerHTML = toast_template_html.trim();
+    const awesome_toast = toast_wrapper.content.firstChild;
+    document.body.appendChild(awesome_toast); // Append to body or a specific '.toast-container'
+
+    new bootstrap.Toast(awesome_toast, {
+      autohide: true,
+      delay: delay
+    }).show();
+  }
+
 
 }
