@@ -24,11 +24,9 @@ export default class extends Controller {
       });
     });
 
-    window.addEventListener('resize', () => {
       this.siemaTargets.forEach(target => {
         target.siema.resizeHandler();
       });
-    });
   }
 
   prev() {
