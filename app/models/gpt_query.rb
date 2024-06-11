@@ -9,7 +9,6 @@ class GptQuery < ApplicationRecord
 
   def create_query_movies
     JSON.parse(ChatGptService.new.get_recommendations(self)).each do |reco|
-      {"imdb_id"=>"tt0080684", "title"=>"Epic Saga Continues Intensely", "description"=>"Given your taste for classics and strong narratives, try this sequel."}
       movie_id = reco["imdb_id"]
       movie = Movie.custom_find_or_create_by_imndb_id(movie_id)
       QueryMovie.create(movie: movie, reco_title: reco["title"], reco_description: reco["description"], gpt_query: self)
@@ -18,5 +17,9 @@ class GptQuery < ApplicationRecord
 
   def associated_movies
     Favorite.where(user: self.user).map(&:movie).map(&:imdb_id).join(", ")
+  end
+
+  def show
+    @gpt_query = GptQuery.find(params[:id])
   end
 end

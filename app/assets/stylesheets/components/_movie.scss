@@ -9,7 +9,7 @@
     color: var(--text-color);
   }
   img {
-    height: 350px;
+    height: 250px;
     width: 100%;
     object-fit: cover;
     border-radius: 7px;
@@ -103,4 +103,37 @@
       }
     }
   }
+}
+
+.quote-card {
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.quote-wrapper {
+  font-style: italic;
+  font-size: 24px;
+  text-align: center;
+}
+
+.quote-wrapper::before,
+.quote-wrapper::after {
+  content: "“";
+  color: #ccc;
+  font-size: 48px;
+  line-height: 0.8;
+  vertical-align: middle;
+}
+
+.quote-wrapper::after {
+  content: "”";
+}
+
+.quote-wrapper h2 {
+  display: inline;
+  font-style: normal;
+  font-weight: bold;
+  color: #333;
 }

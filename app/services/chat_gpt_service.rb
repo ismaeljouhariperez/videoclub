@@ -10,7 +10,7 @@ class ChatGptService
     base_content = "You are MoviesGPT, a film enthusiast and expert recommender.
     Analyze my query: #{gpt_query.query}.
     To guide you, here are the IMDb IDs of movies I liked: #{gpt_query.associated_movies}.
-    Recommend 4 movies that align mostly with my query, and then inspired by movies I liked.
+    Recommend 4 movies that align closely with my query, and potentially inspired by movies I liked.
     Don't recommend movie that don't have OMDB poster.
     Order the recommendations by the most relevant to the least relevant.
     For each movie, provide the following structure:
