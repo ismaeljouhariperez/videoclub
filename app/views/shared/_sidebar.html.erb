@@ -4,27 +4,27 @@
       <%= render "shared/logo" %>
     </figure>
     <ul class="mt-3 p-0 links">
-      <li class="nav-item">
+      <li class="nav-item <%= active_class(root_path) %>">
         <%= link_to root_path, class: "nav-link" do %>
           <i class="fa-solid fa-ticket me-2"></i> Home
         <% end %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item <%= active_class(favorites_path) %>">
         <%= link_to favorites_path, class: "nav-link" do %>
           <i class="fa-solid fa-heart me-2"></i> Favorites
         <% end %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item <%= active_class(watched_movies_path) %>">
         <%= link_to watched_movies_path, class: "nav-link" do %>
           <i class="fa-solid fa-eye me-2"></i> Watched
         <% end %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item <%= active_class(watch_later_index_path) %>">
         <%= link_to watch_later_index_path, class: "nav-link" do %>
           <i class="fa-regular fa-clock me-2"></i> Watch Later
         <% end %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item <%= active_class(chatrooms_path) %>">
         <%= link_to chatrooms_path, class: "nav-link" do %>
           <i class="fa-solid fa-message me-2"></i> Messages
         <% end %>

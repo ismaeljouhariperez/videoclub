@@ -30,7 +30,7 @@
         transition: all 0.3s ease;
         color: var(--body-color);
       }
-      &:hover {
+      &:hover, &.active {
         background-color: #f1f1f1;
         border-radius: 7px;
         i {
