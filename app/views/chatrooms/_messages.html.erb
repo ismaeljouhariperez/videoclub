@@ -1,16 +1,7 @@
 <div class="container chatroom" data-controller="chatroom-subscription"
 data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
 data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
-
-  <div class="d-flex align-items-center row-reverse chatroom-header gap-2">
-    <%= link_to chatrooms_path, class: "nav-link" do %>
-      <i class="fas fa-arrow-left"></i>
-    <% end %>
-    
-    <h1>#<%= @chatroom.name %></h1>
-  </div>
-
-
+  <h1 class="chatroom-header"><%= @chatroom.name %>: <%= @chatroom.movie.title %></h1>
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
       <div class="d-flex my-2 <%= message.user == current_user ? "justify-content-end" : "justify-content-start" %>">

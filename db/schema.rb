@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_10_185227) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_11_073844) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_185227) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "movie_id", null: false
+    t.index ["movie_id"], name: "index_chatrooms_on_movie_id"
     t.index ["user_id"], name: "index_chatrooms_on_user_id"
   end
 
@@ -117,6 +119,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_185227) do
     t.index ["user_id"], name: "index_watched_movies_on_user_id"
   end
 
+  add_foreign_key "chatrooms", "movies"
   add_foreign_key "chatrooms", "users"
   add_foreign_key "favorites", "movies"
   add_foreign_key "favorites", "users"

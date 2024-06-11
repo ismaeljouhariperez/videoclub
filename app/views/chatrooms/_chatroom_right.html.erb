@@ -1,0 +1,22 @@
+<div class="card-header text-center">
+  <%= image_tag chatroom.movie.poster_url, class: "", height: 250 %>
+</div>
+
+ <div class="card-body">
+  <h5 class="my-3">Chatroom Users</h5>
+  <div class="d-flex flex-column users-list">
+    <% chatroom.messages.distinct.pluck(:user_id).each do |user_id| %>
+      <% user = User.find(user_id) %>
+        <div class="d-flex align-items-center justify-content-between border bg-white p-2">
+          <p class="mb-0"><%= user.username %> - <%= user.email %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="d-flex justify-content-between">
+      <%= link_to chatrooms_path, class: "btn btn-primary" do %>
+        <p class="mb-0"><i class="fa-solid fa-right-from-bracket"></i> Leave the chatroom</p>
+      <% end %>
+    </div>
+  </div>

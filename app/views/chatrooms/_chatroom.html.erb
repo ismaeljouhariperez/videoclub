@@ -1,7 +1,7 @@
-<div class="d-flex align-items-center justify-content-between border">
-  <%= link_to chatroom_path(chatroom), class: "nav-link w-75" do %>
+<div class="d-flex align-items-center justify-content-between border <%= active_class(chatroom_path(chatroom)) %>">
+  <%= link_to chatroom_path(chatroom), class: "nav-link col-10" do %>
       <div class="ms-3 my-3">
-        <h6 class="mb-0"><%= chatroom.name %></h6>
+        <h6 class="mb-0"><%= chatroom.movie.title %>: <%= chatroom.name %></h6>
         <% if chatroom.messages.last != nil %>
           <small class="mb-0"><em style="font-style: italic;"><%= chatroom.messages.last.content.size >= 20 ? chatroom.messages.last.content[0..20]... : chatroom.messages.last.content  %></em></small>
         <% else %>
@@ -11,7 +11,7 @@
   <% end %>
   <% if current_user == chatroom.user %>
     <%= link_to chatroom_path(chatroom), data: { turbo_method: :delete,
-      turbo_confirm: "Are you sure you want to delete this chatroom?" }, class: "nav-link text-danger w-25 text-center" do %>
+      turbo_confirm: "Are you sure you want to delete this chatroom?" }, class: "nav-link text-danger text-center col" do %>
       <i class="fas fa-trash-alt me-2"></i>
     <% end %>
   <% end %>
