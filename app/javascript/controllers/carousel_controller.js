@@ -14,9 +14,19 @@ export default class extends Controller {
         selector: target,
         duration: 200,
         easing: 'ease-out',
-        perPage: 6,
+        perPage: {
+          768: 2,
+          1024: 5,
+          1440: 6
+        },
         startIndex: 0,
         loop: true
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      this.siemaTargets.forEach(target => {
+        target.siema.resizeHandler();
       });
     });
   }
