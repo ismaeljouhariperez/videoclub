@@ -6,9 +6,9 @@
 
 // General style
 $font-family-sans-serif: $body-font;
-$headings-font-family:   $headers-font;
+$headings-font-family: $headers-font;
 // $body-bg:                $light-gray;
-$font-size-base:         1rem;
+$font-size-base: 1rem;
 
 // Colors
 // $body-color: $gray;
@@ -19,11 +19,11 @@ $font-size-base:         1rem;
 // $warning:    $orange;
 
 // Buttons & inputs' radius
-$border-radius-sm:            .0625rem;
-$border-radius:               .25rem;
-$border-radius-lg:            .25rem;
-$border-radius-xl:            .5rem;
-$border-radius-xxl:           1rem;
+$border-radius-sm: .0625rem;
+$border-radius: .25rem;
+$border-radius-lg: .25rem;
+$border-radius-xl: .5rem;
+$border-radius-xxl: 1rem;
 
 :root {
   --body-bg: #fff; // White background for light theme
@@ -40,6 +40,7 @@ $border-radius-xxl:           1rem;
   --white: #fff;
   --light-gray: #E9EBF0;
   --lighter-gray: #D0D0D0;
+  --more-light-gray: #f6f6f6;
   --gray: #586174;
 }
 
