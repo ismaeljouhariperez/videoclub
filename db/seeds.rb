@@ -3,12 +3,14 @@ require 'net/http'
 require 'json'
 require 'dotenv/load'
 
-User.destroy_all
-List.destroy_all
-ListMovie.destroy_all
-Movie.destroy_all
 Favorite.destroy_all
+ListMovie.destroy_all
 Chatroom.destroy_all
+List.destroy_all
+GptQuery.destroy_all
+Message.destroy_all
+User.destroy_all
+Movie.destroy_all
 
 User.create(email: 'ismael@test.com', password: 'azerty', username: "Arrancini")
 User.create(email: 'killian@test.com', password: 'azerty', username: "The Goat")
