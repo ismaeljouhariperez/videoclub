@@ -3,7 +3,23 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["input"]
 
+
+  displayLoader(e) {
+    document.body.classList.add('loading');
+    this.loader.removeAttribute('hidden');
+    this.inputTarget.focus();
+  }
+
+  // hideLoader(e) {
+  //   console.log('hide loader');
+  //   document.body.classList.remove('loading');
+  //   this.loader.setAttribute('hidden', '');
+  // }
+
   connect() {
+    this.loader = document.querySelector(".loader");
+
+    console.log('connected');
     this.phrases = [
         "Movies with Keanu Reeves",
         "Action movies 2h max",
