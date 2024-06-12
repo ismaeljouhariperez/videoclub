@@ -49,8 +49,10 @@
                   <div><%= movie.year %></div><div><%= movie.formatted_runtime %></div>
                 </div>
                 <div class="col d-flex justify-content-end genre">
+                  <% if movie.genre.present? %>
                   <% movie.genre.split(", ").each do |genre| %>
                     <span class="mx-2"><%= genre %></span>
+                  <% end %>
                   <% end %>
                 </div>
               </div>
@@ -70,7 +72,7 @@
                   <p><strong>Writer(s)</strong>
                 </div>
                 <div class="col-9">
-                  <p><%= movie.writer.split(", ").join(" ∙ ") %></p>
+                  <p><%= movie.writer.split(", ").join(" ∙ ") if movie.writer.present?%></p>
                 </div>
                 <div class="col-3">
                   <p><strong>Main actors</strong>

@@ -10,7 +10,7 @@ class ChatGptService
     base_content = "You are MoviesGPT, a film enthusiast and expert recommender.
     Analyze my query: #{gpt_query.query}.
     To guide you, here are the IMDb IDs of movies I liked: #{gpt_query.associated_movies}.
-    Recommend 4 movies that align mostly with my query, and then inspired by movies I liked.
+    Recommend 4 movies that align closely with my query, and potentially inspired by movies I liked.
     Don't recommend movie that don't have OMDB poster.
     Order the recommendations by the most relevant to the least relevant.
     For each movie, provide the following structure:
@@ -32,7 +32,7 @@ class ChatGptService
      \n
     {\"imdb_id\": \"tt0081505\",
     \"title\": \"Scary night with clowns\",
-    \"description\": \"I didn't find any horro movie in your favorites, so be prepared to crunch you friends arms with nails\"}
+    \"description\": \"I didn't find any horror movie in your favorites, so be prepared to crunch you friends arms with nails\"}
      \n
     {\"imdb_id\": \"tt0345950\",
     \"title\": \"Spongebob adventures\",
