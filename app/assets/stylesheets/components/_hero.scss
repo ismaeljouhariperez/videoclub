@@ -1,5 +1,5 @@
 .hero {
-  transition: opacity 1s ease-in-out;
+  transition: all 1s ease-in-out;
   opacity: 1;
 }
 
@@ -9,6 +9,6 @@
 
 .hero.active {
   opacity: 1;
-  transition: opacity 1s ease-in-out;
+  transition: all 1s ease-in-out;
 
 }

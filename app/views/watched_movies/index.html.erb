@@ -3,7 +3,7 @@
   <div class="row">
   <% if !@watched_movies.empty? %>
   <% @watched_movies.each do |watched_movie| %>
-    <%= render "movies/movie", movie: watched_movie.movie, section: "watched", lists: @lists_sidebar %>
+    <%= render "movies/movie", movie: watched_movie.movie, section: "watched", lists: @lists_sidebar, carousel: false %>
   <% end %>
 <% else %>
   <p>No movies watched yet</p>

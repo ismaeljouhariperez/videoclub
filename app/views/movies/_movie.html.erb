@@ -1,4 +1,4 @@
-<div class="movie-card <%= 'col-sm-6 col-md-6 col-lg-3' if !defined?(carousel) %> my-2 text-wrap text-center" data-controller="movie-buttons" data-movie-buttons-movie-id-value="<%= movie.id %>" data-movie-buttons-movie-section-value="<%= defined?(section) ? section : '' %>" >
+<div class="movie-card <%= 'col-sm-6 col-md-6 col-lg-3' if !carousel %> my-2 text-wrap text-center" data-controller="movie-buttons" data-movie-buttons-movie-id-value="<%= movie.id %>" data-movie-buttons-movie-section-value="<%= defined?(section) ? section : '' %>" >
   <figure>
     <img src="<%= movie.poster_url %>" alt="<%= movie.title %>"  data-bs-toggle="modal" data-bs-target="#movieModal<%= movie.id %>">
     <div class="movie-card__buttons dropup">
@@ -25,7 +25,7 @@
     <p class="movie-card__title mt-2"><%= movie.title %> (<%= movie.year %>)</p>
   </div>
 </div>
-<% unless defined?(carousel) %>
+<% unless carousel %>
   <div class="modal fade" id="movieModal<%= movie.id %>" tabindex="-1" aria-labelledby="movieModalLabel<%= movie.id %>" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
       <div class="modal-content">
@@ -50,9 +50,9 @@
                 </div>
                 <div class="col d-flex justify-content-end genre">
                   <% if movie.genre.present? %>
-                  <% movie.genre.split(", ").each do |genre| %>
-                    <span class="mx-2"><%= genre %></span>
-                  <% end %>
+                    <% movie.genre.split(", ").each do |genre| %>
+                      <span class="mx-2"><%= genre %></span>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
@@ -92,16 +92,9 @@
               <img src="https://images.justwatch.com/icon/207360008/s100/netflix.%7Bformat%7D/icon.webp" alt="netflix" class="streaming-icon">
               <img src="https://images.justwatch.com/icon/52449861/s100/amazonprimevideo.%7Bformat%7D/icon.webp" alt="amazonprimevideo" class="streaming-icon">
 
+                </div>
               </div>
-
-
             </div>
-          </div>
-
-
-
-
-
           </div>
         </div>
       </div>

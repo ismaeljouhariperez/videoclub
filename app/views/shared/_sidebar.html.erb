@@ -9,6 +9,11 @@
           <i class="fa-solid fa-ticket me-2"></i> Home
         <% end %>
       </li>
+      <li class="nav-item <%= active_class(movies_path) %>">
+        <%= link_to movies_path, class: "nav-link" do %>
+          <i class="fa-solid fa-clapperboard me-2"></i> Movies
+        <% end %>
+      </li>
       <li class="nav-item <%= active_class(favorites_path) %>">
         <%= link_to favorites_path, class: "nav-link" do %>
           <i class="fa-solid fa-heart me-2"></i> Favorites
