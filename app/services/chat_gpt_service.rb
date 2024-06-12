@@ -32,7 +32,7 @@ class ChatGptService
      \n
     {\"imdb_id\": \"tt0081505\",
     \"title\": \"Scary night with clowns\",
-    \"description\": \"I didn't find any horro movie in your favorites, so be prepared to crunch you friends arms with nails\"}
+    \"description\": \"I didn't find any horror movie in your favorites, so be prepared to crunch you friends arms with nails\"}
      \n
     {\"imdb_id\": \"tt0345950\",
     \"title\": \"Spongebob adventures\",
