@@ -5,14 +5,16 @@ require 'openai'
 
 class RecommendationsController < ApplicationController
   def index
-    GptQuery.create(query: params[:query], user: current_user) if params[:query].present?
-    @queries = GptQuery.where(user: current_user).order(created_at: :desc)
 
-    if params[:search]
-      @movies = Movie.where("title ILIKE ?", "%#{params[:search]}%").page(params[:page]).per(20)
-    else
-      @movies = Movie.page(params[:page]).per(20)
-      @lists = List.where(user: current_user).order(updated_at: :asc)
-    end
+    GptQuery.create(query: params[:query], user: current_user) if params[:query].present?
+
+    @queries = GptQuery.where(user: current_user)
+    @favorites = Favorite.where(user: current_user).map{|favorite| Movie.find(favorite.movie_id)}
+    @movies = current_user.query_movies.map{|query| Movie.find(query.movie_id)}.uniq
+    @movies = @movies - @favorites
+    @movies = @movies.sample(10)
+    @favorites = @favorites.sample(10)
+    @lists = List.where(user: current_user).order(updated_at: :asc)
+    # end
   end
 end

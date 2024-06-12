@@ -24,7 +24,10 @@ class Movie < ApplicationRecord
           actors: one_movie_omdb['Actors'],
           director: one_movie_omdb['Director'],
           poster_url: one_movie_omdb['Poster'],
-          imdb_id: id
+          imdb_id: id,
+          genre: one_movie_omdb['Genre'],
+          runtime: one_movie_omdb['Runtime'],
+          rating: one_movie_omdb['imdbRating'].to_f
         )
       end
     end
