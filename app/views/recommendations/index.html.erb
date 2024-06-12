@@ -30,11 +30,6 @@
       </div>
     </div>
 
-    <%# <div data-controller="siema"> %>
-      <%# <% @queries.each do |query| %>
-
-      <%# <%= render 'section', query: query %>
-    <%# </div>  %>
 <section class="container px-4 result">
   <% query = @queries.last %>
 <% movies = current_user.gpt_queries.find(query.id).movies %>

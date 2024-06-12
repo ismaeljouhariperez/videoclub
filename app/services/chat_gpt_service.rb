@@ -17,7 +17,7 @@ class ChatGptService
     \n
     {\"imdb_id\": \"IMDB_ID\",
     \"title\": \"Recommendation Title in 3 Words\",
-    \"description\": \"Description in 30 Words\"}
+    \"description\": \"Description in 30 Words which explain the recommendation according to my query\"}
     \n
     Example response format:
     \n
@@ -38,12 +38,6 @@ class ChatGptService
     \"title\": \"Spongebob adventures\",
     \"description\": \"Let's go for an adventure with Bob and his best friend Patrick. I guarantee you'll find back your child heart!\"}
     ]"
-
-    # Append optional query if present
-    # if gpt_query.query.present?
-    #   base_content +=
-    #   "\n\n Recommend movies based on this request: #{gpt_query.query} and my favorite movies."
-    # end
 
     chatgpt_response = @client.chat(
       parameters: {
