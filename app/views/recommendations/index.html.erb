@@ -16,16 +16,16 @@
               <div class="d-flex align-items-center"><%= render 'layouts/icon' %><span class="ms-2">Search</span></div>
             <% end %>
           <% end %>
+            <% unless @queries.empty? %>
           <h4 class="mt-4">Last searches</h4>
           <div class="buttons d-flex">
-            <% unless @queries.empty? %>
             <% @queries.last(3).reverse.each do |query| %>
             <button class="d-flex justify-content-between align-items-center">
               <small class="me-2"><%= query.query %></small><span class="d-flex justify-content-center align-items-center"><i class="fas fa-times"></i></span>
             </button>
             <% end %>
-            <% end %>
           </div>
+            <% end %>
         </div>
       </div>
     </div>
@@ -36,17 +36,19 @@
       <%# <%= render 'section', query: query %>
     <%# </div>  %>
 <section class="container px-4 result">
-  <% query = @queries.last %>
-<% movies = current_user.gpt_queries.find(query.id).movies %>
-       <h2 class="title"><%= query.query %></h2>
-        <div class="row">
-          <% movies.first(2).each do |movie| %>
-          <% reco_title = query.query_movies.find_by(movie_id: movie.id).reco_title %>
-          <% reco_description = query.query_movies.find_by(movie_id: movie.id).reco_description %>
-            <%= render "movies/movie", movie: movie%>
-            <%= render "movies/quote_card", reco_title: reco_title, reco_description: reco_description %>
-          <% end %>
-        </div>
+  <% unless @queries.empty? %>
+    <% query = @queries.last %>
+    <% movies = current_user.gpt_queries.find(query.id).movies %>
+    <h2 class="title"><%= query.query %></h2>
+    <div class="row">
+      <% movies.first(2).each do |movie| %>
+        <% reco_title = query.query_movies.find_by(movie_id: movie.id).reco_title %>
+        <% reco_description = query.query_movies.find_by(movie_id: movie.id).reco_description %>
+        <%= render "movies/movie", movie: movie%>
+        <%= render "movies/quote_card", reco_title: reco_title, reco_description: reco_description %>
+      <% end %>
+    </div>
+  <% end %>
 </section>
 
     <section class="container px-4 special">
