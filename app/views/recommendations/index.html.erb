@@ -18,10 +18,12 @@
           <% end %>
           <h4 class="mt-4">Last searches</h4>
           <div class="buttons d-flex">
+            <% unless @queries.empty? %>
             <% @queries.last(3).reverse.each do |query| %>
             <button class="d-flex justify-content-between align-items-center">
               <small class="me-2"><%= query.query %></small><span class="d-flex justify-content-center align-items-center"><i class="fas fa-times"></i></span>
             </button>
+            <% end %>
             <% end %>
           </div>
         </div>
@@ -48,12 +50,14 @@
 </section>
 
     <section class="container px-4 special">
-      <h2>Special for you</h2>
+      <h2>Last recommendations</h2>
       <div data-controller="carousel" class="carousel">
         <div class="siema" data-carousel-target="siema">
           <% @movies.each do |movie| %>
             <div class="siema-slide">
+              <% unless movie.poster_url == "N/A" || movie.poster_url.nil? || movie.poster_url.empty? %>
               <%= render "movies/movie", movie: movie, section: "recommendations", lists: @lists_sidebar, carousel: true %>
+            <% end %>
             </div>
           <% end %>
         </div>
@@ -67,10 +71,10 @@
 </section>
 
 <section class="container px-4">
-      <h2>animation movie like miyazaki</h2>
+      <h2>Your favorites</h2>
       <div data-controller="carousel" class="carousel">
         <div class="siema" data-carousel-target="siema">
-          <% @movies.each do |movie| %>
+          <% @favorites.each do |movie| %>
             <div class="siema-slide">
               <%= render "movies/movie", movie: movie, section: "recommendations", lists: @lists_sidebar, carousel: true %>
             </div>
