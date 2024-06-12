@@ -2,44 +2,67 @@ import { Controller } from "@hotwired/stimulus";
 import Siema from "siema";
 
 export default class extends Controller {
-
   static targets = ['siema'];
-  connect() {
-    this.initSiema();
-  }
 
-  initSiema() {
-    this.siemaTargets.map(target => {
-      return new Siema({
+  connect() {
+    this.siemaInstances = this.siemaTargets.map(target => {
+      const siemaConfig = {
         selector: target,
         duration: 200,
         easing: 'ease-out',
         perPage: {
           768: 2,
-          1024: 5,
-          1440: 6
         },
         startIndex: 0,
-        loop: true
-      });
+        loop: target.children.length > 6,
+        draggable: target.children.length <= 6 ? false : true,
+      };
+
+      // Adjust `perPage` based on the number of children
+      if (target.children.length > 6) {
+        siemaConfig.perPage = {
+          768: 2,
+          1024: 5,
+          1440: 6
+        };
+      } else {
+        siemaConfig.perPage = {
+          1024: target.children.length,
+          1440: target.children.length
+        };
+      }
+
+      const siema = new Siema(siemaConfig);
+      target.siema = siema; // Associate the instance with the target element
+      return siema;
     });
 
-      // this.siemaTargets.forEach(target => {
-      //   target.siema.resizeHandler();
-      // });
+    // Ensure that each Siema instance is properly resized
+    this.siemaInstances.forEach(siema => {
+      siema.resizeHandler();
+    });
   }
 
-  prev() {
-    this.siemaInstances.prev();
+  prev(event) {
+    const siemaInstance = this.getSiemaInstance(event);
+    if (siemaInstance) {
+      siemaInstance.prev();
+    }
   }
 
-  next() {
-    this.siemaInstances.next();
+  next(event) {
+    const siemaInstance = this.getSiemaInstance(event);
+    if (siemaInstance) {
+      siemaInstance.next();
+    }
+  }
+
+  getSiemaInstance(event) {
+    const siemaTarget = event.currentTarget.closest('[data-controller="carousel"]').querySelector('[data-carousel-target="siema"]');
+    return siemaTarget ? siemaTarget.siema : null;
   }
 
   disconnect() {
-    if (this.siema) {
-      this.siema.destroy();
-    }
+    this.siemaInstances.forEach(siema => siema.destroy());
   }
 }
