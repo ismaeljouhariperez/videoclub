@@ -3,7 +3,7 @@
     <div class="search-box d-flex flex-column">
       <h2>The best AI movie search engine
         <h2>
-          <h3>Tired of searching 3 hours for a movie idea?</h3>
+          <h3>Tired of searching 3 hours for a movie idea?<br> Try our AI</h3>
           <%= form_with url: recommendations_path, method: :get, class: "d-flex search-form my-4", data: { controller: "prompt" } do %>
             <%= text_field_tag :query,
           params[:query],
@@ -44,12 +44,12 @@
               </div>
             <% end %>
           </div>
-          <button class="prev" data-action="click->carousel#prev">
-            <%= render 'arrow' %>
+          <!--<button class="prev" data-action="click->carousel#prev">
+            <%#= render 'arrow' %>
           </button>
           <button class="next" data-action="click->carousel#next">
-            <%= render 'arrow' %>
-          </button>
+            <%#= render 'arrow' %>
+          </button>-->
         </div>
       </section>
       <section class="container px-4">
