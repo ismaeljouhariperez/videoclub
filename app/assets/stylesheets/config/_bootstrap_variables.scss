@@ -26,11 +26,11 @@ $border-radius-xl: .5rem;
 $border-radius-xxl: 1rem;
 
 :root {
-  --body-bg: #fff; // White background for light theme
-  --body-color: #212529; // Mostly black text for light theme
+  --body-bg: #fff;
+  --body-color: #212529;
 
   --primary: #1EE783;
-  --primary-dark: #16b76f; // Darkened version of primary (manually calculated)
+  --primary-dark: #16b76f;
   --secondary: #E9EBF0;
   --success: #28a745;
   --danger: #dc3545;
@@ -45,11 +45,11 @@ $border-radius-xxl: 1rem;
 }
 
 .dark-theme {
-  --body-bg: #0D0D0D; // Dark background for dark theme
-  --body-color: #f8f9fa; // Light text for dark theme
+  --body-bg: #0D0D0D;
+  --body-color: #f8f9fa;
 
-  --primary: #F33F3F;
-  --primary-dark: #c63333; // Darkened version of dark theme primary
+  --primary: #1EE783;
+  --primary-dark: #16b76f;
   --secondary: #0D0D0D;
   --success: #4CAF50;
   --danger: #F44336;
