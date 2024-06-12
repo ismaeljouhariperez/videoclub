@@ -1,17 +1,13 @@
 <div class="container px-5">
-<div class="d-flex justify-content-between w-100 align-items-center my-5">
- <h5 class="display-4">Results</h5>
-  <%= link_to 'Back to Home', root_path, class: 'btn btn-primary mb-3' %>
+  <div class="d-flex justify-content-between w-100 align-items-center my-5">
+    <h5 class="display-4">Results</h5>
+    <%= link_to 'Back to Home', root_path, class: 'btn btn-primary mb-3' %>
   </div>
-
-<section class="container px-4">
-  <% @gpt_query.query_movies.each do |query_movie| %>
-    <h2 class="title"><%= query_movie.reco_title %></h2>
+  <section class="container">
     <div class="row">
-      <% movie = query_movie.movie %>
-        <%= render "movies/movie", movie: movie, carousel: false %>
-        <%= render "movies/quote_card", reco_title: query_movie.reco_title, reco_description: query_movie.reco_description %>
+      <% @gpt_query.query_movies.each do |query_movie| %>
+        <%= render "recommendations/card_result", movie: query_movie.movie, query: query_movie %>
+      <% end %>
     </div>
-  <% end %>
-</section>
+  </section>
 </div>
