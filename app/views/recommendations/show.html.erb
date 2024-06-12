@@ -1,12 +1,14 @@
 <div class="results" style="background-image: url('https://miro.medium.com/v2/resize:fit:1400/1*OStY-m2h-snCRWmtIPhfoQ.png')">
   <%= link_to 'Back to Home', root_path, class: 'btn btn-primary mb-3' %>
   <div class="search-results">
-    <h3>Results for <%= @gpt_query.query %>:</h3>
-    <% @movies.each do |movie| %>
-      <div class="movie">
-        <h4><%= movie.title %></h4>
-        <p><%= movie.description %></p>
-      </div>
-    <% end %>
-  </div>
-</div>
+<section class="container px-4 result">
+  <% @gpt_query.query_movies.each do |query_movie| %>
+    <h2 class="title"><%= query_movie.reco_title %></h2>
+    <div class="row">
+      <% movie = query_movie.movie %>
+        <%= render "movies/movie", movie: movie, carousel: false %>
+        <%= render "movies/quote_card", reco_title: query_movie.reco_title, reco_description: query_movie.reco_description %>
+    </div>
+  <% end %>
+</section>
+
