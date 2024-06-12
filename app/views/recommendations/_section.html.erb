@@ -1,0 +1,18 @@
+ <section class="container px-4 special">
+      <h2>Special for you</h2>
+      <div data-controller="carousel" class="carousel">
+        <div class="siema" data-carousel-target="siema">
+          <% @movies.each do |movie| %>
+            <div class="siema-slide">
+              <%= render "movies/movie", movie: movie, section: "recommendations", lists: @lists_sidebar, carousel: true %>
+            </div>
+          <% end %>
+        </div>
+        <button class="prev" data-action="click->carousel#prev">
+          <%= render 'arrow' %>
+        </button>
+        <button class="next" data-action="click->carousel#next">
+          <%= render 'arrow' %>
+        </button>
+      </div>
+</section>
