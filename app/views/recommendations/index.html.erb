@@ -4,19 +4,16 @@
       <h2>The best AI movie search engine
         <h2>
           <h3>Tired of searching 3 hours for a movie idea?</h3>
-          <%= form_with url: recommendations_path, method: :get, class: "d-flex search-form my-4", data: { controller: "prompt" } do %>
-            <%= text_field_tag :query,
-          params[:query],
-          class: "search-input",
-          data: { prompt_target: "input" },
-          placeholder: ""
-        %>
+
+        <%= form_with url: recommendations_path, method: :get, class: "d-flex search-form my-4", data: { controller: "prompt" } do |form| %>
+  <%= form.text_field :query, value: params[:query], class: "search-input", placeholder: "", data: { prompt_target: "input" } %>
+
             <%= button_tag(type: 'submit', name: '', class: 'search-button', data: { action: "click->prompt#displayLoader" }) do %>
               <div class="d-flex align-items-center"><%= render 'layouts/icon' %><span class="ms-2">Search</span></div>
             <% end %>
           <% end %>
-          <% unless @queries.empty? %>
-            <h4 class="mt-4">Last searches</h4>
+          <% if @queries && !@queries.empty? %>
+            <h4 class="mt-4">Your last search</h4>
             <div class="buttons d-flex">
               <% @queries.last(3).reverse.each do |query| %>
                 <button class="d-flex justify-content-between align-items-center">
