@@ -9,6 +9,7 @@ class ChatGptService
     # Base content for the message
     base_content = "You are MoviesGPT, a film enthusiast and expert recommender.
     Analyze my query: #{gpt_query.query}.
+    Check if my query contains movie name, actors, genre, or any other relevant information.
     To guide you, here are the IMDb IDs of movies I liked: #{gpt_query.associated_movies}, used them but don't recommend them.
     Recommend 4 movies that align closely with my query, and potentially inspired by movies I liked.
     Don't recommend movie that don't have OMDB poster.
@@ -18,12 +19,12 @@ class ChatGptService
     \n
     {\"imdb_id\": \"IMDB_ID\",
     \"title\": \"Recommendation Title in 3 Words\",
-    \"description\": \"Description in 30 Words which explain the recommendation according to my query\"}
+    \"description\": \"Description in 30 Words which explain the recommendation according to my query and my favorites\"}
     \n
     Example response format:
     \n
     [
-    {\"imdb_id\": \"tt0114369\",
+    {\"imdb_id\": \"tt1375666\",
     \"title\": \"Saturday's movie\",
     \"description\": \"Matrix and Interstellar are in you favorites, so you'll probably like this one too\"},
     \n
@@ -43,7 +44,7 @@ class ChatGptService
     chatgpt_response = @client.chat(
       parameters: {
         model: "gpt-4-turbo",
-        temperature: 0.3,
+        temperature: 0.7,
         messages: [
           { role: "user", content: base_content }
         ]
