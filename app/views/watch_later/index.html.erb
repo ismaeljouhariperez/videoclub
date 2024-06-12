@@ -4,7 +4,7 @@
   <div class="row">
   <% if !@watch_laters.empty? %>
   <% @watch_laters.each do |watch_later| %>
-    <%= render "movies/movie", movie: watch_later.movie, section: "watch_later", lists: @lists_sidebar %>
+    <%= render "movies/movie", movie: watch_later.movie, section: "watch_later", lists: @lists_sidebar, carousel: false %>
   <% end %>
 <% else %>
   <p>No movies added in your watchlist... yet!</p>
