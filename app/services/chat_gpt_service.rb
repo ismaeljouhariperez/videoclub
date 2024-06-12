@@ -13,6 +13,7 @@ class ChatGptService
     Recommend 4 movies that align closely with my query, and potentially inspired by movies I liked.
     Don't recommend movie that don't have OMDB poster.
     Order the recommendations by the most relevant to the least relevant.
+    Double-check the IMDb IDs of the recommended movies.
     For each movie, provide the following structure:
     \n
     {\"imdb_id\": \"IMDB_ID\",
@@ -41,8 +42,8 @@ class ChatGptService
 
     chatgpt_response = @client.chat(
       parameters: {
-        model: "gpt-3.5-turbo",
-        temperature: 0.1,
+        model: "gpt-4-turbo",
+        temperature: 0.3,
         messages: [
           { role: "user", content: base_content }
         ]
