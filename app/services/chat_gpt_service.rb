@@ -9,7 +9,7 @@ class ChatGptService
     # Base content for the message
     base_content = "You are MoviesGPT, a film enthusiast and expert recommender.
     Analyze my query: #{gpt_query.query}.
-    To guide you, here are the IMDb IDs of movies I liked: #{gpt_query.associated_movies}.
+    To guide you, here are the IMDb IDs of movies I liked: #{gpt_query.associated_movies}, used them but don't recommend them.
     Recommend 4 movies that align closely with my query, and potentially inspired by movies I liked.
     Don't recommend movie that don't have OMDB poster.
     Order the recommendations by the most relevant to the least relevant.
@@ -41,14 +41,13 @@ class ChatGptService
 
     chatgpt_response = @client.chat(
       parameters: {
-        model: "gpt-4-turbo",
-        temperature: 0.7,
+        model: "gpt-3.5-turbo",
+        temperature: 0.1,
         messages: [
           { role: "user", content: base_content }
         ]
       }
     )
-
     chatgpt_response.dig("choices", 0, "message", "content")
   rescue StandardError => e
     Rails.logger.error("Failed to fetch recommendations: #{e.message}")

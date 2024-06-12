@@ -33,6 +33,7 @@
 <section class="container px-4 result">
   <% query = @queries.last %>
 <% movies = current_user.gpt_queries.find(query.id).movies %>
+<% movies = movies - @favorites  %>
        <h2 class="title"><%= query.query %></h2>
         <div class="row">
           <% movies.first(2).each do |movie| %>
@@ -69,7 +70,7 @@
       <h2>Your favorites</h2>
       <div data-controller="carousel" class="carousel">
         <div class="siema" data-carousel-target="siema">
-          <% @favorites.each do |movie| %>
+          <% @favorites.sample(10).each do |movie| %>
             <div class="siema-slide">
               <%= render "movies/movie", movie: movie, section: "recommendations", lists: @lists_sidebar, carousel: true %>
             </div>
