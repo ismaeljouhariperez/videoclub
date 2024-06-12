@@ -12,6 +12,10 @@
   top: 0;
   left: 0;
 
+  p{
+    font-weight: 300;
+  }
+
   svg {
     width: 90%;
     height: auto;
@@ -26,6 +30,7 @@
       list-style-type: none;
       color: var(--gray);
       transition: all 0.3s ease;
+      font-weight: 300;
       i {
         transition: all 0.3s ease;
         color: var(--body-color);
@@ -61,12 +66,3 @@
   }
 
 }
-
-// .btn-dark {
-//   background-color: #000000;
-//   border-radius: 15px;
-// }
-// .btn-dark:hover {
-//   background-color: #343a40;
-//   border-radius: 15px;
-// }

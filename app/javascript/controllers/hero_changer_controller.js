@@ -7,7 +7,8 @@ export default class extends Controller {
     "https://exitmag.fr/wp-content/uploads/sites/21/2024/04/The-Fall-Guy-1-Ryan-Gosling.webp",
     "https://images.cinefil.com/movies/1159600.webp",
     "https://www.ecrannoir.fr/wp-content/uploads/2024/01/0071433.webp",
-    "https://m.media-amazon.com/images/S/pv-target-images/8b1c0a963e95fcdd64287a7e012fcfdd2064f703efe5a3b12d31bcb1795ae887.jpg"
+    "https://www.rayonvertcinema.org/wp-content/uploads/2024/01/The-Zone-of-Interest-Jonathan-Glazer.jpg",
+    "https://www.festival-deauville.com/wp-content/uploads/2023/07/comp-photo-film-past-lives-a24-ok.jpg",
   ];
 
   connect() {
@@ -19,7 +20,7 @@ export default class extends Controller {
 
     this.interval = setInterval(() => {
       this.changeBackgroundImage();
-    }, 7000);
+    }, 8000);
   }
 
   disconnect() {
