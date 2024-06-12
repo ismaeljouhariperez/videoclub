@@ -3,7 +3,7 @@ class FavoritesController < ApplicationController
     if params[:search]
       @favorites = Favorite.where(user: current_user).joins(:movie).where('title ILIKE ?', "%#{params[:search]}%")
     else
-      @favorites = Favorite.all
+      @favorites = Favorite.where(user: current_user)
     end
   end
 
