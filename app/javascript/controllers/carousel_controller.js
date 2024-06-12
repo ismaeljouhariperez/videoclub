@@ -49,7 +49,7 @@ export default class extends Controller {
           },
           startIndex: 0,
           loop: target.children.length > 6,
-          draggable: false,
+          draggable: target.children.length > 6,
         };
 
         const siema = new Siema(siemaConfig);
