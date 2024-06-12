@@ -1,0 +1,14 @@
+.hero {
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+}
+
+.hero.initial {
+  opacity: 0;
+}
+
+.hero.active {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+
+}
