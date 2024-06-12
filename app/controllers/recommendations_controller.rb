@@ -13,7 +13,7 @@ class RecommendationsController < ApplicationController
     @movies = current_user.query_movies.map{|query| Movie.find(query.movie_id)}.uniq
     @movies = @movies - @favorites
     @movies = @movies.sample(10)
-    @favorites = @favorites.sample(10)
+    @favorites = @favorites
     @lists = List.where(user: current_user).order(updated_at: :asc)
     # end
   end
