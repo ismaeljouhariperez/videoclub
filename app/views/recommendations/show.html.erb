@@ -1,0 +1,13 @@
+<div class="results">
+  <%= link_to 'Back to Home', root_path, class: 'btn btn-primary mb-3' %>
+  <div class="search-results">
+    <h3>Results for <%= @gpt_query.query %>:</h3>
+    <% @movies.each do |movie| %>
+      <div class="movie">
+        <h4><%= movie.title %></h4>
+        <p><%= movie.description %></p>
+        <!-- Add more movie details as needed -->
+      </div>
+    <% end %>
+  </div>
+</div>
