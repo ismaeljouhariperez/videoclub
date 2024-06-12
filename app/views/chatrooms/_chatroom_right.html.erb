@@ -1,5 +1,6 @@
-<div class="card-header text-center">
-  <%= image_tag chatroom.movie.poster_url, class: "", height: 250 %>
+<div class="card-header">
+  <%# <%= link_to image_tag chatroom.movie.poster_url, class: "", height: 250 %>
+  <%= render "movies/movie", movie: chatroom.movie, carousel: true %>
 </div>
 
  <div class="card-body">

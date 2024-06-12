@@ -2,6 +2,7 @@ class Movie < ApplicationRecord
   has_many :list_movies
   has_many :watched_movies
   has_many :favorites
+  has_many :query_movies, dependent: :destroy
 
   def formatted_runtime
     minutes = runtime.to_i
