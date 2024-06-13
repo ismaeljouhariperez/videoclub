@@ -10,14 +10,15 @@ export default class extends Controller {
     this.inputTarget.focus();
   }
 
-  // hideLoader(e) {
-  //   console.log('hide loader');
-  //   document.body.classList.remove('loading');
-  //   this.loader.setAttribute('hidden', '');
-  // }
+  hideLoader(e) {
+    console.log('hide loader');
+    document.body.classList.remove('loading');
+    this.loader.setAttribute('hidden', '');
+  }
 
   connect() {
     this.loader = document.querySelector(".loader");
+    this.hideLoader();
 
     console.log('connected');
     this.phrases = [

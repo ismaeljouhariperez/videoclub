@@ -68,12 +68,14 @@
                 <div class="col-9">
                   <p><%= movie.director %></p>
                 </div>
+                <% if movie.writer.present? %>
                 <div class="col-3">
                   <p><strong>Writer(s)</strong>
                 </div>
                 <div class="col-9">
-                  <p><%= movie.writer.split(", ").join(" ∙ ") if movie.writer.present?%></p>
+                  <p><%= movie.writer.split(", ").join(" ∙ ")%></p>
                 </div>
+                <% end %>
                 <div class="col-3">
                   <p><strong>Main actors</strong>
                 </div>
