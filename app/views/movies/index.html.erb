@@ -7,7 +7,7 @@
       </div>
     <% else %>
       <% @movies.each_with_index do |movie, index| %>
-        <%= render "movie", movie: movie, index: index, carousel: false %>
+        <%= render "movie", movie: movie, index: index, carousel: false, bs_class: "col-sm-6 col-md-6 col-lg-3 my-2 text-wrap text-center" %>
       <% end %>
     <% end %>
     <div class="d-flex justify-content-center">

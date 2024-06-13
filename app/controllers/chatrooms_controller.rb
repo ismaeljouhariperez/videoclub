@@ -1,12 +1,15 @@
 class ChatroomsController < ApplicationController
   def index
     @chatrooms = Chatroom.all.order(updated_at: :desc)
+    @last_chatroom = Chatroom.all.order(updated_at: :desc).first
     @chatroom = Chatroom.new
+    redirect_to chatroom_path(@last_chatroom) if @last_chatroom
   end
 
   def show
     @chatroom = Chatroom.find(params[:id])
     @chatrooms = Chatroom.all.order(updated_at: :desc)
+    @new_chatroom = Chatroom.new
     @message = Message.new
   end
 

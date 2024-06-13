@@ -4,12 +4,20 @@
       <div class="card-header">
         <h5 class="my-3">Chatrooms</h5>
         <%= simple_form_for(@chatroom) do |f| %>
-            <%= f.input :name, label: false, placeholder: "Create a new chatroom", class: "form-control" %>
-            <%= f.association :movie, collection: Movie.joins(:favorites).where(favorites: { user: current_user }), prompt: "A movie in your favorites", label: false, class: "form-control" %>
-            <%= f.submit  class: "btn btn-primary" %>
+          <%= f.input :name, label: false, placeholder: "Create a new chatroom", class: "form-control" %>
+          <%= f.association :movie, collection: Movie.joins(:favorites).where(favorites: { user: current_user }), prompt: "A movie in your favorites", label: false, class: "form-control" %>
+          <%= f.submit "Create",  class: "btn btn-primary" %>
         <% end %>
       </div>
-      <%= render "chatrooms/chatrooms", chatrooms: @chatrooms %> 
+      <%= render "chatrooms/chatrooms", chatrooms: @chatrooms %>
+    </div>
+  </div>
+  <div class="col-6 px-0 bg-light-gray">
+    <%= render "chatrooms/messages", chatroom: @last_chatroom %>
+  </div>
+  <div class="col-3 ps-0">
+    <div class="card vh-100">
+      <%= render "chatrooms/chatroom_right", chatroom: @last_chatroom %>
     </div>
   </div>
 </div>

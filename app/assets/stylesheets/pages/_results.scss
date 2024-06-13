@@ -5,8 +5,17 @@
   justify-content: between;
   padding:5%;
 
+  i{
+    width: 2rem!important;
+    height: 2rem!important;
+  }
+
+  .movie-card__content{
+    display:none!important;
+  }
+
   img{
-    width:40%;
+    width:100%;
     height: 250px;
     border-radius: 20px;
     object-fit: cover;
@@ -14,7 +23,7 @@
 
   &__info{
     padding:0 5%;
-    width:60%;
+    width:50%;
     display:flex;
     flex-flow: column;
 

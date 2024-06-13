@@ -4,7 +4,7 @@
   <div class="row">
     <% if !@favorites.empty? %>
       <% @favorites.each do |favorite| %>
-        <%= render "movies/movie", movie: favorite.movie, section: "favorites", lists: @lists_sidebar, carousel: false %>
+        <%= render "movies/movie", movie: favorite.movie, section: "favorites", lists: @lists_sidebar, carousel: false, bs_class: "col-sm-6 col-md-6 col-lg-3 my-2 text-wrap text-center" %>
       <% end %>
     <% else %>
       <p>No favorites yet</p>
