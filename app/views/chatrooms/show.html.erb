@@ -1,25 +1,30 @@
 <div class="row vh-100">
   <div class="col-3 pe-0">
-    <div class="card vh-100">
+    <div class="card vh-100 card-no-rounded">
       <div class="card-header">
         <h5 class="my-3">Chatrooms</h5>
         <% if current_user == @chatroom.user %>
           <div class="d-flex justify-content-between">
-            <%= simple_form_for(@chatroom) do |f| %>
-              <%= f.input :name, label: false, placeholder: "Create a new chatroom", class: "form-control" %>
-              <%= f.submit  class: "btn btn-primary" %>
+            <%= simple_form_for(@new_chatroom) do |f| %>
+              <div class="d-flex flex-column">
+                <%= f.association :movie, collection: Movie.joins(:favorites).where(favorites: { user: current_user }), prompt: "A movie in your favorites", label: false, class: "form-control" %>
+                <div class="d-flex justify-content-between message-input">
+                  <%= f.input :name, label: false, placeholder: "New chatroom", class: "form-control" %>
+                  <%= f.submit "Create", class: "btn btn-primary btn-send create-chatroom-button mb-3" %>
+                </div>
+              </div>
             <% end %>
           </div>
         <% end %>
       </div>
-      <%= render "chatrooms/chatrooms", chatrooms: @chatrooms %> 
+      <%= render "chatrooms/chatrooms", chatrooms: @chatrooms %>
     </div>
   </div>
   <div class="col-6 px-0 bg-light-gray">
-    <%= render "chatrooms/messages" %>
+    <%= render "chatrooms/messages", chatroom: @chatroom %>
   </div>
   <div class="col-3 ps-0">
-    <div class="card vh-100">
+    <div class="card vh-100 card-no-rounded">
       <%= render "chatrooms/chatroom_right", chatroom: @chatroom %>
     </div>
   </div>

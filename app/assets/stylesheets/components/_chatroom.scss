@@ -47,3 +47,38 @@
 .users-list {
   overflow-y: scroll;
 }
+
+.message-input {
+  .form-control {
+    border-radius: 0;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border: none;
+  }
+
+  .form-control:focus {
+    border-color: var(--primary);
+    box-shadow: none;
+  }
+
+  .btn-send {
+    background-color: var(--primary);
+    /* Bright green color */
+    color: white;
+    border-radius: 0;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: none;
+    //border: #00FF96 solid 1px;
+  }
+
+  .btn-send:focus,
+  .btn-send:hover {
+    background-color: var(--primary);
+    /* Slightly darker green for hover/focus */
+  }
+}
+
+.card-no-rounded {
+  border-radius: 0;
+}
