@@ -1,4 +1,4 @@
-<div class="movie-card <%= 'col-sm-6 col-md-6 col-lg-3' if !carousel %> my-2 text-wrap text-center" data-controller="movie-buttons" data-movie-buttons-movie-id-value="<%= movie.id %>" data-movie-buttons-movie-section-value="<%= defined?(section) ? section : '' %>" >
+<div class="movie-card <%= bs_class %>" data-controller="movie-buttons" data-movie-buttons-movie-id-value="<%= movie.id %>" data-movie-buttons-movie-section-value="<%= defined?(section) ? section : '' %>" >
   <figure>
     <img src="<%= movie.poster_url %>" alt="<%= movie.title %>"  data-bs-toggle="modal" data-bs-target="#movieModal<%= movie.id %>">
     <div class="movie-card__buttons dropup">
