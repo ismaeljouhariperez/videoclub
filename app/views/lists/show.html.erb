@@ -2,6 +2,7 @@
 
 <div class="container-section d-flex flex-column flex-wrap">
   <div class="row">
+<<<<<<< Updated upstream
     <% if !@list.movies.empty? %>
       <% @list.movies.each do |favorite| %>
         <%= render "movies/movie", movie: favorite, section: "favorites", lists: @lists_sidebar, carousel: false, bs_class: "col-sm-6 col-md-6 col-lg-3 my-2 text-wrap text-center" %>
@@ -9,5 +10,15 @@
     <% else %>
       <p>No favorites yet</p>
     <% end %>
+=======
+  <h2><%= @list.name %> list</h2>
+  <% if !@list.movies.empty? %>
+  <% @list.movies.each do |movie| %>
+    <%= render "movies/movie", movie: movie, carousel:false, bs_class: "col-sm-6 col-md-6 col-lg-3 col-xl-2 my-2 text-wrap text-center" %>
+  <% end %>
+<% else %>
+  <p>No movie in this list yet</p>
+<% end %>
+>>>>>>> Stashed changes
   </div>
 </div>

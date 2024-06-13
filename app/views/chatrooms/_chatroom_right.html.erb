@@ -1,6 +1,6 @@
-<div class="card-header">
+<div class="card-header h-50 d-flex align-items-center justify-content-center">
   <%# <%= link_to image_tag chatroom.movie.poster_url, class: "", height: 250 %>
-  <%= render "movies/movie", movie: chatroom.movie, carousel: true, bs_class: "col-12" %>
+  <%= render "movies/movie", movie: chatroom.movie, carousel: true, bs_class: "col-8 text-center" %>
 </div>
 <div class="card-body">
   <h5 class="my-3">Chatroom Users</h5>
@@ -13,7 +13,7 @@
     <% end %>
   </div>
 </div>
-<div class="card-footer">
+<div class="card-footer py-4">
   <div class="d-flex justify-content-center">
     <%= link_to chatrooms_path, class: "btn btn-primary " do %>
       <p class="mb-0"><i class="fa-solid fa-right-from-bracket"></i> Leave the chatroom</p>

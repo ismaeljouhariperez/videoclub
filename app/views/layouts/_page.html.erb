@@ -7,8 +7,8 @@
     <div class="search-header ms-2">
       <% if ai_reco %>
         <%= form_with url: reco_path, method: :post, class: "d-inline" do |form| %>
-          <%= form.button class: "btn btn-primary ms-2 text-black p-2 px-4" do %>
-            <i class="m-2 fa-solid fa-wand-magic-sparkles"></i>
+          <%= form.button class: "btn btn-primary ms-2 text-black p-2 px-4 find_similar" do %>
+            <i class="m-2 fa-solid fa-wand-magic-sparkles text-center"></i>
             <small>Find similar movies</small>
           <% end %>
         <% end %>
@@ -18,8 +18,10 @@
   <div class="page_container__header" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_url %>'); background-position: <%= defined?(position) ? position : "initial" %>;">
     <div class="page_container__header__content">
       <h2><%= title %></h2>
-      <h3><%= movie_title %></h3>
-      <div class="rating"><span><%= movie_rating %></span> / 10</div>
+      <div class="d-flex flex-column movie_title">
+        <h3><%= movie_title %></h3>
+        <div class="rating"><span><%= movie_rating %></span> / 10</div>
+      </div>
       <div class="buttons">
         <button class="btn btn-primary text-black p-2 px-4"><small>More info</small></button>
         <button id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
