@@ -1,7 +1,7 @@
 <% if !movie.poster_url.blank? %>
 <div class="col-6 my-4">
   <div class="card-result">
-    <%= render "movies/movie", movie: movie, section: "", lists:current_user.lists, carousel: true, bs_class: "col-5" %>
+    <%= render "movies/movie", movie: movie, section: "", lists:current_user.lists, carousel: false , bs_class: "col-5" %>
     <div class="card-result__info">
       <h3 class="card-result__info__title"><%= movie.title %></h3>
 

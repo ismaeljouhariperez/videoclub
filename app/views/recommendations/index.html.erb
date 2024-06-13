@@ -33,7 +33,7 @@
         <h2>Special for you</h2>
         <div data-controller="carousel" class="carousel">
           <div class="siema" data-carousel-target="siema">
-            <% @movies.each do |movie| %>
+            <% @movies.sample(10).each do |movie| %>
               <div class="siema-slide">
                 <% unless movie.poster_url == "N/A" || movie.poster_url.nil? || movie.poster_url.empty? %>
                   <%= render "movies/movie", movie: movie, section: "recommendations", lists: @lists_sidebar, carousel: true, bs_class: "col-sm-6 col-md-6 col-lg-3" %>
@@ -53,7 +53,7 @@
         <h2>Your favorites</h2>
         <div data-controller="carousel" class="carousel">
           <div class="siema" data-carousel-target="siema">
-            <% @favorites.each do |movie| %>
+            <% @favorites.sample(10).each do |movie| %>
               <div class="siema-slide">
                 <%= render "movies/movie", movie: movie, section: "recommendations", lists: @lists_sidebar, carousel: true, bs_class: "col-sm-6 col-md-6 col-lg-3" %>
               </div>

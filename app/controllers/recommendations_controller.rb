@@ -14,6 +14,11 @@ class RecommendationsController < ApplicationController
     end
   end
 
+  def create_from_favorites
+    gpt_query = GptQuery.create(query: "favorites", user: current_user)
+    redirect_to recommendation_path(gpt_query)
+  end
+
   def show
     @gpt_query = GptQuery.find(params[:id])
     @movies = @gpt_query.movies
