@@ -11,7 +11,7 @@ class Movie < ApplicationRecord
     "#{hours}h#{remaining_minutes}"
   end
 
-  def self.custom_find_or_create_by_imndb_id(id)
+  def self.custom_find_or_create_by_imdb_id(id)
     movie = Movie.find_by(imdb_id: id)
     if movie.nil?
       omdb_api_url = "http://www.omdbapi.com/?apikey=#{ENV['OMDB_API_KEY']}&i=#{id}"
