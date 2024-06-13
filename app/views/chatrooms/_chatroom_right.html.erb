@@ -7,7 +7,7 @@
     <% chatroom.messages.distinct.pluck(:user_id).each do |user_id| %>
       <% user = User.find(user_id) %>
       <div class="d-flex align-items-center justify-content-between border bg-white p-2">
-        <p class="mb-0"><%= user.username %> - <%= user.email %></p>
+        <p class="mb-0"><%= user.username %></p>
       </div>
     <% end %>
   </div>

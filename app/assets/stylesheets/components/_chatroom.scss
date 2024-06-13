@@ -46,6 +46,13 @@
 
 .users-list {
   overflow-y: scroll;
+
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
+  &::-webkit-scrollbar {
+    height: 0;
+  }
 }
 
 .message-input {
