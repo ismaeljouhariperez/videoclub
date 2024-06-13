@@ -5,8 +5,8 @@ class ChatGptService
     @client = OpenAI::Client.new
   end
 
-  def get_recommendations(gpt_query, list_ids = nil, list_title = nil)
-    if gpt_query.query.include?("favorites" || list_title.present?)
+  def get_recommendations(gpt_query)
+    if gpt_query.query.include?("favorites")
       prompt = "You are MoviesGPT, a film enthusiast and expert recommender.
       Here are the IMDb IDs of movies I liked: #{gpt_query.associated_movies}.
       Recommend me 4 movies that align closely with my favorites, but are not in my list.
