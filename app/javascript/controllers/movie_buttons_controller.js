@@ -184,33 +184,23 @@ export default class extends Controller {
   }
 
   show_toast(toast_header, toast_message, delay) {
-    console.log("Showing toast message")
-    const check_time = (i) => i < 10 ? "0" + i : i;
-    let today = new Date();
-    let h = check_time(today.getHours());
-    let m = check_time(today.getMinutes());
-    let s = check_time(today.getSeconds());
-    let toast_time = `${h}:${m}:${s}`;
-
     let toast_template_html = `
       <div aria-atomic="true" aria-live="assertive"
-        class="toast position-fixed bottom-0 end-0 m-3"
-        role="alert" id="toast_message-${today}"
+        class="toast position-fixed bottom-0 end-0 m-3 border-0"
+        role="alert" id="toast_message-${Date.now()}"
       >
-        <div class="toast-header">
-          <strong class="me-auto">${toast_header}</strong>
-          <small>${toast_time}</small>
+        <div class="toast-header border-0 rounded d-flex justify-content-between">
+          <p class="m-0 p-0">${toast_message}</p>
           <button aria-label="Close" class="btn-close"
             data-bs-dismiss="toast" type="button"></button>
         </div>
-        <div class="toast-body">${toast_message}</div>
       </div>
     `;
 
     const toast_wrapper = document.createElement("template");
     toast_wrapper.innerHTML = toast_template_html.trim();
     const awesome_toast = toast_wrapper.content.firstChild;
-    document.body.appendChild(awesome_toast); // Append to body or a specific '.toast-container'
+    document.body.appendChild(awesome_toast);
 
     new bootstrap.Toast(awesome_toast, {
       autohide: true,

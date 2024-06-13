@@ -1,4 +1,4 @@
-<div class="page_container">
+<div class="page_container <%= section if defined?(section) %>">
   <div class="page_container__search">
     <%= form_tag search_on, class: "search-container", method: :get do %>
       <%= render "layouts/icon" %>
@@ -20,12 +20,12 @@
             <li><a class="dropdown-item" href="#" data-action="click->movie-buttons#addToList" data-movie-buttons-target="addToList" data-movie-buttons-list-id-value="<%= list.id %>"><%= list.name %></a></li>
           <% end %>
         </ul>
-        <button><i class="fa-solid fa-heart text-white"></i>
+        <button class="favourites"><i class="fa-solid fa-heart text-white"></i>
         </button>
-        <button>
+        <button class="watched">
           <i class="fa-solid fa-eye text-white"></i>
         </button>
-        <button>
+        <button class="watch_later">
           <i class="fa-regular fa-clock text-white"></i>
         </button>
       </div>
