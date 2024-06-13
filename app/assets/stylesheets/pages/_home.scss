@@ -1,4 +1,29 @@
+@media all and (max-width: 1919px){
+  .carousel {
+    .siema-slide {
+      .movie-card {
+        img {
+          height: 250px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (min-width: 1920px){
+  .carousel {
+    .siema-slide {
+      .movie-card {
+        img {
+          height: 280px;
+        }
+      }
+    }
+  }
+}
+
 $card-img-height: 250px;
+
 .container-grid::before {
   content: "";
   position: absolute;
@@ -34,22 +59,16 @@ $card-img-height: 250px;
 
       h2 {
         color: var(--primary);
-        font-size: 20px;
-        font-weight: 300;
       }
 
       h3 {
         color: white;
-        font-size: 50px;
-        font-weight: 700;
         text-transform: initial;
         text-align: center;
       }
 
       h4 {
         color: white;
-        font-size: 18px;
-        font-weight: 300;
         text-transform: uppercase;
       }
 
@@ -82,7 +101,6 @@ $card-img-height: 250px;
 
       form {
         width: 100%;
-        height: 50px;
         overflow: hidden;
 
         input,
@@ -136,8 +154,8 @@ input.search-input::placeholder {
     .movie-card {
       width: 100%;
       img {
-        height: $card-img-height;
-        transition: all .3s ease-in-out;
+        height: 250px;
+        transition: all 0.3s ease-in-out;
         &:hover {
           transform: scale(1.05);
         }
@@ -193,7 +211,6 @@ section {
     font-size: 18px;
     font-weight: 400;
   }
-
 }
 
 section.special {
@@ -209,4 +226,65 @@ section.special {
 
 .result .title {
   color: white;
+}
+
+@media all and (max-width: 1919px) {
+  .container-grid {
+    &__header {
+      h2 {
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      h3 {
+        font-size: 58px;
+        font-weight: 700;
+      }
+
+      h4 {
+        font-size: 20px;
+        font-weight: 400;
+      }
+
+      form{
+        height: 50px;
+      }
+    }
+  }
+
+  section {
+    h2 {
+      font-size: 20px;
+    }
+  }
+}
+
+@media all and (min-width: 1919px) {
+  .container-grid {
+    &__header {
+      h2 {
+        font-size: 24px;
+        font-weight: 500;
+      }
+
+      h3 {
+        font-size: 68px;
+        font-weight: 700;
+      }
+
+      h4 {
+        font-size: 22px;
+        font-weight: 400;
+      }
+      form{
+        height: 60px;
+      }
+    }
+  }
+
+  section {
+    h2 {
+      font-size: 24px;
+    }
+  }
 }

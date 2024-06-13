@@ -111,5 +111,14 @@ main {
 }
 
 .container-section{
-  padding: 30px;
+  padding: 40px;
+}
+
+@media screen and (min-width: 1920px){
+  small{
+    font-size: 1rem;
+  }
+  input{
+    font-size: 20px;
+  }
 }
