@@ -1,12 +1,13 @@
-
-
+<% if !movie.poster_url.blank? %>
 <div class="col-6 my-4">
   <div class="card-result">
-    <img src="<%= movie.poster_url %>" alt="<%= movie.title %>" class="card-result__image">
+    <%= render "movies/movie", movie: movie, section: "", lists:current_user.lists, carousel: true, bs_class: "col-5" %>
     <div class="card-result__info">
       <h3 class="card-result__info__title"><%= movie.title %></h3>
+
       <div class="card-result__info__quote"><%= query.reco_title %></div>
       <p class="card-result__info__description"><%= query.reco_description %></p>
     </div>
   </div>
 </div>
+<% end %>
