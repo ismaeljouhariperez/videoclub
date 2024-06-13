@@ -3,9 +3,9 @@
   <div class="card-result">
     <%= render "movies/movie", movie: movie, section: "", lists:current_user.lists, carousel: false , bs_class: "col-5" %>
     <div class="card-result__info">
-      <h3 class="card-result__info__title"><%= movie.title %></h3>
+      <h3 class="card-result__info__title"><%= query.reco_title %></h3>
 
-      <div class="card-result__info__quote"><%= query.reco_title %></div>
+      <%# <div class="card-result__info__quote"><%= query.reco_title %>
       <p class="card-result__info__description"><%= query.reco_description %></p>
     </div>
   </div>
