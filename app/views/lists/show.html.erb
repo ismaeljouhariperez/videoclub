@@ -1,24 +1,21 @@
-<%= render "layouts/page", ai_reco: true, reco_path: recommendation_list_path(@list), search_on: favorites_path, title: "Favorites", image_url: "https://m.media-amazon.com/images/S/pv-target-images/85f996deb6e03425868a24a26eacccc0aa96e9c6dfe835a2e54d35776e046949.jpg", movie_title: "The Wolf of Wall Street", movie_rating: "8.2", section: "favourites" %>
+<% @hero_movies = [
+      { poster_url: "https://media1.ledevoir.com/images_galerie/nwd_230771_163004/image.jpg", title: "Mommy (2014)" },
+      { poster_url: "https://www.hollywoodreporter.com/wp-content/uploads/2022/03/MCDGODF_EC002.jpg?w=2000&h=1126&crop=1", title: "Godfather (1972)" },
+      { poster_url: "https://media.newyorker.com/photos/59097b4a8b51cf59fc423bff/16:9/w_1280,c_limit/Tolentino-Handmaiden.jpg", title: "Handmaiden (2016)" }
+    ]
+    index = rand(0..2)
+%>
+
+<%= render "layouts/page_list", ai_reco: true, reco_path: recommendation_list_path(@list), search_on: favorites_path, title: @list.name, image_url: @hero_movies[index][:poster_url], movie_title: @hero_movies[index][:title], movie_rating: "8.0", section: "lists", search_on: list_path(@list) %>
 
 <div class="container-section d-flex flex-column flex-wrap">
   <div class="row">
-<<<<<<< Updated upstream
-    <% if !@list.movies.empty? %>
-      <% @list.movies.each do |favorite| %>
-        <%= render "movies/movie", movie: favorite, section: "favorites", lists: @lists_sidebar, carousel: false, bs_class: "col-sm-6 col-md-6 col-lg-3 my-2 text-wrap text-center" %>
-      <% end %>
-    <% else %>
-      <p>No favorites yet</p>
-    <% end %>
-=======
-  <h2><%= @list.name %> list</h2>
-  <% if !@list.movies.empty? %>
-  <% @list.movies.each do |movie| %>
-    <%= render "movies/movie", movie: movie, carousel:false, bs_class: "col-sm-6 col-md-6 col-lg-3 col-xl-2 my-2 text-wrap text-center" %>
+  <% if !@list_movies.nil? %>
+  <% @list_movies.each do |list_movie| %>
+    <%= render "movies/movie", movie: list_movie.movie, carousel:false, bs_class: "col-sm-6 col-md-6 col-lg-3 col-xl-2 my-2 text-wrap text-center" %>
   <% end %>
 <% else %>
   <p>No movie in this list yet</p>
 <% end %>
->>>>>>> Stashed changes
   </div>
 </div>

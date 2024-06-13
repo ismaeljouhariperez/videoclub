@@ -1,15 +1,16 @@
-.page_container {
+.list_container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
-  padding: 0 40px;
+  padding: 0;
 
   &__search {
-    grid-column: 1 / span 12;
-    grid-row: 1 / 2;
-    place-content: center;
-    align-self: flex-end;
 
+    grid-column: 1 / span 12;
+    grid-row: 10 / 12;
+    place-content: center;
+    align-self: center;
+    padding: 0 40px;
 
     .find_similar{
       border-radius:30px;
@@ -21,7 +22,7 @@
       background-color: #E9EBF0;
       border-radius: 25px;
       padding: 8px 20px;
-      width: 20%;
+      width: 30%;
     }
 
     .search-icon {
@@ -52,12 +53,10 @@
 
   &__header {
     grid-column: 1 / span 12;
-    border-radius: 25px;
     background-size: cover;
-
-    grid-row: 2 / span 11;
+    grid-row: 1 / 10;
     align-self: center;
-    height: 95%;
+    height: 100%;
 
     &__content {
       display: grid;
@@ -147,7 +146,7 @@
 }
 
 
-.page_container.favourites{
+.list_container.favourites{
   button.favourites {
     background-color: white;
       >i {
@@ -156,7 +155,7 @@
     }
 }
 
-.page_container.watched{
+.list_container.watched{
   button.watched {
     background-color: white;
       >i {
@@ -165,7 +164,7 @@
     }
 }
 
-.page_container.watch_later{
+.list_container.watch_later{
   button.watch_later {
     background-color: white;
       >i {
@@ -176,7 +175,7 @@
 
 
 @media all and (max-width: 1919px){
-  .page_container {
+  .list_container {
     height: 80vh;
 
 
@@ -226,8 +225,8 @@
 
 @media all and (min-width: 1920px){
 
-  .page_container {
-    height: 70vh;
+  .list_container {
+    height: 50vh;
 
 
     &__search {
