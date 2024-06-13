@@ -1,15 +1,15 @@
 <div class="row vh-100">
   <div class="col-3 pe-0">
     <div class="card vh-100 card-no-rounded">
-      <div class="card-header">
+      <div class="card-header h-25 d-flex flex-column justify-content-around">
         <h5 class="my-3">Chatrooms</h5>
         <%# if current_user == @chatroom.user %>
         <div class="d-flex justify-content-between">
           <%= simple_form_for(@new_chatroom) do |f| %>
             <div class="d-flex flex-column">
-              <%= f.association :movie, collection: Movie.joins(:favorites).where(favorites: { user: current_user }), prompt: "A movie in your favorites", label: false, class: "form-control" %>
+              <%= f.association :movie, collection: Movie.joins(:favorites).where(favorites: { user: current_user }), prompt: "Select a movie", label: false, class: "form-control" %>
               <div class="d-flex justify-content-between message-input">
-                <%= f.input :name, label: false, placeholder: "New chatroom", class: "form-control" %>
+                <%= f.input :name, label: false, placeholder: "Name of your topic", class: "form-control" %>
                 <%= f.submit "Create", class: "btn btn-primary btn-send create-chatroom-button mb-3" %>
               </div>
             </div>

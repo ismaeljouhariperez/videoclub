@@ -1,12 +1,13 @@
 <div class="row vh-100">
   <div class="col-3">
     <div class="card vh-100">
-      <div class="card-header">
+      <div class="card-header h-25 d-flex flex-column justify-content-around">
         <h5 class="my-3">Chatrooms</h5>
-        <%= simple_form_for(@chatroom) do |f| %>
-          <%= f.input :name, label: false, placeholder: "Create a new chatroom", class: "form-control" %>
-          <%= f.association :movie, collection: Movie.joins(:favorites).where(favorites: { user: current_user }), prompt: "A movie in your favorites", label: false, class: "form-control" %>
-          <%= f.submit "Create",  class: "btn btn-primary" %>
+        <%= simple_form_for(@chatroom, html: { class: "d-flex h-50 justify-content-between" }) do |f| %>
+          <%= f.input :name, label: false, placeholder: "Create a new chatroom", class: "form-control", placeholder: "New chatrooms" %>
+          <%= f.association :movie, collection: Movie.joins(:favorites).where(favorites: { user: current_user }), prompt: "Select a movie", label: false, class: "form-control", placeholder: "Select a movie" %>
+          <%= f.submit "Create", class: "btn btn-primary" %>
+        <% end %>
         <% end %>
       </div>
       <%= render "chatrooms/chatrooms", chatrooms: @chatrooms %>
