@@ -1,5 +1,5 @@
-<div class="page_container <%= section if defined?(section) %>">
-  <div class="page_container__search d-flex align-items-center justify-content-between">
+<div class="list_container <%= section if defined?(section) %>">
+  <div class="list_container__search d-flex align-items-center justify-content-between">
     <%= form_tag search_on, class: "search-container", method: :get do %>
       <%= render "layouts/icon" %>
       <%= text_field_tag :search, params[:search], class: "search-input flex-grow-1", placeholder: "Search a movie by its title" %>
@@ -7,37 +7,22 @@
     <div class="search-header ms-2">
       <% if ai_reco %>
         <%= form_with url: reco_path, method: :post, class: "d-inline" do |form| %>
-          <%= form.button class: "btn btn-primary ms-2 text-black p-2 px-4" do %>
-            <i class="m-2 fa-solid fa-wand-magic-sparkles"></i>
+          <%= form.button class: "btn btn-primary ms-2 text-black p-2 px-4 find_similar" do %>
+            <i class="m-2 fa-solid fa-wand-magic-sparkles text-center"></i>
             <small>Find similar movies</small>
           <% end %>
         <% end %>
       <% end %>
     </div>
   </div>
-  <div class="page_container__header" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_url %>'); background-position: <%= defined?(position) ? position : "initial" %>;">
-    <div class="page_container__header__content">
+  <div class="list_container__header" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_url %>'); background-position: <%= defined?(position) ? position : "initial" %>;">
+    <div class="list_container__header__content">
       <h2><%= title %></h2>
-      <h3><%= movie_title %></h3>
-      <div class="rating"><span><%= movie_rating %></span> / 10</div>
+      <div class="d-flex flex-column movie_title">
+        <h3><%= movie_title %></h3>
+      </div>
       <div class="buttons">
         <button class="btn btn-primary text-black p-2 px-4"><small>More info</small></button>
-        <button id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
-          <i class="fa-solid fa-plus text-white" data-movie-buttons-target="AddToList"></i></button>
-        <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-          <h5 class="dropdown-header">Add to my list</h5>
-          <% @lists.each do |list| %>
-            <li><a class="dropdown-item" href="#" data-action="click->movie-buttons#addToList" data-movie-buttons-target="addToList" data-movie-buttons-list-id-value="<%= list.id %>"><%= list.name %></a></li>
-          <% end %>
-        </ul>
-        <button class="favourites"><i class="fa-solid fa-heart text-white"></i>
-        </button>
-        <button class="watched">
-          <i class="fa-solid fa-eye text-white"></i>
-        </button>
-        <button class="watch_later">
-          <i class="fa-regular fa-clock text-white"></i>
-        </button>
       </div>
     </div>
   </div>

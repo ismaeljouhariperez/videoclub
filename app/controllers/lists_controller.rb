@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+
   def index
     @lists = List.where(user: current_user).order(updated_at: :desc)
     @list = List.new
@@ -7,6 +8,13 @@ class ListsController < ApplicationController
   def show
     @lists = List.where(user: current_user)
     @list = List.find(params[:id])
+    if params[:search]
+      @movies = ListMovie.where(list: @list).where("title ILIKE ?", "%#{params[:search]}%").page(params[:page]).per(20)
+     # @list_movies = @list.movies.where("title ILIKE ?", "%#{params[:search]}%").page(params[:page]).per(20)
+    else
+      #@list_movies = @list.movies.page(params[:page]).per(20)
+      @list_movies = ListMovie.where(list: @list).page(params[:page]).per(20)
+    end
   end
 
   def create
@@ -49,4 +57,6 @@ class ListsController < ApplicationController
   def list_params
     params.require(:list).permit(:name)
   end
+
+
 end
