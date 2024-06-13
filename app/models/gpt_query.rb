@@ -7,8 +7,8 @@ class GptQuery < ApplicationRecord
 
   after_create :create_query_movies
 
-  def create_query_movies
-    response = ChatGptService.new.get_recommendations(self)
+  def create_query_movies (list_ids = nil)
+    response = ChatGptService.new.get_recommendations(self, list_ids)
 
     # Extract JSON part from the response
     json_start = response.index('[')

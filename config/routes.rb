@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users, only: :show
   resources :recommendations, only: %i[index show]
   post "recommendation_favorite" => "recommendations#create_from_favorites", as: :recommendation_favorite
+  post "recommendation_list/:id" => "recommendations#create_from_list", as: :recommendation_list
 
   resources :lists, only: %i[show create]
   resources :movies, only: %i[index create] do

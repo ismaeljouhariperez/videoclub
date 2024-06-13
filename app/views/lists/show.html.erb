@@ -1,12 +1,13 @@
-<div class="container d-flex flex-column flex-wrap px-5 py-3">
+<%= render "layouts/page", ai_reco: true, reco_path: recommendation_list_path(@list), search_on: favorites_path, title: "Favorites", image_url: "https://m.media-amazon.com/images/S/pv-target-images/85f996deb6e03425868a24a26eacccc0aa96e9c6dfe835a2e54d35776e046949.jpg", movie_title: "The Wolf of Wall Street", movie_rating: "8.2", section: "favourites" %>
+
+<div class="container-section d-flex flex-column flex-wrap">
   <div class="row">
-  <h2><%= @list.name %> list</h2>
-  <% if !@list.movies.empty? %>
-  <% @list.movies.each do |movie| %>
-    <%= render "movies/movie", movie: movie, carousel:false, bs_class: "col-sm-6 col-md-6 col-lg-3 my-2 text-wrap text-center" %>
-  <% end %>
-<% else %>
-  <p>No movie in this list yet</p>
-<% end %>
+    <% if !@list.movies.empty? %>
+      <% @list.movies.each do |favorite| %>
+        <%= render "movies/movie", movie: favorite, section: "favorites", lists: @lists_sidebar, carousel: false, bs_class: "col-sm-6 col-md-6 col-lg-3 my-2 text-wrap text-center" %>
+      <% end %>
+    <% else %>
+      <p>No favorites yet</p>
+    <% end %>
   </div>
 </div>
