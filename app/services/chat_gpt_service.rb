@@ -8,10 +8,11 @@ class ChatGptService
   def get_recommendations(gpt_query)
     if gpt_query.query.include?("favorites")
       prompt = "You are MoviesGPT, a film enthusiast and expert recommender.
-      Here are the IMDb IDs of movies I liked: #{gpt_query.associated_movies}, use them but don't recommend 4 movies that align closely with my query, and potentially inspired by movies I liked.
-      Don't recommend movies that don't have OMDB posters.
+      Here are the IMDb IDs of movies I liked: #{gpt_query.associated_movies}.
+      Recommend me 4 movies that align closely with my favorites, but are not in my list.
+      Don't recommend movies that don't have OMDB posters
       Order the recommendations by the most relevant to the least relevant.
-      Double-check the IMDb IDs of the recommended movies.
+      Double-check if the IMDb IDs match your recommended movies, and are not in this list : #{gpt_query.associated_movies}.
       For each movie, provide the following structure:
       \n
       {\"imdb_id\": \"IMDB_ID\",
@@ -40,6 +41,7 @@ class ChatGptService
       Check if my query contains movie name, actors, genre, or any other relevant information.
       Recommend 4 movies that align closely with my query, and match actors, directors, or genres I asked.
       Don't recommend movies that don't have OMDB posters.
+      Give privilege to movies with higher IMDb ratings.
       For each movie, provide the following structure:
       \n
       {\"imdb_id\": \"IMDB_ID\",

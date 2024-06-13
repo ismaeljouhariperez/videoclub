@@ -1,4 +1,4 @@
-<%= render "layouts/page", search_on: movies_path, title: "All the movies", image_url: "https://media.senscritique.com/media/000008596968/0/melancholia.jpg", movie_title: "Melancholia", position: "center", movie_rating: "7.1" %>
+<%= render "layouts/page", ai_reco: false, search_on: movies_path, title: "All the movies", image_url: "https://media.senscritique.com/media/000008596968/0/melancholia.jpg", movie_title: "Melancholia", position: "center", movie_rating: "7.1" %>
 <div class="container d-flex flex-column flex-wrap px-5 py-3">
   <div class="row">
     <% if @movies.empty? %>

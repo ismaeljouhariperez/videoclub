@@ -4,8 +4,15 @@
       <%= render "layouts/icon" %>
       <%= text_field_tag :search, params[:search], class: "search-input flex-grow-1", placeholder: "Search a movie by its title" %>
     <% end %>
-    <div class="search-header ms-2">
-      <button class="btn btn-primary ms-auto text-black p-2 px-4"><i class="m-2 fa-solid fa-wand-magic-sparkles"></i><small>Find similar movies</small></button>
+      <div class="search-header ms-2">
+        <% if ai_reco %>
+        <%= form_with url: reco_path, method: :post, class: "d-inline" do |form| %>
+          <%= form.button class: "btn btn-primary ms-2 text-black p-2 px-4" do %>
+            <i class="m-2 fa-solid fa-wand-magic-sparkles"></i>
+            <small>Find similar movies</small>
+          <% end %>
+        <% end %>
+    <% end %>
     </div>
   </div>
   <div class="page_container__header" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_url %>'); background-position: <%= defined?(position) ? position : "initial" %>;">
