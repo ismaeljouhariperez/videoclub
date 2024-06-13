@@ -8,12 +8,11 @@ class ChatGptService
 
 
   def get_recommendations(gpt_query)
-  @common_prompt = "Find 20 movies that align closely with informations you found, and match actors, directors, or genres.
+  @common_prompt = "Find 5 movies that align closely with informations you found, and match actors, directors, or genres.
   Don't recommend movies that don't have OMDB posters.
   Find the IMDB ID of each movies.
-  Strictly remove ids that are in this list : #{gpt_query.associated_movies}.
   Select the 4 movies with the highest IMDb ratings.
-  Write a enthusiast recommendations of 40 words for each movie
+  Write a enthusiast recommendations of 35 words for each movie, you can make reference to the actors, directors, or genres of my query or favorite movies.
   Give a title of 3-4 words for each recommendations.
   And provide the following structure:
   \n
