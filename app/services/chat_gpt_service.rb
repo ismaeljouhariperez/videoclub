@@ -38,11 +38,8 @@ class ChatGptService
       prompt = "You are MoviesGPT, a film enthusiast and expert recommender.
       Analyze my query: #{gpt_query.query}.
       Check if my query contains movie name, actors, genre, or any other relevant information.
-      Recommend 4 movies that align closely with my query.
+      Recommend 4 movies that align closely with my query, and match actors, directors, or genres I asked.
       Don't recommend movies that don't have OMDB posters.
-      Answer in less than 2 seconds.
-      Order the recommendations by the most relevant to the least relevant.
-      Double-check the IMDb IDs of the recommended movies.
       For each movie, provide the following structure:
       \n
       {\"imdb_id\": \"IMDB_ID\",

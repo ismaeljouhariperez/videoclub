@@ -1,9 +1,12 @@
 <div class="page_container">
-  <div class="page_container__search">
-    <%= form_tag search_on, class: "search-container", method: :get do %>
+  <div class="page_container__search d-flex align-items-center justify-content-between">
+    <%= form_tag search_on, class: "search-container flex-grow-1", method: :get do %>
       <%= render "layouts/icon" %>
-      <%= text_field_tag :search, params[:search], class: "search-input", placeholder: "Search a movie by its title" %>
+      <%= text_field_tag :search, params[:search], class: "search-input flex-grow-1", placeholder: "Search a movie by its title" %>
     <% end %>
+    <div class="search-header ms-2">
+      <button class="btn btn-primary ms-auto text-black p-2 px-4"><i class="m-2 fa-solid fa-wand-magic-sparkles"></i><small>Find similar movies</small></button>
+    </div>
   </div>
   <div class="page_container__header" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_url %>'); background-position: <%= defined?(position) ? position : "initial" %>;">
     <div class="page_container__header__content">
