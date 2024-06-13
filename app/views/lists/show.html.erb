@@ -3,7 +3,7 @@
   <h2><%= @list.name %> list</h2>
   <% if !@list.movies.empty? %>
   <% @list.movies.each do |movie| %>
-    <%= render "movies/movie", movie: movie, bs_class: "col-sm-6 col-md-6 col-lg-3 my-2 text-wrap text-center" %>
+    <%= render "movies/movie", movie: movie, carousel:false, bs_class: "col-sm-6 col-md-6 col-lg-3 my-2 text-wrap text-center" %>
   <% end %>
 <% else %>
   <p>No movie in this list yet</p>

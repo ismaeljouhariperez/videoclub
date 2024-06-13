@@ -133,3 +133,31 @@
     }
   }
 }
+
+
+.page_container.favourites{
+  button.favourites {
+    background-color: white;
+      >i {
+        color: black !important;
+      }
+    }
+}
+
+.page_container.watched{
+  button.watched {
+    background-color: white;
+      >i {
+        color: black !important;
+      }
+    }
+}
+
+.page_container.watch_later{
+  button.watch_later {
+    background-color: white;
+      >i {
+        color: black !important;
+      }
+    }
+}
