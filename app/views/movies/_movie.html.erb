@@ -57,17 +57,21 @@
                 </div>
               </div>
               <div class="row">
+                <% if movie.description.present? %>
                 <div class="col-12">
                   <p><%= movie.description %></p>
                 </div>
+                <% end %>
               </div>
               <div class="row movie-info">
                 <div class="col-3">
                   <p><strong>Director</strong>
                 </div>
+                <% if movie.director.present? %>
                 <div class="col-9">
                   <p><%= movie.director %></p>
                 </div>
+                <% end %>
                 <% if movie.writer.present? %>
                 <div class="col-3">
                   <p><strong>Writer(s)</strong>
@@ -76,12 +80,14 @@
                   <p><%= movie.writer.split(", ").join(" ∙ ")%></p>
                 </div>
                 <% end %>
+                <% if movie.actors.present? %>
                 <div class="col-3">
                   <p><strong>Main actors</strong>
                 </div>
                 <div class="col-9">
                   <p><%= movie.actors.split(", ").join(" ∙ ") %></p>
                 </div>
+                <% end %>
               </div>
           <div class="row mt-1">
             <div class="col-6">

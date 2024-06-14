@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
     if params[:search]
       @movies = Movie.where("title ILIKE ?", "%#{params[:search]}%").page(params[:page]).per(20)
     else
-      @movies = Movie.page(params[:page]).per(20)
+      @movies = Movie.order(created_at: :desc).page(params[:page]).per(20)
     end
   end
 
