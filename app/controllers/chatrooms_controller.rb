@@ -3,7 +3,7 @@ class ChatroomsController < ApplicationController
     @chatrooms = Chatroom.all.order(updated_at: :desc)
     @last_chatroom = Chatroom.all.order(updated_at: :desc).first
     @chatroom = Chatroom.new
-    redirect_to chatroom_path(@last_chatroom) if @last_chatroom
+    redirect_to chatroom_path(@last_chatroom) if @last_chatroom.present?
   end
 
   def show
