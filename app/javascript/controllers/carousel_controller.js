@@ -23,7 +23,7 @@ export default class extends Controller {
       if (target.children.length > 6) {
         siemaConfig.perPage = {
           768: 2,
-          1024: 5,
+          1024: 6,
           1440: 6
         };
       } else {

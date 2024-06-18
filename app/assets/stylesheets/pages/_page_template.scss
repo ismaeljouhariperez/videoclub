@@ -21,7 +21,6 @@
       background-color: #E9EBF0;
       border-radius: 25px;
       padding: 8px 20px;
-      width: 20%;
     }
 
     .search-icon {
@@ -175,6 +174,43 @@
 }
 
 
+@media all and (max-width: 1280px) {
+  .page_container {
+    &__header {
+      &__content {
+        .buttons{
+          grid-column: 2 / span 6;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1440px) {
+  .page_container {
+    &__header {
+      &__content {
+        .buttons{
+          grid-column: 2 / span 6;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .page_container {
+    &__header {
+      &__content {
+        .buttons{
+          grid-column: 2 / span 6;
+        }
+      }
+    }
+  }
+}
+
+
 @media all and (max-width: 1919px){
   .page_container {
     height: 80vh;
@@ -182,6 +218,9 @@
 
     &__search {
 
+      .search-container {
+        width: 30%;
+      }
 
       .search-icon {
         font-size: 16px;
@@ -232,6 +271,9 @@
 
     &__search {
 
+      .search-container {
+        width: 20%;
+      }
 
       .search-icon {
         font-size: 16px;

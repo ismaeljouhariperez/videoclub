@@ -1,10 +1,10 @@
 
 <%= render "layouts/page", ai_reco: false, search_on: watched_movies_path, title: "Watched", image_url: "https://images.squarespace-cdn.com/content/v1/59d7e2c7e45a7c0ce235bb55/1627253759342-7W6HY65CNF48OM6MN9KA/Film-Review-A24-The-Green-Knight.jpg", movie_title: "The Green Knight", position: "center", movie_rating: "6.6", section: "watched" %>
 <div class="container-section d-flex flex-column flex-wrap">
-  <div class="row">
+  <div class="row my-4">
   <% if !@watched_movies.empty? %>
   <% @watched_movies.each do |watched_movie| %>
-    <%= render "movies/movie", movie: watched_movie.movie, section: "watched", lists: @lists_sidebar, carousel: false, bs_class: "col-sm-6 col-md-6 col-lg-3 col-xl-2" %>
+    <%= render "movies/movie", movie: watched_movie.movie, section: "watched", lists: @lists_sidebar, carousel: false, bs_class: "" %>
   <% end %>
 <% else %>
   <p>No movies watched yet</p>

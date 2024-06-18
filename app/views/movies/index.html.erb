@@ -1,14 +1,14 @@
 <%= render "layouts/page",  ai_reco: false, search_on: movies_path, title: "All the movies", image_url: "https://media.senscritique.com/media/000008596968/0/melancholia.jpg", movie_title: "Melancholia", position: "center", movie_rating: "7.1" %>
 <div class="container-section d-flex flex-column flex-wrap">
 
-  <div class="row">
+  <div class="row my-4">
     <% if @movies.empty? %>
       <div class="col-12 text-center">
         <h2>No movies found</h2>
       </div>
     <% else %>
       <% @movies.each_with_index do |movie, index| %>
-        <%= render "movie", movie: movie, index: index, carousel: false, bs_class: "col-sm-6 col-md-6 col-lg-3 col-xl-2 my-2 text-wrap text-center" %>
+        <%= render "movie", movie: movie, index: index, carousel: false, bs_class: "text-wrap text-center" %>
       <% end %>
     <% end %>
     <div class="d-flex justify-content-center">

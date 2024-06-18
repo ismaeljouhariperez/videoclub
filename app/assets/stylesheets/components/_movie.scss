@@ -9,7 +9,6 @@
     color: var(--text-color);
   }
   img {
-    height: 350px;
     width: 100%;
     object-fit: cover;
     border-radius: 7px;
@@ -60,15 +59,6 @@
     position: absolute;
     bottom: 15px;
     left: 10px;
-
-    // position: absolute;
-    // bottom: 15px;
-    // left: 0;
-    // display: flex;
-    // align-items: center;
-    // justify-content: space-evenly;
-    // width: 100%;
-    // padding:0 20px;
   }
 
   button.show i{
@@ -82,9 +72,6 @@
 
 @media all and (max-width: 1280px) {
   .movie-card {
-    img {
-      height: 280px;
-    }
 
     figure{
       i{
@@ -99,8 +86,8 @@
   .movie-card {
     figure{
       i{
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 2rem;
+        height: 2rem;
       }
     }
   }
@@ -137,4 +124,43 @@
   font-style: normal;
   font-weight: bold;
   color: #333;
+}
+
+@media all and (max-width: 1280px) {
+  .movie-card{
+    width: 25%;
+
+    img{
+      height: 280px;
+    }
+  }
+}
+
+
+@media all and (min-width: 1281px) and (max-width: 1440px) {
+  .movie-card{
+    width: 20%;
+
+    img{
+      height: 300px;
+    }
+  }
+}
+
+@media all and (min-width: 1441px) and (max-width: 1919px) {
+  .movie-card{
+    width: 18%;
+    img{
+      height: 300px;
+    }
+  }
+}
+
+@media all and (min-width: 1920px) {
+  .movie-card{
+    width: 16%;
+    img{
+      height: 350px;
+    }
+  }
 }
