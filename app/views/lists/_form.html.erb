@@ -1,9 +1,9 @@
-<%= simple_form_for(list, html: { data: { 
-            insert_in_the_list_target: 'form',
-            action: "submit->insert-in-the-list#send"
-          } } ) do |f| %>
-        <div data-display-form-target="form" class="d-none">
-          <%= f.input :name, label: "List name" %>
-          <%= f.button :submit, class: "btn btn-primary" %>
-        </div>
-      <% end %>
+<%= simple_form_for(list, html: { data: {
+      insert_in_the_list_target: 'form',
+      action: "submit->insert-in-the-list#send"
+    } } ) do |f| %>
+  <div data-display-form-target="form" class="d-none">
+    <%= f.input :name, label: "List name" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>
