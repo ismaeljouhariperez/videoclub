@@ -28,14 +28,14 @@
     <%# <% @queries.each do |query| %>
       <%# <%= render 'section', query: query %>
       <%# </div>  %>
-      <section class="container px-2 special">
+      <section class="special">
         <h2 class="mb-3">Special for you</h2>
         <div data-controller="carousel" class="carousel">
           <div class="siema" data-carousel-target="siema">
             <% @movies.sample(10).each do |movie| %>
               <div class="siema-slide">
                 <% unless movie.poster_url == "N/A" || movie.poster_url.nil? || movie.poster_url.empty? %>
-                  <%= render "movies/movie", movie: movie, section: "recommendations", lists: @lists_sidebar, carousel: true, bs_class: "col-sm-6 col-md-6 col-lg-3 col-xl-2" %>
+                  <%= render "movies/movie", movie: movie, section: "recommendations", lists: @lists_sidebar, carousel: true, bs_class: "" %>
                 <% end %>
               </div>
             <% end %>
@@ -48,7 +48,7 @@
           </button>-->
         </div>
       </section>
-      <section class="container my-4 px-2">
+      <section class="my-4">
         <h2>Your favorites</h2>
         <div data-controller="carousel" class="carousel">
           <div class="siema" data-carousel-target="siema">
