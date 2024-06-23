@@ -53,7 +53,7 @@ Explore the application to search for movies, add them to various lists, and dis
 
 ## Contributing
 
-We are open to contributions! If you have ideas or improvements for Videoclub, please contact us at `[your-email]` to discuss how you can contribute. We appreciate prior communication to align contributions with our project vision.
+We are open to contributions! If you have ideas or improvements for Videoclub, please contact us to discuss how you can contribute. We appreciate prior communication to align contributions with our project vision.
 
 ## Credits
 
